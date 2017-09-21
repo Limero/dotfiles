@@ -8,6 +8,12 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
+# Development
+alias gp='git commit -am "`date`" && git push'
+alias st='clear && git status'
+alias m='make'
+alias mc='make clean'
+
 # OS Specific aliases
 if [ -f /etc/arch-release ]; then
   # Arch
