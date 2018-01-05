@@ -12,7 +12,23 @@ PS1='[\u@\h \W]\$ '
 alias gp='git commit -am "`date`" && git push'
 alias st='clear && git status'
 alias m='make'
-alias mc='make clean'
+alias mcl='make clean'
+
+alias bashrc='vim ~/.bashrc'
+alias vimrc='vim ~/.vimrc'
+alias i3config='vim ~/.config/i3/config'
+
+c() {
+  cd $1;
+  ls;
+}
+alias cd='c'
+
+alias t='i3-sensible-terminal --default-working-directory="$PWD"'
+alias ttt='i3 split h && t && i3 split v && t && i3 resize shrink width && i3 resize shrink width && i3 split h && clear && ls -la'
+
+# Activate vi mode with <Escape>
+set -o vi
 
 # OS Specific aliases
 if [ -f /etc/arch-release ]; then
@@ -36,28 +52,7 @@ elif [ -f /etc/gentoo-release ]; then
 elif [ -f /etc/debian_version ]; then
   # Debian/Ubuntu (untested)
   alias u='sudo sh -c "apt update && apt upgrade"'
-elif [ -x "$(command -v softwareupdate)" ]; then
-  # macOS (untested)
-  up() {
-    if ! [ -x "$(command -v brew)" ]; then
-      # Install homebrew and re-run
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" && up
-    elif ! brew ls --versions cask-upgrade > /dev/null; then # may work without >
-      # Install cu and re-run
-      brew update && brew tap buo/cask-upgrade && up
-    else
-      brew update && brew cu && sudo softwareupdate -ia
-    fi
-  }
-  alias u=updateMac
 else
   alias u='echo Not supported on this platform'
 fi
 
-# Use powerline-daemon --replace to restart
-if [ -x "$(command -v powerline-daemon)" ]; then
-  powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  . /usr/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
-fi
