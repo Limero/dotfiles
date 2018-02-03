@@ -48,7 +48,7 @@ elif [ -f /etc/redhat-release ]; then
   fi
 elif [ -f /etc/gentoo-release ]; then
   # Gentoo (untested)
-  alias u='sudo sh -c "emerge --sync && emerge -avuND world"'
+  alias u='sudo sh -c "emerge --sync && emerge -avuND @world"'
 elif [ -f /etc/debian_version ]; then
   # Debian/Ubuntu (untested)
   alias u='sudo sh -c "apt update && apt upgrade"'
