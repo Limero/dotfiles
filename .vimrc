@@ -21,8 +21,6 @@ set noswapfile
 " Show possible completions with preview
 set completeopt=menuone,preview
 
-set scrolloff=10 " Show rows above/below cursor
-
 " --- Confirmed needed things below
 filetype plugin indent on
 set autoindent
@@ -59,11 +57,12 @@ set shiftwidth=2
 set tabstop=2
 
 " Close curly brackets
-"ino { {}<left>
 ino {<CR> {<CR>}<ESC>O
 
-"set list
-"set listchars=tab:>-,nbsp:·,trail:·
+set list
+set listchars=tab:>-,nbsp:%,trail:·
+
+set scrolloff=10 " Show rows above/below cursor
 
 " Remove octal numbers for Ctrl-A and Ctrl-X, it's confusing
 set nrformats-=octal
