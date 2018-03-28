@@ -25,7 +25,10 @@ alias st='clear && git status'
 alias m='make'
 alias mcl='make clean'
 
-alias bashrc='vim ~/.bashrc'
+alias v='vim'
+alias g='git'
+
+alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vimrc'
 alias i3config='vim ~/.config/i3/config'
 
@@ -38,14 +41,11 @@ alias cd='c'
 alias t='i3-sensible-terminal --default-working-directory="$PWD"'
 alias ttt='i3 split h && t && i3 split v && t && i3 resize shrink width && i3 resize shrink width && i3 split h && clear && ls -la'
 
-# Activate vi mode with <Escape>
-set -o vi
-
 # OS Specific aliases
 if [ -f /etc/arch-release ]; then
   # Arch
-  if [ -x "$(command -v pacaur)" ]; then
-    alias u='pacaur -Syu'
+  if [ -x "$(command -v yay)" ]; then
+    alias u='yay -Syu'
   else
     alias u='sudo pacman -Syu'
   fi

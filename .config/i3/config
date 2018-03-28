@@ -123,7 +123,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 for_window [class="Spotify"] move to workspace $ws9
 assign [class="Signal"] $ws9
 assign [class="Firefox"] $ws1
-assign [class="newsboat"] $ws8
+assign [title="newsboat"] $ws8
 
 # remove borders
 for_window [class="^Spotify$"] border none
@@ -139,10 +139,12 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 bindsym $mod+t exec thunar
+#bindsym $mod+t exec nautilus
 bindsym $mod+m exec i3-sensible-terminal -e "htop -u $USER"
 bindsym $mod+Shift+m exec i3-sensible-terminal -e "gtop"
 bindsym $mod+Shift+t exec i3-sensible-terminal -e "ranger"
-bindsym $mod+n exec mousepad
+#bindsym $mod+n exec mousepad
+bindsym $mod+c exec i3-sensible-terminal -e "vim"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -205,9 +207,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute s
 #bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Spotify
-bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 # https://wiki.archlinux.org/index.php/I3#Shutdown.2C_reboot.2C_lock_screen
 set $Locker i3lock && sleep 1
@@ -225,7 +227,6 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-#bindsym $mod+Escape mode "$mode_system"
 bindsym $mod+Shift+e mode "$mode_system"
 
 bindsym Ctrl+Shift+4 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
@@ -236,8 +237,8 @@ exec --no-startup-id spotify
 exec --no-startup-id signal-desktop
 exec --no-startup-id i3-sensible-terminal -e "newsboat"
 
-# Bind caps to escape
-exec_always --no-startup-id setxkbmap -option caps:escape
+# Bind caps to escape and switch layout with alt+shift
+exec --no-startup-id setxkbmap se,us -option 'grp:alt_shift_toggle' -option caps:escape
 
 exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" | sort -R | tail -1)
 
@@ -245,3 +246,7 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrou
 exec_always --no-startup-id xrandr --output DVI-D-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output DP-1 --off --output HDMI-2 --off
 # Same but for internal GPU
 #exec_always --no-startup-id xrandr --output DVI-D-1-1 --off --output HDMI-1-5 --off --output HDMI-1-4 --off --output HDMI-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-2 --off --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1-3 --off --output DP-1-2 --off --output DP-1 --off
+
+#sway
+#output DVI-D-1 pos 0,0 res 1920x1080
+#output HDMI-A-1 pos 1920,0 res 1920x1080

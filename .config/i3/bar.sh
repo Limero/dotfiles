@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sleep 0.5
 SINK=$(pacmd stat | awk -F": " '/^Default sink name: /{print $2}')
 
 volume() {

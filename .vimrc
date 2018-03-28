@@ -30,6 +30,13 @@ set belloff=all
 set mouse=a
 set showcmd
 colorscheme ron
+set encoding=utf-8
+
+" Disable intro message
+set shortmess+=I
+
+" Use system clipboard
+set clipboard=unnamedplus
 
 " Make tab bar, statusline and vertical split screen divider dark
 :hi TabLineFill term=bold cterm=bold ctermbg=0
@@ -62,7 +69,7 @@ ino {<CR> {<CR>}<ESC>O
 set list
 set listchars=tab:>-,nbsp:%,trail:·
 
-set scrolloff=10 " Show rows above/below cursor
+set scrolloff=15 " Show rows above/below cursor
 
 " Remove octal numbers for Ctrl-A and Ctrl-X, it's confusing
 set nrformats-=octal
@@ -79,3 +86,8 @@ set cinoptions+=L0
 " Open new splits on opposite side
 set splitbelow
 set splitright
+
+" https://www.johnhawthorn.com/2012/09/vi-escape-delays/
+" noesckeys will disable cursor/func keys in insert mode,
+" so set delay instead
+set ttimeoutlen=0
