@@ -21,6 +21,14 @@ set noswapfile
 " Show possible completions with preview
 set completeopt=menuone,preview
 
+" netrw (open with :E or :Ve)
+" https://shapeshed.com/vim-netrw/
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+
 " --- Confirmed needed things below
 filetype plugin indent on
 set autoindent

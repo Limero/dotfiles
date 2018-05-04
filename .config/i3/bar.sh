@@ -1,9 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 sleep 0.5
 SINK=$(pacmd stat | awk -F": " '/^Default sink name: /{print $2}')
 
 volume() {
+  # Check if default sink is muted
+  # TODO: print MUTED if muted else blank, instead of yes/no
+  #pacmd list-sinks |
+  #  awk '/^\s+name: /{indefault = $2 == "<'$SINK'>"}
+  #       /^\s+muted: / && indefault {print $2; exit}'
+
+  # Get volume of default sink
   pacmd list-sinks |
     awk '/^\s+name: /{indefault = $2 == "<'$SINK'>"}
          /^\s+volume: / && indefault {print $5; exit}'
@@ -16,10 +23,21 @@ spotify() {
   sed -n '/title/{n;p}' <<< $META | cut -d '"' -f 2
 }
 
+battery() {
+  #upower -i /org/freedesktop/UPower/devices/battery_BAT0
+  echo ''
+}
+
+wifi() {
+  # https://askubuntu.com/questions/282671/how-to-get-the-connected-wifi-network-ssid
+  nmcli -t -f NAME connection show --active
+}
+
 while :
 do
   echo $(spotify) '|' \
        $(volume) '|' \
+       $(wifi) '|' \
        $(date '+%a %b %d %H:%M:%S')
   sleep 1
 done

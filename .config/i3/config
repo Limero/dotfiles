@@ -91,8 +91,7 @@ set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-#set $ws9 "9: /"
-# itunes-note, comments 
+# itunes-note, comments
 set $ws9 "9: /"
 set $ws10 "10"
 
@@ -123,15 +122,12 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 for_window [class="Spotify"] move to workspace $ws9
 assign [class="Signal"] $ws9
 assign [class="Firefox"] $ws1
-assign [title="newsboat"] $ws8
+#assign [title="newsboat"] $ws8
 
 # remove borders
 for_window [class="^Spotify$"] border none
 for_window [class="^Signal$"] border none
-
-# Multiple monitors
-workspace $ws10 output HDMI-1
-workspace $ws1 output DVI-D-1
+for_window [class="^Firefox$"] border none
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -143,7 +139,6 @@ bindsym $mod+t exec thunar
 bindsym $mod+m exec i3-sensible-terminal -e "htop -u $USER"
 bindsym $mod+Shift+m exec i3-sensible-terminal -e "gtop"
 bindsym $mod+Shift+t exec i3-sensible-terminal -e "ranger"
-#bindsym $mod+n exec mousepad
 bindsym $mod+c exec i3-sensible-terminal -e "vim"
 
 # resize window (you can also use the mouse for that)
@@ -231,16 +226,24 @@ bindsym $mod+Shift+e mode "$mode_system"
 
 bindsym Ctrl+Shift+4 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 
-exec --no-startup-id compton
+exec --no-startup-id allow_rgb10_configs=false compton --vsync opengl --no-fading-openclose
 exec --no-startup-id firefox
 exec --no-startup-id spotify
 exec --no-startup-id signal-desktop
-exec --no-startup-id i3-sensible-terminal -e "newsboat"
+#exec --no-startup-id i3-sensible-terminal -e "newsboat"
 
 # Bind caps to escape and switch layout with alt+shift
 exec --no-startup-id setxkbmap se,us -option 'grp:alt_shift_toggle' -option caps:escape
 
-exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" | sort -R | tail -1)
+exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1)
+
+# Brightness
+bindsym XF86MonBrightnessDown exec .bin/brightness - 500
+bindsym XF86MonBrightnessUp exec .bin/brightness + 500
+
+# Multiple monitors
+workspace $ws10 output HDMI-1
+workspace $ws1 output DVI-D-1
 
 # Monitor layout for desktop with two monitors, generated with arandr
 exec_always --no-startup-id xrandr --output DVI-D-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output DP-1 --off --output HDMI-2 --off
