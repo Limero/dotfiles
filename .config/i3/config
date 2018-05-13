@@ -119,9 +119,12 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# https://i3wm.org/docs/userguide.html#command_criteria
+# get with xprop
 for_window [class="Spotify"] move to workspace $ws9
 assign [class="Signal"] $ws9
 assign [class="Firefox"] $ws1
+for_window [instance="runescape"] move to scratchpad # Hide the launch popup
 #assign [title="newsboat"] $ws8
 
 # remove borders
