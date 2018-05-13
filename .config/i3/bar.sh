@@ -24,8 +24,8 @@ spotify() {
 }
 
 battery() {
-  #upower -i /org/freedesktop/UPower/devices/battery_BAT0
-  echo ''
+  upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E percentage | awk '{print $2}'
+  upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E time | awk '{print $4,$5}'
 }
 
 wifi() {
@@ -38,6 +38,7 @@ do
   echo $(spotify) '|' \
        $(volume) '|' \
        $(wifi) '|' \
+       $(battery) '|' \
        $(date '+%a %b %d %H:%M:%S')
   sleep 1
 done
