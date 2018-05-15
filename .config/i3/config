@@ -195,9 +195,9 @@ client.focused #404552 #404552 #fafafa #ff5757 #666666
 #client.background #404552
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% # increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% # decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% # increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% # decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 # Media player controls
 #bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -249,9 +249,12 @@ workspace $ws10 output HDMI-1
 workspace $ws1 output DVI-D-1
 
 # Monitor layout for desktop with two monitors, generated with arandr
-exec_always --no-startup-id xrandr --output DVI-D-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output DP-1 --off --output HDMI-2 --off
+#exec_always --no-startup-id xrandr --output DVI-D-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output DP-1 --off --output HDMI-2 --off
 # Same but for internal GPU
 #exec_always --no-startup-id xrandr --output DVI-D-1-1 --off --output HDMI-1-5 --off --output HDMI-1-4 --off --output HDMI-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-2 --off --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1-3 --off --output DP-1-2 --off --output DP-1 --off
+
+# One external 1440p monitor
+exec_always xrandr --output HDMI-1 --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-1 --off --output eDP-1 --mode 1920x1080 --pos 0x752 --rotate normal --output DP-2 --off
 
 #sway
 #output DVI-D-1 pos 0,0 res 1920x1080
