@@ -24,13 +24,14 @@ spotify() {
 }
 
 battery() {
+  # Currently requires upower. Find solution without dependencies
   upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E percentage | awk '{print $2}'
   upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E time | awk '{print $4,$5}'
 }
 
 wifi() {
   # https://askubuntu.com/questions/282671/how-to-get-the-connected-wifi-network-ssid
-  nmcli -t -f NAME connection show --active
+  nmcli -t -f NAME connection show --active | head -1
 }
 
 while :
