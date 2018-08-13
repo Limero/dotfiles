@@ -12,9 +12,6 @@ set ruler                       " show the cursor position all the time
 set nowritebackup
 set noswapfile
 
-" Show @@@ in the last line if it is truncated.
-"set display=truncate
-
 " Use Ctrl+d to switch between Vim and bash
 "noremap <C-d> :sh<cr>
 
@@ -28,6 +25,9 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
 let g:netrw_altv = 1
 let g:netrw_winsize = 15
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+
+set path=$PWD/** " http://vim.wikia.com/wiki/Project_browsing_using_find
 
 " --- Confirmed needed things below
 filetype plugin indent on
@@ -59,7 +59,7 @@ set wildmenu
 set wildignore=*.o,*~,*.class,*.pyc
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
-" Ignore cases in Wild menu
+" Ignore cAsEs in Wild menu
 set wildignorecase
 
 " Disable continuation of comments
@@ -70,6 +70,9 @@ set smarttab
 set expandtab
 set shiftwidth=2
 set tabstop=2
+
+" 1 tab = 4 spaces in specific languages
+autocmd Filetype php setlocal shiftwidth=4 tabstop=4
 
 " Close curly brackets
 ino {<CR> {<CR>}<ESC>O
@@ -99,3 +102,7 @@ set splitright
 " noesckeys will disable cursor/func keys in insert mode,
 " so set delay instead
 set ttimeoutlen=0
+
+" Disable keys
+noremap <PageUp> <Nop>
+noremap <PageDown> <Nop>

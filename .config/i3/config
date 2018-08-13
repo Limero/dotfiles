@@ -83,7 +83,8 @@ bindsym $mod+a focus parent
 
 # Icons from http://fontawesome.io/cheatsheet/
 # firefox
-set $ws1 "1: "
+#set $ws1 "1: "
+set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
@@ -92,7 +93,8 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 # itunes-note, comments
-set $ws9 "9: /"
+#set $ws9 "9: /"
+set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
@@ -123,7 +125,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # get with xprop
 for_window [class="Spotify"] move to workspace $ws9
 assign [class="Signal"] $ws9
-assign [class="Firefox"] $ws1
+#assign [class="Firefox"] $ws1
 for_window [instance="runescape"] move to scratchpad # Hide the launch popup
 #assign [title="newsboat"] $ws8
 
@@ -131,6 +133,7 @@ for_window [instance="runescape"] move to scratchpad # Hide the launch popup
 for_window [class="^Spotify$"] border none
 for_window [class="^Signal$"] border none
 for_window [class="^Firefox$"] border none
+for_window [class="^qutebrowser$"] border none
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -199,6 +202,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% # decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
+bindsym $mod+Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% # increase sound volume
+bindsym $mod+Ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% # decrease sound volume
+
 # Media player controls
 #bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 #bindsym XF86AudioNext exec --no-startup-id playerctl next
@@ -209,8 +215,12 @@ bindsym XF86AudioPlay exec --no-startup-id dbus-send --print-reply --dest=org.mp
 bindsym XF86AudioNext exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioPrev exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
+bindsym $mod+Ctrl+space exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym $mod+Ctrl+Right exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym $mod+Ctrl+Left exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
 # https://wiki.archlinux.org/index.php/I3#Shutdown.2C_reboot.2C_lock_screen
-set $Locker i3lock && sleep 1
+set $Locker i3lock -i bg.png -t -e && sleep 1
 set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -232,11 +242,13 @@ bindsym Ctrl+Shift+4 exec --no-startup-id maim -s | xclip -selection clipboard -
 exec --no-startup-id compton --vsync opengl --no-fading-openclose
 exec --no-startup-id firefox
 exec --no-startup-id spotify
-exec --no-startup-id signal-desktop
+#exec --no-startup-id signal-desktop
 #exec --no-startup-id i3-sensible-terminal -e "newsboat"
 
+# /usr/share/X11/xkb/rules/base.lst
 # Bind caps to escape and switch layout with alt+shift
-exec --no-startup-id setxkbmap se,us -option 'grp:alt_shift_toggle' -option caps:escape
+#exec_always --no-startup-id setxkbmap us,se -option 'grp:alt_shift_toggle' -option caps:escape
+exec_always --no-startup-id setxkbmap se -variant us -option caps:escape
 
 exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1)
 
@@ -246,7 +258,7 @@ bindsym XF86MonBrightnessUp exec .bin/brightness + 500
 
 # Multiple monitors
 workspace $ws10 output HDMI-1
-workspace $ws1 output DVI-D-1
+#workspace $ws1 output DVI-D-1
 
 # Monitor layout for desktop with two monitors, generated with arandr
 #exec_always --no-startup-id xrandr --output DVI-D-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output DP-1 --off --output HDMI-2 --off
@@ -259,3 +271,5 @@ exec_always xrandr --output HDMI-1 --mode 2560x1440 --pos 1920x0 --rotate normal
 #sway
 #output DVI-D-1 pos 0,0 res 1920x1080
 #output HDMI-A-1 pos 1920,0 res 1920x1080
+
+exec_always dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY

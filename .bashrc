@@ -15,13 +15,26 @@ alias gp='git commit -am "`date`" && git push'
 alias st='clear && git status'
 alias m='make'
 alias mcl='make clean'
+alias gb='git branch'
+alias gch='git checkout'
+alias gc='git commit'
+alias gd='git diff'
+alias gpu='git pull'
 
-alias v='vim'
+alias v='$EDITOR'
 alias g='git'
+alias r='ranger'
+alias f='$EDITOR `fzf`'
 
-alias bashrc='vim ~/.bashrc'
-alias vimrc='vim ~/.vimrc'
-alias i3config='vim ~/.config/i3/config'
+alias bashrc='$EDITOR ~/.bashrc'
+alias vimrc='$EDITOR ~/.vimrc'
+alias i3config='$EDITOR ~/.config/i3/config'
+
+alias h='http'
+alias br='sudo vim /sys/class/backlight/intel_backlight/brightness'
+
+# Directories
+alias mapi='cd ~/IUS/mapi'
 
 c() {
   cd $1;
