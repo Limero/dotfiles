@@ -1,10 +1,55 @@
-" Settings from Arch Linux global vimrc
-set backspace=indent,eol,start  " more powerful backspacing
-set history=50                  " keep 50 lines of command line history
-set ruler                       " show the cursor position all the time
+packadd minpac
+" Usage:
+" :call minpac#update()
+" :call minpac#clean()
+" :call minpac#status()
+if !exists('*minpac#init')
+  " minpac is not available.
+  nnoremap \ :tabfind *
+else
+  " minpac is available.
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-" Suffixes that get lower priority when doing tab completion for filenames.
-"set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
+  " Additional plugins here.
+  "call minpac#add('tpope/vim-fugitive')
+  call minpac#add('junegunn/fzf.vim')
+  "call minpac#add('vim-syntastic/syntastic')
+  "call minpac#add('itchyny/lightline.vim')
+  "call minpac#add('airblade/vim-gitgutter')
+  "call minpac#add('vim-airline/vim-airline')
+
+  " Plugin settings here.
+  " fzf
+  nnoremap \ :call fzf#run({'source': 'git ls-files --exclude-standard --cached --others', 'sink': 'tabedit', 'down': '40%'})<CR>
+
+  " vim-fugitive
+  "set statusline+=%{FugitiveStatusline()}
+  "set laststatus=2
+
+  "syntastic
+  "set statusline+=%#warningmsg#
+  "set statusline+=%{SyntasticStatuslineFlag()}
+  "set statusline+=%*
+
+  "let g:syntastic_always_populate_loc_list = 1
+  "let g:syntastic_auto_loc_list = 1
+  "let g:syntastic_check_on_open = 1
+  "let g:syntastic_check_on_wq = 0
+
+  " lightline
+  "set noshowmode
+
+  " vim-gitgutter
+  "set updatetime=100
+endif
+
+" Native VIM below
+" ---
+
+" Settings from Arch Linux global vimrc
+"set backspace=indent,eol,start  " more powerful backspacing
+set ruler                       " show the cursor position all the time
 
 " User settings
 
@@ -28,6 +73,30 @@ let g:netrw_winsize = 15
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 set path=$PWD/** " http://vim.wikia.com/wiki/Project_browsing_using_find
+
+" Keep selected text selected when fixing indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" possible to autocorrect with things in current file?
+" :help command-completion
+command -nargs=? Grep vimgrep /<args>/j **/* | copen 25
+nnoremap \| :Grep 
+
+" https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim
+command! -nargs=* Blame call s:GitBlame()
+function! s:GitBlame()
+   let cmdline = "git blame -w " . bufname("%")
+   let nline = line(".") + 1
+   botright new
+   setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap cursorline
+   execute "$read !" . cmdline
+   setlocal nomodifiable
+   execute "normal " . nline . "gg"
+   execute "set filetype=php"
+endfunction
+
+let mapleader = ","
 
 " --- Confirmed needed things below
 filetype plugin indent on
@@ -57,13 +126,13 @@ set wildmenu
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.class,*.pyc
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+" Random filetypes
+set wildignore+=*.png,*.jpg,*.svg,*.pdf,*.graphml,*.eot,*.woff,*.log,*.sqlite
+" Directories
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/*,*/cache/*,*/bin/*,*/.DS_Store
 
 " Ignore cAsEs in Wild menu
 set wildignorecase
-
-" Disable continuation of comments
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " 1 tab == 2 spaces
 set smarttab
@@ -104,5 +173,15 @@ set splitright
 set ttimeoutlen=0
 
 " Disable keys
+" Normal mode
 noremap <PageUp> <Nop>
 noremap <PageDown> <Nop>
+" Insert mode
+noremap! <PageUp> <Nop>
+noremap! <PageDown> <Nop>
+
+" Disable continuation of comments
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+autocmd FileType php set indentkeys-==*/ " Prevent */ in multiline comment to be indented
+autocmd FileType help wincmd T " Open help in new tab
