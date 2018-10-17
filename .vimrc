@@ -12,36 +12,12 @@ else
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Additional plugins here.
-  "call minpac#add('tpope/vim-fugitive')
   call minpac#add('junegunn/fzf.vim')
-  "call minpac#add('vim-syntastic/syntastic')
-  "call minpac#add('itchyny/lightline.vim')
-  "call minpac#add('airblade/vim-gitgutter')
-  "call minpac#add('vim-airline/vim-airline')
 
   " Plugin settings here.
   " fzf
   nnoremap \ :call fzf#run({'source': 'git ls-files --exclude-standard --cached --others', 'sink': 'tabedit', 'down': '40%'})<CR>
 
-  " vim-fugitive
-  "set statusline+=%{FugitiveStatusline()}
-  "set laststatus=2
-
-  "syntastic
-  "set statusline+=%#warningmsg#
-  "set statusline+=%{SyntasticStatuslineFlag()}
-  "set statusline+=%*
-
-  "let g:syntastic_always_populate_loc_list = 1
-  "let g:syntastic_auto_loc_list = 1
-  "let g:syntastic_check_on_open = 1
-  "let g:syntastic_check_on_wq = 0
-
-  " lightline
-  "set noshowmode
-
-  " vim-gitgutter
-  "set updatetime=100
 endif
 
 " Native VIM below
