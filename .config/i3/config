@@ -16,10 +16,16 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec env WAYLAND_DISPLAY= alacritty
+#bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec WINIT_HIDPI_FACTOR=1 alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# switch between workspaces
+bindsym $mod+Tab workspace back_and_forth
 
 # start program launcher
 #bindsym $mod+d exec dmenu_run
@@ -65,9 +71,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -76,7 +82,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -124,7 +130,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # https://i3wm.org/docs/userguide.html#command_criteria
 # get with xprop
 for_window [class="Spotify"] move to workspace $ws9
-assign [class="Signal"] $ws9
+#assign [class="Signal"] $ws9
 #assign [class="Firefox"] $ws1
 for_window [instance="runescape"] move to scratchpad # Hide the launch popup
 #assign [title="newsboat"] $ws8
@@ -182,6 +188,7 @@ bar {
         #status_command i3blocks -c ~/.config/i3/i3blocks.conf
         status_command ~/.config/i3/bar.sh
         position top
+        #position bottom
         colors {
                 background #222d32
                 focused_workspace #3685e2 #3685e2 #fafafa
@@ -228,7 +235,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -238,6 +245,7 @@ mode "$mode_system" {
 bindsym $mod+Shift+e mode "$mode_system"
 
 bindsym Ctrl+Shift+4 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+#bindsym Ctrl+Shift+4 exec --no-startup-id slurp -d | grim -g - - | xclip -selection clipboard -t image/png
 
 exec --no-startup-id compton --vsync opengl --no-fading-openclose
 exec --no-startup-id firefox
@@ -245,16 +253,13 @@ exec --no-startup-id spotify
 #exec --no-startup-id signal-desktop
 #exec --no-startup-id i3-sensible-terminal -e "newsboat"
 
-# /usr/share/X11/xkb/rules/base.lst
-# Bind caps to escape and switch layout with alt+shift
-#exec_always --no-startup-id setxkbmap us,se -option 'grp:alt_shift_toggle' -option caps:escape
 exec_always --no-startup-id setxkbmap se -variant us -option caps:escape
 
 exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1)
 
 # Brightness
-bindsym XF86MonBrightnessDown exec .bin/brightness - 500
-bindsym XF86MonBrightnessUp exec .bin/brightness + 500
+#bindsym XF86MonBrightnessDown exec .bin/brightness - 500
+#bindsym XF86MonBrightnessUp exec .bin/brightness + 500
 
 # Multiple monitors
 workspace $ws10 output HDMI-1
@@ -268,8 +273,26 @@ workspace $ws10 output HDMI-1
 # One external 1440p monitor
 exec_always xrandr --output HDMI-1 --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-1 --off --output eDP-1 --mode 1920x1080 --pos 0x752 --rotate normal --output DP-2 --off
 
-#sway
-#output DVI-D-1 pos 0,0 res 1920x1080
-#output HDMI-A-1 pos 1920,0 res 1920x1080
-
 exec_always dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
+# sudo pacman -S xorg-xinput
+# xinput list
+#exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Tapping Enabled" 1
+#exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Tapping Drag Enabled" 0
+# Disable buttons on bottom of trackpad
+exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Click Method Enabled" {0 1}
+
+# Sway
+# https://github.com/swaywm/sway/wiki#input-configuration
+#input 1:1:AT_Translated_Set_2_keyboard {
+#  xkb_layout se
+#  xkb_variant us
+#  xkb_options caps:escape
+#}
+
+#input 1739:0:Synaptics_TM3289-002 {
+#  tap enabled
+#  drag disabled
+#  # two-finger click is a context click and three-finger click is a middle click
+#  click_method clickfinger
+#}

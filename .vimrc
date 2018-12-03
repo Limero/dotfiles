@@ -3,21 +3,19 @@ packadd minpac
 " :call minpac#update()
 " :call minpac#clean()
 " :call minpac#status()
-if !exists('*minpac#init')
-  " minpac is not available.
-  nnoremap \ :tabfind *
-else
+if exists('*minpac#init')
   " minpac is available.
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Additional plugins here.
-  call minpac#add('junegunn/fzf.vim')
+  "call minpac#add('junegunn/fzf.vim')
+endif
 
-  " Plugin settings here.
-  " fzf
+if executable('fzf')
   nnoremap \ :call fzf#run({'source': 'git ls-files --exclude-standard --cached --others', 'sink': 'tabedit', 'down': '40%'})<CR>
-
+else
+  nnoremap \ :tabfind *
 endif
 
 " Native VIM below
@@ -73,6 +71,12 @@ function! s:GitBlame()
 endfunction
 
 let mapleader = ","
+
+" http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text#Mapping_for_paste
+xnoremap p "_dP
+
+" https://stackoverflow.com/questions/1297970/how-do-i-get-vim-to-treat-underscores-in-a-string-as-a-word-break
+"set iskeyword-=_
 
 " --- Confirmed needed things below
 filetype plugin indent on

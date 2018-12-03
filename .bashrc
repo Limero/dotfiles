@@ -10,9 +10,17 @@ PS1='[\u@\h \W]\$ '
 
 export EDITOR=vim
 
+# Useful stuff
+shopt -s autocd # cd to dir by typing directory name
+HISTSIZE= HISTFILESIZE= # infinite history
+#set -o vi
+
+# Vim as a Manpager
+export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+
 # Development
 alias gp='git commit -am "`date`" && git push'
-alias st='clear && git status'
+alias gs='clear && git status'
 alias m='make'
 alias mcl='make clean'
 alias gb='git branch'
@@ -30,41 +38,25 @@ alias bashrc='$EDITOR ~/.bashrc'
 alias vimrc='$EDITOR ~/.vimrc'
 alias i3config='$EDITOR ~/.config/i3/config'
 
-alias h='http'
-alias br='sudo vim /sys/class/backlight/intel_backlight/brightness'
+alias br='sudoedit /sys/class/backlight/intel_backlight/brightness'
 
 # Directories
-alias mapi='cd ~/IUS/mapi'
+alias ius='cd ~/ius'
+alias mapi='ius && cd mapi && git status'
+alias fpapi='ius && cd fpapi-vasttrafik && git status'
+alias fp='ius && cd fp-vasttrafik && git status'
+alias dockius='ius && cd dockius && git status'
+
+alias phpunit='vendor/phpunit/phpunit/phpunit'
+alias ws='cd ~/ius/dockius && docker-compose exec --user=dockius workspace bash'
+alias startius='cd ~/ius/dockius && ./start.sh'
+alias seed='clear && php artisan migrate:dropall --force && php artisan migrate:all --seed'
+alias reseed='clear && php artisan db:reseed'
+alias fplog='docker logs -f $(docker ps -aq --filter name=fp-vasttrafik)'
+alias fixfp='sudo rm -rf ~/ius/fp-vasttrafik/node_modules && docker rm -f $(docker ps -aq --filter name=fp-vasttrafik) || cd ~/ius/dockius && ./start.sh'
 
 c() {
   cd $1;
   ls;
 }
 alias cd='c'
-
-# OS Specific aliases
-if [ -f /etc/arch-release ]; then
-  # Arch
-  if [ -x "$(command -v yay)" ]; then
-    alias u='yay -Syu'
-  else
-    alias u='sudo pacman -Syu'
-  fi
-elif [ -f /etc/redhat-release ]; then
-  # RHEL/CentOS/Fedora (untested)
-  if [ -x "$(command -v dnf)" ]; then
-    alias u='sudo dnf upgrade'
-    alias clean='sudo dnf clean all'
-  else
-    alias u='sudo yum upgrade'
-  fi
-elif [ -f /etc/gentoo-release ]; then
-  # Gentoo (untested)
-  alias u='sudo sh -c "emerge --sync && emerge -avuND @world"'
-elif [ -f /etc/debian_version ]; then
-  # Debian/Ubuntu (untested)
-  alias u='sudo sh -c "apt update && apt upgrade"'
-else
-  alias u='echo Not supported on this platform'
-fi
-

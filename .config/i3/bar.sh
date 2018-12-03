@@ -31,7 +31,8 @@ battery() {
 
 wifi() {
   # https://askubuntu.com/questions/282671/how-to-get-the-connected-wifi-network-ssid
-  nmcli -t -f NAME connection show --active | head -1
+  # --order type is to put wifi above docker
+  nmcli -t -f NAME connection show --active --order type | head -1
 }
 
 while :
