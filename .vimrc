@@ -1,17 +1,3 @@
-packadd minpac
-" Usage:
-" :call minpac#update()
-" :call minpac#clean()
-" :call minpac#status()
-if exists('*minpac#init')
-  " minpac is available.
-  call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-  " Additional plugins here.
-  "call minpac#add('junegunn/fzf.vim')
-endif
-
 if executable('fzf')
   nnoremap \ :call fzf#run({'source': 'git ls-files --exclude-standard --cached --others', 'sink': 'tabedit', 'down': '40%'})<CR>
 else
