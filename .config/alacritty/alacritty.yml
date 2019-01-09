@@ -29,7 +29,7 @@ font:
 visual_bell:
   duration: 0
 
-# Colors (Tomorrow Night Bright)
+# Colors
 colors:
   # Default colors
   primary:

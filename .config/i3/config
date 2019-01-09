@@ -34,7 +34,7 @@ bindsym $mod+Tab workspace back_and_forth
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 #bindsym $mod+d exec --no-startup-id dmenu_run -nb "#222d32" -sb "#3685e2"
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --entry-type=command 
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --entry-type=command
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --entry-type=command --dmenu='dmenu -i -nb "#222d32" -sb "#3685e2"'
 
 # change focus
@@ -87,53 +87,37 @@ bindsym $mod+space focus mode_toggle
 # focus the child container
 #bindsym $mod+d focus child
 
-# Icons from http://fontawesome.io/cheatsheet/
-# firefox
-#set $ws1 "1: "
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-# itunes-note, comments
-#set $ws9 "9: /"
-set $ws9 "9"
-set $ws10 "10"
-
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # https://i3wm.org/docs/userguide.html#command_criteria
 # get with xprop
-for_window [class="Spotify"] move to workspace $ws9
-#assign [class="Signal"] $ws9
-#assign [class="Firefox"] $ws1
+for_window [class="Spotify"] move to workspace 9
+#assign [class="Signal"] 9
+#assign [class="Firefox"] 1
 for_window [instance="runescape"] move to scratchpad # Hide the launch popup
-#assign [title="newsboat"] $ws8
+#assign [title="newsboat"] 8
 
 # remove borders
 for_window [class="^Spotify$"] border none
@@ -149,7 +133,6 @@ bindsym $mod+Shift+r restart
 bindsym $mod+t exec thunar
 #bindsym $mod+t exec nautilus
 bindsym $mod+m exec i3-sensible-terminal -e "htop -u $USER"
-bindsym $mod+Shift+m exec i3-sensible-terminal -e "gtop"
 bindsym $mod+Shift+t exec i3-sensible-terminal -e "ranger"
 bindsym $mod+c exec i3-sensible-terminal -e "vim"
 
@@ -184,8 +167,6 @@ hide_edge_borders both
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        #status_command i3status
-        #status_command i3blocks -c ~/.config/i3/i3blocks.conf
         status_command ~/.config/i3/bar.sh
         position top
         #position bottom
@@ -205,12 +186,12 @@ client.focused #404552 #404552 #fafafa #ff5757 #666666
 #client.background #404552
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% # increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% # decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-bindsym $mod+Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% # increase sound volume
-bindsym $mod+Ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% # decrease sound volume
+bindsym $mod+Ctrl+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+Ctrl+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 # Media player controls
 #bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -244,8 +225,8 @@ mode "$mode_system" {
 
 bindsym $mod+Shift+e mode "$mode_system"
 
-bindsym Ctrl+Shift+4 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
-#bindsym Ctrl+Shift+4 exec --no-startup-id slurp -d | grim -g - - | xclip -selection clipboard -t image/png
+#bindsym Ctrl+Shift+4 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+4 exec --no-startup-id slurp -d | grim -g - - | xclip -selection clipboard -t image/png
 
 exec --no-startup-id compton --vsync opengl --no-fading-openclose
 exec --no-startup-id firefox
@@ -262,8 +243,8 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrou
 #bindsym XF86MonBrightnessUp exec .bin/brightness + 500
 
 # Multiple monitors
-workspace $ws10 output HDMI-1
-#workspace $ws1 output DVI-D-1
+workspace 10 output HDMI-1
+#workspace 1 output DVI-D-1
 
 # Monitor layout for desktop with two monitors, generated with arandr
 #exec_always --no-startup-id xrandr --output DVI-D-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output DP-1 --off --output HDMI-2 --off

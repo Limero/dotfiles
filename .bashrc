@@ -32,7 +32,6 @@ alias gpu='git pull'
 alias v='$EDITOR'
 alias g='git'
 alias r='ranger'
-alias f='$EDITOR `fzf`'
 
 alias bashrc='$EDITOR ~/.bashrc'
 alias vimrc='$EDITOR ~/.vimrc'
