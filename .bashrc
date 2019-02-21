@@ -1,7 +1,3 @@
-#
-# ~/.bashrc
-#
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -28,16 +24,20 @@ alias gch='git checkout'
 alias gc='git commit'
 alias gd='git diff'
 alias gpu='git pull'
+alias gm='$EDITOR -p $(git ls-files -m --exclude-standard --others)'
 
 alias v='$EDITOR'
 alias g='git'
 alias r='ranger'
+alias nm='neomutt'
+alias nb='newsboat'
 
 alias bashrc='$EDITOR ~/.bashrc'
 alias vimrc='$EDITOR ~/.vimrc'
-alias i3config='$EDITOR ~/.config/i3/config'
-
-alias br='sudoedit /sys/class/backlight/intel_backlight/brightness'
+alias i3conf='$EDITOR ~/.config/i3/config'
+alias tconf='$EDITOR ~/.config/alacritty/alacritty.yml'
+alias rssconf='$EDITOR ~/.config/newsboat/config'
+alias mconf='$EDITOR ~/.config/mutt/muttrc'
 
 # Directories
 alias ius='cd ~/ius'
@@ -52,10 +52,15 @@ alias startius='cd ~/ius/dockius && ./start.sh'
 alias seed='clear && php artisan migrate:dropall --force && php artisan migrate:all --seed'
 alias reseed='clear && php artisan db:reseed'
 alias fplog='docker logs -f $(docker ps -aq --filter name=fp-vasttrafik)'
-alias fixfp='sudo rm -rf ~/ius/fp-vasttrafik/node_modules && docker rm -f $(docker ps -aq --filter name=fp-vasttrafik) || cd ~/ius/dockius && ./start.sh'
+alias fixfp='sudo rm -rf ~/ius/fp-vasttrafik/node_modules && docker rm -f $(docker ps -aq --filter name=fp-vasttrafik) || startius'
 
 c() {
   cd $1;
   ls;
 }
 alias cd='c'
+
+iso2device() {
+  # Usage: iso2device ubuntu-18.04.1-desktop-amd64.iso /dev/sda
+  sudo dd bs=4M if=$1 of=$2 status=progress oflag=sync
+}

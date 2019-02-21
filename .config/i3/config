@@ -33,9 +33,9 @@ bindsym $mod+Tab workspace back_and_forth
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-#bindsym $mod+d exec --no-startup-id dmenu_run -nb "#222d32" -sb "#3685e2"
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "#222d32" -sb "#3685e2"
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --entry-type=command
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --entry-type=command --dmenu='dmenu -i -nb "#222d32" -sb "#3685e2"'
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --entry-type=command --dmenu='dmenu -i -nb "#222d32" -sb "#3685e2"'
 
 # change focus
 bindsym $mod+j focus left
@@ -130,7 +130,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-bindsym $mod+t exec thunar
+#bindsym $mod+t exec thunar
+bindsym $mod+t exec pcmanfm
 #bindsym $mod+t exec nautilus
 bindsym $mod+m exec i3-sensible-terminal -e "htop -u $USER"
 bindsym $mod+Shift+t exec i3-sensible-terminal -e "ranger"
@@ -208,7 +209,8 @@ bindsym $mod+Ctrl+Right exec --no-startup-id dbus-send --print-reply --dest=org.
 bindsym $mod+Ctrl+Left exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 # https://wiki.archlinux.org/index.php/I3#Shutdown.2C_reboot.2C_lock_screen
-set $Locker i3lock -i bg.png -t -e && sleep 1
+#set $Locker i3lock -i bg.png -t -e && sleep 1
+set $Locker swaylock -i bg.png -e && sleep 1
 set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -226,7 +228,8 @@ mode "$mode_system" {
 bindsym $mod+Shift+e mode "$mode_system"
 
 #bindsym Ctrl+Shift+4 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+4 exec --no-startup-id slurp -d | grim -g - - | xclip -selection clipboard -t image/png
+# slurp-git grim wl-clipboard
+bindsym Ctrl+Shift+4 exec --no-startup-id slurp -d | grim -g - - | wl-copy
 
 exec --no-startup-id compton --vsync opengl --no-fading-openclose
 exec --no-startup-id firefox
@@ -239,8 +242,8 @@ exec_always --no-startup-id setxkbmap se -variant us -option caps:escape
 exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1)
 
 # Brightness
-#bindsym XF86MonBrightnessDown exec .bin/brightness - 500
-#bindsym XF86MonBrightnessUp exec .bin/brightness + 500
+bindsym XF86MonBrightnessDown exec expr `</sys/class/backlight/intel_backlight/brightness` - 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
+bindsym XF86MonBrightnessUp   exec expr `</sys/class/backlight/intel_backlight/brightness` + 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
 
 # Multiple monitors
 workspace 10 output HDMI-1
@@ -252,7 +255,7 @@ workspace 10 output HDMI-1
 #exec_always --no-startup-id xrandr --output DVI-D-1-1 --off --output HDMI-1-5 --off --output HDMI-1-4 --off --output HDMI-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-2 --off --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1-3 --off --output DP-1-2 --off --output DP-1 --off
 
 # One external 1440p monitor
-exec_always xrandr --output HDMI-1 --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-1 --off --output eDP-1 --mode 1920x1080 --pos 0x752 --rotate normal --output DP-2 --off
+exec_always xrandr --no-startup-id --output HDMI-1 --mode 2560x1440 --pos 0x0 --rotate normal --output DP-1 --of --pos 312x1440 --rotate normal --output DP-2 --off
 
 exec_always dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
@@ -265,15 +268,15 @@ exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Click Meth
 
 # Sway
 # https://github.com/swaywm/sway/wiki#input-configuration
-#input 1:1:AT_Translated_Set_2_keyboard {
-#  xkb_layout se
-#  xkb_variant us
-#  xkb_options caps:escape
-#}
+input 1:1:AT_Translated_Set_2_keyboard {
+  xkb_layout se
+  xkb_variant us
+  xkb_options caps:escape
+}
 
-#input 1739:0:Synaptics_TM3289-002 {
+input 1739:0:Synaptics_TM3289-002 {
 #  tap enabled
-#  drag disabled
+  drag disabled
 #  # two-finger click is a context click and three-finger click is a middle click
-#  click_method clickfinger
-#}
+  click_method clickfinger
+}
