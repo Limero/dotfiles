@@ -1,0 +1,8 @@
+# gmail
+#set folder      = imaps://imap.gmail.com/
+# office365
+#set folder      = imaps://outlook.office365.com/
+set imap_user   = @gmail.com
+set imap_pass   = 
+
+source ~/.config/mutt/muttrc
