@@ -31,7 +31,7 @@
         "spacing": 10
     },
     "clock": {
-        // "interval": 1,
+        "interval": 1,
         "format": "{:%a %b %d %H:%M:%S}",
         "format-alt": "Week: {:%V}"
     },
@@ -56,7 +56,6 @@
         "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠"
@@ -78,8 +77,9 @@
         "on-click": "pavucontrol"
     },
     "custom/spotify": {
+        "interval": 1,
         "format": " {}",
         "max-length": 40,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        "exec": "META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata) && echo $(sed -n '/artist/{n;n;p}' <<< $META | cut -d '\"' -f 2) '-' $(sed -n '/title/{n;p}' <<< $META | cut -d '\"' -f 2)"
     }
 }

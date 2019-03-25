@@ -19,7 +19,8 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Return exec env WAYLAND_DISPLAY= alacritty
 #bindsym $mod+Return exec alacritty
-bindsym $mod+Return exec WINIT_HIDPI_FACTOR=1 alacritty
+set $term WINIT_HIDPI_FACTOR=1 alacritty
+bindsym $mod+Return exec $term -e bash
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -210,14 +211,15 @@ bindsym $mod+Ctrl+Left exec --no-startup-id dbus-send --print-reply --dest=org.m
 
 # https://wiki.archlinux.org/index.php/I3#Shutdown.2C_reboot.2C_lock_screen
 #set $Locker i3lock -i bg.png -t -e && sleep 1
-set $Locker swaylock -i bg.png -e && sleep 1
-set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
+set $Locker swaylock -i bg.png -e -f
+set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (u) reboot to UEFI ,(p) poweroff
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym u exec --no-startup-id systemctl reboot --firmware-setup, mode "default"
     bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
@@ -228,18 +230,18 @@ mode "$mode_system" {
 bindsym $mod+Shift+e mode "$mode_system"
 
 #bindsym Ctrl+Shift+4 exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
-# slurp-git grim wl-clipboard
+# slurp grim wl-clipboard
 bindsym Ctrl+Shift+4 exec --no-startup-id slurp -d | grim -g - - | wl-copy
 
-exec --no-startup-id compton --vsync opengl --no-fading-openclose
+#exec --no-startup-id compton --vsync opengl --no-fading-openclose
 exec --no-startup-id firefox
 exec --no-startup-id spotify
-#exec --no-startup-id signal-desktop
-#exec --no-startup-id i3-sensible-terminal -e "newsboat"
 
 exec_always --no-startup-id setxkbmap se -variant us -option caps:escape
 
-exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1)
+#exec_always --no-startup-id feh --no-fehbg --bg-fill $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1)
+
+output * bg $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1) fill
 
 # Brightness
 bindsym XF86MonBrightnessDown exec expr `</sys/class/backlight/intel_backlight/brightness` - 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
@@ -247,7 +249,6 @@ bindsym XF86MonBrightnessUp   exec expr `</sys/class/backlight/intel_backlight/b
 
 # Multiple monitors
 workspace 10 output HDMI-1
-#workspace 1 output DVI-D-1
 
 # Monitor layout for desktop with two monitors, generated with arandr
 #exec_always --no-startup-id xrandr --output DVI-D-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output DP-1 --off --output HDMI-2 --off
@@ -261,7 +262,6 @@ exec_always dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRES
 
 # sudo pacman -S xorg-xinput
 # xinput list
-#exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Tapping Enabled" 1
 #exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Tapping Drag Enabled" 0
 # Disable buttons on bottom of trackpad
 exec --no-startup-id xinput set-prop "Synaptics TM3289-002" "libinput Click Method Enabled" {0 1}
@@ -275,8 +275,7 @@ input 1:1:AT_Translated_Set_2_keyboard {
 }
 
 input 1739:0:Synaptics_TM3289-002 {
-#  tap enabled
   drag disabled
-#  # two-finger click is a context click and three-finger click is a middle click
+  # two-finger click is a context click and three-finger click is a middle click
   click_method clickfinger
 }

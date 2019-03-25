@@ -1,4 +1,4 @@
-# https://neomutt.org/man/neomuttrc
+# man neomuttrc
 
 set my_name     = "David Pedersen"
 set spoolfile   = +INBOX
@@ -43,3 +43,7 @@ bind attach,pager K previous-entry
 macro pager d <exit><delete-message> "delete current message and exit to index"
 
 color normal white default
+
+# urlscan (ctrl+b)
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"

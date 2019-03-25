@@ -54,6 +54,12 @@ let mapleader = ","
 " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text#Mapping_for_paste
 xnoremap p "_dP
 
+" Define commands for common typos
+command WQ wq
+command Wq wq
+command W w
+command Q q
+
 " --- Confirmed needed things below
 filetype plugin indent on
 set autoindent
@@ -64,6 +70,7 @@ set mouse=a
 set showcmd
 colorscheme ron
 set encoding=utf-8
+set title
 
 " Disable intro message
 set shortmess+=I

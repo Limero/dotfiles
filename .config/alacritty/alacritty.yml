@@ -8,6 +8,12 @@ env:
   # - `none`: Window without borders or title bar.
   #decorations: none
 
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  # Default is 10000, but I set it lower for it to start faster.
+  history: 1000
+
 # Font configuration (changes require restart)
 font:
   # The normal (roman) font face to use.
