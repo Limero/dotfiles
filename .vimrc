@@ -151,6 +151,8 @@ autocmd FileType cpp set cinoptions+=L0
 
 autocmd FileType help wincmd T " Open help in new tab
 
+autocmd FileType go set listchars=tab:\ \ ,nbsp:%,trail:·
+
 " Commenting blocks of code.
 " https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/1676672#1676672
 autocmd FileType c,cpp,java,php   let b:comment_leader = '// '

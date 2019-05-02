@@ -45,7 +45,10 @@ alias rssconf='$EDITOR ~/.config/newsboat/config'
 alias mconf='$EDITOR ~/.config/mutt/muttrc'
 
 alias mpvc='mpv --really-quiet $(wl-paste) & disown && exit'
+alias unp='unp -U'
 alias f='cd "$(vifm . --choose-dir - $@)"'
+alias eip='curl icanhazip.com'
+alias ff='GDK_BACKEND=wayland firefox'
 
 # Directories
 alias ius='cd ~/ius'
@@ -55,7 +58,7 @@ alias fp='ius && cd fp-vasttrafik && git status'
 alias dockius='ius && cd dockius && git status'
 
 alias phpunit='vendor/phpunit/phpunit/phpunit'
-alias ws='cd ~/ius/dockius && docker-compose exec --user=dockius workspace bash'
+alias ws='cd ~/ius/dockius && docker-compose exec --user=dockius workspace bash -c "cd fpapi-vasttrafik && bash"'
 alias startius='cd ~/ius/dockius && ./start.sh'
 alias seed='clear && php artisan migrate:dropall --force && php artisan migrate:all --seed'
 alias reseed='clear && php artisan db:reseed'
