@@ -46,7 +46,10 @@ alias mconf='$EDITOR ~/.config/mutt/muttrc'
 
 alias mpvc='mpv --really-quiet $(wl-paste) & disown && exit'
 alias unp='unp -U'
-alias f='cd "$(vifm . --choose-dir - $@)"'
+alias vf='cd "$(vifm . --choose-dir - $@)"'
+alias f='fzf --bind "enter:execute(vim {})+abort"'
+alias ytdl='youtube-dl -f "bestvideo[height <= 1080]+bestaudio/best" --write-sub --write-auto-sub --embed-subs'
+
 alias eip='curl icanhazip.com'
 alias ff='GDK_BACKEND=wayland firefox'
 

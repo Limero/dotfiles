@@ -16,8 +16,9 @@ volume() {
          /^\s+volume: / && indefault {print $5; exit}'
 }
 
-spotify() {
-  META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata)
+media() {
+  # $1 can be spotify, ncspot etc.
+  META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$1 /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata)
   echo $(sed -n '/artist/{n;n;p}' <<< $META | cut -d '"' -f 2) '-' $(sed -n '/title/{n;p}' <<< $META | cut -d '"' -f 2)
 }
 
@@ -35,7 +36,7 @@ wifi() {
 
 while :
 do
-  echo $(spotify) '|' \
+  echo $(media spotify) '|' \
        $(volume) '|' \
        $(wifi) '|' \
        $(battery) '|' \
