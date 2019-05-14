@@ -39,7 +39,7 @@ alias nb='newsboat'
 
 alias bashrc='$EDITOR ~/.bashrc'
 alias vimrc='$EDITOR ~/.vimrc'
-alias i3conf='$EDITOR ~/.config/i3/config'
+alias wmconf='$EDITOR ~/.config/sway/config'
 alias tconf='$EDITOR ~/.config/alacritty/alacritty.yml'
 alias rssconf='$EDITOR ~/.config/newsboat/config'
 alias mconf='$EDITOR ~/.config/mutt/muttrc'
