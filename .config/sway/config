@@ -91,6 +91,7 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 bindsym $mod+m workspace Music
+bindsym $mod+c workspace Chat
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -108,7 +109,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 # get with xprop
 for_window [class="Spotify"] move to workspace Music
 assign [class="Spotify"] Music
-#assign [class="Signal"] 9
+assign [class="Signal"] Chat
 #assign [class="Firefox"] 1
 for_window [instance="runescape"] move to scratchpad # Hide the launch popup
 #assign [title="newsboat"] 8
@@ -117,12 +118,9 @@ for_window [instance="runescape"] move to scratchpad # Hide the launch popup
 for_window [class="^Spotify$"] border none
 for_window [class="^Signal$"] border none
 for_window [class="^Firefox$"] border none
-for_window [class="^qutebrowser$"] border none
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
 
 #bindsym $mod+t exec thunar
 #bindsym $mod+t exec pcmanfm
@@ -188,7 +186,7 @@ bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 
 bindsym $mod+Ctrl+space exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym $mod+Ctrl+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym $mod+Ctrl+Left exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym $mod+Ctrl+Left  exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 # https://wiki.archlinux.org/index.php/I3#Shutdown.2C_reboot.2C_lock_screen
 #set $Locker swaylock -i bg.png -e -f
@@ -226,17 +224,15 @@ bindsym XF86MonBrightnessUp   exec expr `</sys/class/backlight/intel_backlight/b
 # Multiple monitors
 workspace 10 output HDMI-1
 
-exec_always dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+#exec_always dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
-# Sway
-# https://github.com/swaywm/sway/wiki#input-configuration
-input 1:1:AT_Translated_Set_2_keyboard {
+input * {
+  # Keyboard
   xkb_layout se
   xkb_variant us
   xkb_options caps:escape
-}
 
-input 1739:0:Synaptics_TM3289-002 {
+  # Trackpad
   drag disabled
   # two-finger click is a context click and three-finger click is a middle click
   click_method clickfinger

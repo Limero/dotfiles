@@ -1,0 +1,21 @@
+auto-reload yes
+#browser w3m
+browser firefox
+#show-read-articles no
+show-read-feeds no
+
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key a toggle-article-read
+
+#download-full-page yes
+feedlist-format "%11u %?T?[%T]? %t"
+
+urls-source "newsblur"
+newsblur-login "Limero"
+newsblur-passwordfile "~/.newsboat/newsblur-pw.txt"
+cookie-cache "~/.newsboat/cookies.txt"
