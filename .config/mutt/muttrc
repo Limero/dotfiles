@@ -30,19 +30,27 @@ set sort = reverse-threads
 #mailboxes "=inbox" # Notifications
 #folder-hook . "exec collapse-all" # Collapse threads by default
 
-bind index,pager g noop
+# index = list of mail, pager = view email, browser = list of mailboxes, attach = list of attachments
+bind index,pager,attach g noop
 bind index G last-entry
 bind index gg first-entry
-bind pager,browser gg top-page
-bind pager,browser G bottom-page
-bind attach,pager j next-line
-bind attach,pager k previous-line
-bind attach,pager J next-entry
-bind attach,pager K previous-entry
+bind browser,attach gg top-page
+bind browser,attach G bottom-page
+bind pager gg top
+bind pager G bottom
+bind pager j next-line
+bind pager k previous-line
+bind pager J next-entry
+bind pager K previous-entry
+bind attach j next-entry
+bind attach k previous-entry
 
 macro pager d <exit><delete-message> "delete current message and exit to index"
 
 color normal white default
+
+# Hide + after wrapped lines
+set markers = no
 
 # urlscan (ctrl+b)
 macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"

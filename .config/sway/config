@@ -32,7 +32,7 @@ bindsym $mod+Tab workspace back_and_forth
 #bindsym $mod+d exec i3-dmenu-desktop --entry-type=command --dmenu='dmenu -i -nb "#222d32" -sb "#3685e2"'
 
 #bindsym $mod+d exec dmenu_run -nb "#222d32" -sb "#3685e2"
-bindsym $mod+d exec bemenu-run --nb "#222d32" --sb "#3685e2" --fn 'monospace' -p 'exec:' -l 5 -i
+bindsym $mod+d exec bemenu-run --nb "#222d32" --sb "#3685e2" --fn 'monospace' -p 'exec:' -l 5 -i -w
 
 # change focus
 bindsym $mod+j focus left
@@ -125,6 +125,9 @@ bindsym $mod+Shift+c reload
 #bindsym $mod+t exec thunar
 #bindsym $mod+t exec pcmanfm
 bindsym $mod+t exec nautilus
+
+# grave = key above tab
+bindsym $mod+grave exec ~/.config/sway/emoji.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

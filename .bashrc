@@ -49,6 +49,7 @@ alias unp='unp -U'
 alias vf='cd "$(vifm . --choose-dir - $@)"'
 alias f='fzf --bind "enter:execute(vim {})+abort"'
 alias ytdl='youtube-dl -f "bestvideo[height <= 1080]+bestaudio/best" --write-sub --write-auto-sub --embed-subs'
+alias pi='ping 1.1.1.1'
 
 alias eip='curl icanhazip.com'
 alias ff='GDK_BACKEND=wayland firefox'
