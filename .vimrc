@@ -162,11 +162,9 @@ autocmd FileType help wincmd T " Open help in new tab
 
 " Commenting blocks of code.
 " https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/1676672#1676672
-autocmd FileType c,cpp,java,php,go let b:comment_leader = '// '
-autocmd FileType sh,ruby,python    let b:comment_leader = '# '
-autocmd FileType conf,fstab        let b:comment_leader = '# '
-autocmd FileType tex               let b:comment_leader = '% '
-autocmd FileType mail              let b:comment_leader = '> '
-autocmd FileType vim               let b:comment_leader = '" '
+autocmd FileType c,cpp,java,php,go         let b:comment_leader = '// '
+autocmd FileType sh,python,dockerfile,yaml let b:comment_leader = '# '
+autocmd FileType conf,fstab                let b:comment_leader = '# '
+autocmd FileType vim                       let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>

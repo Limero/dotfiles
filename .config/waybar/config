@@ -36,10 +36,12 @@
         "format-alt": "Week: {:%V}"
     },
     "cpu": {
-        "format": "{usage}% "
+        "format": "{usage}% ",
+        "on-click": "alacritty -e htop"
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+        "on-click": "alacritty -e htop"
     },
     "battery": {
         "states": {
@@ -47,7 +49,7 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
+        "format": "{capacity}% {icon} {time}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
@@ -58,7 +60,8 @@
     "network": {
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-disconnected": "Disconnected ⚠"
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "alacritty -e nmtui"
     },
     "pulseaudio": {
         //"scroll-step": 1,
@@ -80,6 +83,7 @@
         "interval": 1,
         "format": " {}",
         "max-length": 40,
-        "exec": "META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata) && echo $(sed -n '/artist/{n;n;p}' <<< $META | cut -d '\"' -f 2) '-' $(sed -n '/title/{n;p}' <<< $META | cut -d '\"' -f 2)"
+        "exec": "META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata) && echo $(sed -n '/artist/{n;n;p}' <<< $META | cut -d '\"' -f 2) '-' $(sed -n '/title/{n;p}' <<< $META | cut -d '\"' -f 2)",
+        "on-click": "swaymsg workspace Music"
     }
 }

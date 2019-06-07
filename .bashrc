@@ -9,8 +9,6 @@ alias s='pwd > ~/.cwd && pwd'
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-export EDITOR=vim
-
 # Useful stuff
 shopt -s autocd # cd to dir by typing directory name
 HISTSIZE= HISTFILESIZE= # infinite history
@@ -36,6 +34,7 @@ alias r='ranger'
 alias mh='neomutt -F ~/.config/mutt/account.home && exit'
 alias mw='neomutt -F ~/.config/mutt/account.work && exit'
 alias nb='newsboat'
+alias nr='sudo systemctl restart NetworkManager'
 
 alias bashrc='$EDITOR ~/.bashrc'
 alias vimrc='$EDITOR ~/.vimrc'
@@ -48,11 +47,9 @@ alias mpvc='mpv --really-quiet $(wl-paste) & disown && exit'
 alias unp='unp -U'
 alias vf='cd "$(vifm . --choose-dir - $@)"'
 alias f='fzf --bind "enter:execute(vim {})+abort"'
-alias ytdl='youtube-dl -f "bestvideo[height <= 1080]+bestaudio/best" --write-sub --write-auto-sub --embed-subs'
+alias ytdl='youtube-dl -f "bestvideo[height <= 1080]+bestaudio/best" --write-sub --write-auto-sub --embed-subs -o "/home/david/youtube/%(uploader)s/%(upload_date)s-%(title)s-%(id)s.%(ext)s" --restrict-filenames'
 alias pi='ping 1.1.1.1'
-
 alias eip='curl icanhazip.com'
-alias ff='GDK_BACKEND=wayland firefox'
 
 # Directories
 alias ius='cd ~/ius'
@@ -60,12 +57,8 @@ alias mapi='ius && cd mapi && git status'
 alias fpapi='ius && cd fpapi-vasttrafik && git status'
 alias fp='ius && cd fp-vasttrafik && git status'
 alias dockius='ius && cd dockius && git status'
-
-alias phpunit='vendor/phpunit/phpunit/phpunit'
 alias ws='cd ~/ius/dockius && docker-compose exec --user=dockius workspace bash -c "cd fpapi-vasttrafik && bash"'
 alias startius='cd ~/ius/dockius && ./start.sh'
-alias seed='clear && php artisan migrate:dropall --force && php artisan migrate:all --seed'
-alias reseed='clear && php artisan db:reseed'
 alias fplog='docker logs -f $(docker ps -aq --filter name=fp-vasttrafik)'
 alias fixfp='sudo rm -rf ~/ius/fp-vasttrafik/node_modules && docker rm -f $(docker ps -aq --filter name=fp-vasttrafik) || startius'
 

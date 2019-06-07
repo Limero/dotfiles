@@ -7,7 +7,7 @@ set wrapscroll
 set number
 set relativenumber
 
-map gy cd ~/youtube
+map gy cd ~/youtube; %find ~/youtube -type d -empty -delete
 map gt cd /tmp/.trash
 
 cmap <up> cmd-history-prev
