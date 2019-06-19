@@ -192,7 +192,7 @@ bindsym $mod+Ctrl+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlaye
 bindsym $mod+Ctrl+Left  exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 # https://wiki.archlinux.org/index.php/I3#Shutdown.2C_reboot.2C_lock_screen
-set $Locker swaylock -i bg.png -e -f
+set $Locker swaylock -i .config/lock.png -e -f
 set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (u) reboot to UEFI ,(p) poweroff
 mode "$mode_system" {
     bindsym l exec $Locker, mode "default"
