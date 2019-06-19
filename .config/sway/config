@@ -14,7 +14,8 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec alacritty
 set $term alacritty
-bindsym $mod+Return exec $term -e bash
+#bindsym $mod+Return exec $term -e bash
+bindsym $mod+Return exec $term -e zsh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -122,9 +123,8 @@ for_window [class="^Firefox$"] border none
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
-#bindsym $mod+t exec thunar
-#bindsym $mod+t exec pcmanfm
-bindsym $mod+t exec nautilus
+bindsym $mod+t exec $term -e lf
+bindsym $mod+Shift+t exec pcmanfm-qt
 
 # grave = key above tab
 bindsym $mod+grave exec ~/.config/sway/emoji.sh
@@ -192,8 +192,7 @@ bindsym $mod+Ctrl+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlaye
 bindsym $mod+Ctrl+Left  exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 # https://wiki.archlinux.org/index.php/I3#Shutdown.2C_reboot.2C_lock_screen
-#set $Locker swaylock -i bg.png -e -f
-set $Locker swaylock -i logo.png -e -f -s center
+set $Locker swaylock -i bg.png -e -f
 set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (u) reboot to UEFI ,(p) poweroff
 mode "$mode_system" {
     bindsym l exec $Locker, mode "default"

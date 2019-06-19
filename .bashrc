@@ -6,61 +6,14 @@
 # Save current working dir
 alias s='pwd > ~/.cwd && pwd'
 
-alias ls='ls --color=auto'
+[ -f "$HOME/.config/aliases" ] && source "$HOME/.config/aliases"
+
+alias ls='ls --color=auto --group-directories-first'
 PS1='[\u@\h \W]\$ '
 
 # Useful stuff
 shopt -s autocd # cd to dir by typing directory name
 HISTSIZE= HISTFILESIZE= # infinite history
-#set -o vi
-
-# Vim as a Manpager
-export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
-
-# Development
-alias gp='git commit -am "`date`" && git push'
-alias gs='clear && git status'
-alias m='make'
-alias mcl='make clean'
-alias gch='git checkout'
-alias gc='git commit'
-alias gd='git diff'
-alias gpu='git pull'
-alias gm='$EDITOR -p $(git ls-files -m --exclude-standard --others)'
-
-alias v='$EDITOR'
-alias g='git'
-alias r='ranger'
-alias mh='neomutt -F ~/.config/mutt/account.home && exit'
-alias mw='neomutt -F ~/.config/mutt/account.work && exit'
-alias nb='newsboat'
-alias nr='sudo systemctl restart NetworkManager'
-
-alias bashrc='$EDITOR ~/.bashrc'
-alias vimrc='$EDITOR ~/.vimrc'
-alias wmconf='$EDITOR ~/.config/sway/config'
-alias tconf='$EDITOR ~/.config/alacritty/alacritty.yml'
-alias rssconf='$EDITOR ~/.config/newsboat/config'
-alias mconf='$EDITOR ~/.config/mutt/muttrc'
-
-alias mpvc='mpv --really-quiet $(wl-paste) & disown && exit'
-alias unp='unp -U'
-alias vf='cd "$(vifm . --choose-dir - $@)"'
-alias f='fzf --bind "enter:execute(vim {})+abort"'
-alias ytdl='youtube-dl -f "bestvideo[height <= 1080]+bestaudio/best" --write-sub --write-auto-sub --embed-subs -o "/home/david/youtube/%(uploader)s/%(upload_date)s-%(title)s-%(id)s.%(ext)s" --restrict-filenames'
-alias pi='ping 1.1.1.1'
-alias eip='curl icanhazip.com'
-
-# Directories
-alias ius='cd ~/ius'
-alias mapi='ius && cd mapi && git status'
-alias fpapi='ius && cd fpapi-vasttrafik && git status'
-alias fp='ius && cd fp-vasttrafik && git status'
-alias dockius='ius && cd dockius && git status'
-alias ws='cd ~/ius/dockius && docker-compose exec --user=dockius workspace bash -c "cd fpapi-vasttrafik && bash"'
-alias startius='cd ~/ius/dockius && ./start.sh'
-alias fplog='docker logs -f $(docker ps -aq --filter name=fp-vasttrafik)'
-alias fixfp='sudo rm -rf ~/ius/fp-vasttrafik/node_modules && docker rm -f $(docker ps -aq --filter name=fp-vasttrafik) || startius'
 
 c() {
   cd $1;
@@ -77,3 +30,5 @@ yt() {
   a="${1%.*}"
   xdg-open https://invidio.us/watch?v="${a: -11}"
 }
+
+

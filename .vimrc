@@ -1,5 +1,12 @@
 if executable('fzf')
-  nnoremap \ :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "down": "100%", "options": "--reverse --preview 'bat --style=numbers --color=always {} \|\| head -100 {}'"})<CR>
+  if has('nvim')
+    nnoremap \ :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "options": "--reverse --preview 'bat --style=numbers --color=always {}'"})<CR><CR>
+    autocmd! FileType fzf
+    autocmd  FileType fzf set norelativenumber noshowmode noruler
+      \| autocmd BufLeave <buffer> set showmode ruler
+  else
+    nnoremap \ :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "down": "100%", "options": "--reverse --preview 'bat --style=numbers --color=always {} \|\| head -100 {}'"})<CR>
+  endif
 else
   nnoremap \ :tabfind *
 endif
