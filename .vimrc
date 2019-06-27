@@ -20,9 +20,6 @@ set ruler " show the cursor position all the time
 set nowritebackup
 set noswapfile
 
-" Use Ctrl+d to switch between Vim and bash
-"noremap <C-d> :sh<cr>
-
 " Show possible completions with preview
 set completeopt=menuone,preview
 
@@ -66,6 +63,7 @@ command WQ wq
 command Wq wq
 command W w
 command Q q
+nnoremap ; :
 
 " --- Confirmed needed things below
 filetype plugin indent on
@@ -78,6 +76,7 @@ set showcmd
 colorscheme ron
 set encoding=utf-8
 set title
+set nohlsearch
 
 " Disable intro message
 set shortmess+=I
@@ -175,3 +174,6 @@ autocmd FileType conf,fstab                let b:comment_leader = '# '
 autocmd FileType vim                       let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+" https://coderwall.com/p/faceag/format-json-in-vim
+com! FormatJSON %!python -m json.tool

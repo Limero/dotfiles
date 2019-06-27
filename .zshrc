@@ -24,6 +24,9 @@ esac
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
 
+# https://unix.stackexchange.com/questions/310540/how-to-get-rid-of-no-match-found-when-running-rm
+setopt +o nomatch
+
 # https://stackoverflow.com/questions/3964068/zsh-automatically-run-ls-after-every-cd
 function chpwd() {
     emulate -L zsh
