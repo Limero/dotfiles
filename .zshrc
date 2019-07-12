@@ -4,7 +4,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory autocd
 unsetopt beep
-bindkey -v
+bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/david/.zshrc'
@@ -13,16 +13,11 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-bindkey '^R' history-incremental-search-backward
-
 case $TERM in
   xterm*)
     precmd () {print -Pn "\e]0;%n@%M:%~\a"}
     ;;
 esac
-
-bindkey "^A" vi-beginning-of-line
-bindkey "^E" vi-end-of-line
 
 # https://unix.stackexchange.com/questions/310540/how-to-get-rid-of-no-match-found-when-running-rm
 setopt +o nomatch
@@ -48,16 +43,6 @@ setopt noflowcontrol
 # Ctrl+arrow key to move word like bash
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-
-# https://dougblack.io/words/zsh-vi-mode.html
-export KEYTIMEOUT=1
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
 
 # https://danishprakash.github.io/2018/07/06/git-branch-zsh.html
 function git_branch() {
