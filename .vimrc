@@ -1,11 +1,11 @@
 if executable('fzf')
   if has('nvim')
-    nnoremap \ :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "options": "--reverse --preview 'bat --style=numbers --color=always {}'"})<CR><CR>
+    nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "options": "--reverse --preview 'bat --style=numbers --color=always {}'"})<CR><CR>
     autocmd! FileType fzf
     autocmd  FileType fzf set norelativenumber noshowmode noruler
       \| autocmd BufLeave <buffer> set showmode ruler
   else
-    nnoremap \ :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "down": "100%", "options": "--reverse --preview 'bat --style=numbers --color=always {} \|\| head -100 {}'"})<CR>
+    nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "down": "100%", "options": "--reverse --preview 'bat --style=numbers --color=always {} \|\| head -100 {}'"})<CR>
   endif
 else
   nnoremap \ :tabfind *
@@ -163,6 +163,11 @@ autocmd FileType cpp set cinoptions+=L0
 
 autocmd FileType go set listchars=tab:\ \ ,nbsp:%,trail:·
 autocmd FileType go set noexpandtab
+
+" Enable spell checking
+" https://www.linux.com/learn/using-spell-checking-vim
+set spelllang=en_us
+autocmd FileType markdown set spell
 
 autocmd FileType help wincmd T " Open help in new tab
 

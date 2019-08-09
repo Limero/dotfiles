@@ -124,7 +124,8 @@ for_window [class="^Firefox$"] border none
 bindsym $mod+Shift+c reload
 
 bindsym $mod+t exec $term -e lf
-bindsym $mod+Shift+t exec pcmanfm-qt
+# Do QT_QPA_PLATFORM globally in .profile once virtualbox is fixed
+bindsym $mod+Shift+t exec QT_QPA_PLATFORM=wayland-egl pcmanfm-qt
 
 # grave = key above tab
 bindsym $mod+grave exec ~/.config/sway/emoji.sh
