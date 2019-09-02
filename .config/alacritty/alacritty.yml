@@ -1,17 +1,5 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator
-
-#window:
-  # Available values:
-  # - `full`: Window with borders and title bar.
-  # - `none`: Window without borders or title bar.
-  #decorations: none
-
 # Font configuration (changes require restart)
 font:
-  # The normal (roman) font face to use.
-  normal:
-    family: monospace
-
   # Point size of the font
   size: 12.0
 

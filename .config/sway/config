@@ -12,9 +12,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec alacritty
 set $term alacritty
-#bindsym $mod+Return exec $term -e bash
 bindsym $mod+Return exec $term -e zsh
 
 # kill focused window
@@ -67,11 +65,6 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -132,24 +125,16 @@ bindsym $mod+grave exec ~/.config/sway/emoji.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym odiaeresis resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -161,7 +146,6 @@ hide_edge_borders both
 bar {
         status_command ~/.config/sway/bar.sh
         position top
-        #position bottom
         colors {
                 background #222d32
                 focused_workspace #3685e2 #3685e2 #fafafa
@@ -182,7 +166,6 @@ bindsym $mod+Ctrl+Up exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym $mod+Ctrl+Down exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 # Media player controls
-#set $mediaplayer ncspot
 set $mediaplayer spotify
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
@@ -215,9 +198,6 @@ bindsym $mod+Shift+e mode "$mode_system"
 bindsym Ctrl+Shift+3 exec grim - | wl-copy
 bindsym Ctrl+Shift+4 exec slurp -d | grim -g - - | wl-copy
 
-#exec firefox
-#exec spotify
-
 output * bg $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1) fill
 
 # Brightness
@@ -226,8 +206,6 @@ bindsym XF86MonBrightnessUp   exec expr `</sys/class/backlight/intel_backlight/b
 
 # Multiple monitors
 workspace 10 output HDMI-1
-
-#exec_always dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
 input * {
   # Keyboard
