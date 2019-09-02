@@ -32,6 +32,7 @@ alias ytdl='youtube-dl -f "bestvideo[height <= 1080]+bestaudio/best" --write-sub
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
 alias scli='scli --save-history'
+alias ct='ctags -R'
 
 #iso2device() {
   # Usage: iso2device ubuntu-18.04.1-desktop-amd64.iso /dev/sda

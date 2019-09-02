@@ -140,9 +140,7 @@ set splitbelow splitright
 set ttimeoutlen=0
 
 " ctags
-" PHP, generate with: ctags --kinds-php=-a -R .
 " https://stackoverflow.com/a/563992
-" Ctrl+\ open definition in new tab
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
 " 1 tab == 2 spaces
