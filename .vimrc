@@ -159,8 +159,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Prevent std:: from jumping to beginning of line
 autocmd FileType cpp set cinoptions+=L0
 
-autocmd FileType go set listchars=tab:\ \ ,nbsp:%,trail:·
-autocmd FileType go set noexpandtab
+autocmd FileType go,c set listchars=tab:\ \ ,nbsp:%,trail:·
+autocmd FileType go,c set noexpandtab
 
 " Enable spell checking
 " https://www.linux.com/learn/using-spell-checking-vim
@@ -180,3 +180,8 @@ noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<
 
 " https://coderwall.com/p/faceag/format-json-in-vim
 com! FormatJSON %!python -m json.tool
+
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+autocmd FocusGained,BufEnter * :checktime
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
