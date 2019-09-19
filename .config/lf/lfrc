@@ -1,4 +1,4 @@
-map S $$SHELL
+map S $zsh
 map <bs> set hidden!
 set incsearch
 set previewer ~/.config/lf/scope.sh

@@ -11,9 +11,6 @@ else
   nnoremap \ :tabfind *
 endif
 
-" Native VIM below
-" ---
-
 set ruler " show the cursor position all the time
 
 " Turn backup off
@@ -23,14 +20,10 @@ set noswapfile
 " Show possible completions with preview
 set completeopt=menuone,preview
 
-" netrw (open with :E or :Ve)
+" netrw (open with :E)
 " https://shapeshed.com/vim-netrw/
-"let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 15
-"let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 set path=$PWD/** " http://vim.wikia.com/wiki/Project_browsing_using_find
 
@@ -52,8 +45,6 @@ function! s:GitBlame()
    execute "normal " . nline . "gg"
    execute "set filetype=php"
 endfunction
-
-let mapleader = ","
 
 " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text#Mapping_for_paste
 xnoremap p "_dP

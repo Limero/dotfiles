@@ -33,6 +33,7 @@ alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
 alias scli='scli --save-history'
 alias ct='ctags -R'
+alias fwu='sudo fwupdmgr refresh && sudo fwupdmgr get-updates && sudo fwupdmgr update'
 
 #iso2device() {
   # Usage: iso2device ubuntu-18.04.1-desktop-amd64.iso /dev/sda
