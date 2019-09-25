@@ -56,6 +56,13 @@ function git_branch() {
 setopt prompt_subst
 PROMPT='%F{green}%2~%f %F{blue}$(git_branch)%f$ '
 
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots) # Include hidden files.
+
 source "$HOME/.config/aliases"
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

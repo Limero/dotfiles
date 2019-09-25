@@ -44,3 +44,7 @@ alias fwu='sudo fwupdmgr refresh && sudo fwupdmgr get-updates && sudo fwupdmgr u
 #  a="${1%.*}"
 #  xdg-open https://invidio.us/watch?v="${a: -11}"
 #}
+
+gor() {
+  goimports -w $1 && gofmt -w $1 && go run $1
+}

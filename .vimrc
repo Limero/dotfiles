@@ -56,7 +56,6 @@ command W w
 command Q q
 nnoremap ; :
 
-" --- Confirmed needed things below
 filetype plugin indent on
 set autoindent
 set number relativenumber
@@ -75,12 +74,8 @@ set shortmess+=I
 " Use system clipboard
 set clipboard=unnamedplus
 
-" Make tab bar, statusline and vertical split screen divider dark
 :hi TabLineFill term=bold cterm=bold ctermbg=0
 :hi TabLine cterm=none ctermbg=0
-":hi StatusLine ctermbg=White ctermfg=0
-":hi StatusLineNC ctermbg=White ctermfg=0
-:hi VertSplit ctermbg=0 ctermfg=0
 
 set wildmenu
 
@@ -93,20 +88,9 @@ set wildignore+=*.png,*.jpg,*.svg,*.pdf,*.graphml,*.eot,*.woff,*.log,*.sqlite
 " Directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/vendor/*,*/cache/*,*/bin/*,*/.DS_Store
 
-" Close curly brackets
-ino {<CR> {<CR>}<ESC>O
-
 " Keep selected text selected when fixing indentation
 vnoremap < <gv
 vnoremap > >gv
-
-" http://vim.wikia.com/wiki/Moving_lines_up_or_down#Mappings_to_move_lines
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
 
 set list
 set listchars=tab:>-,nbsp:%,trail:·
@@ -159,15 +143,6 @@ set spelllang=en_us
 autocmd FileType markdown set spell
 
 autocmd FileType help wincmd T " Open help in new tab
-
-" Commenting blocks of code.
-" https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/1676672#1676672
-autocmd FileType c,cpp,java,php,go         let b:comment_leader = '// '
-autocmd FileType sh,python,dockerfile,yaml let b:comment_leader = '# '
-autocmd FileType conf,fstab                let b:comment_leader = '# '
-autocmd FileType vim                       let b:comment_leader = '" '
-noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 " https://coderwall.com/p/faceag/format-json-in-vim
 com! FormatJSON %!python -m json.tool
