@@ -83,11 +83,12 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # https://i3wm.org/docs/userguide.html#command_criteria
-# get with xprop
+# get with xorg-xprop
 for_window [class="Spotify"] move to workspace Music
 assign [class="Spotify"] Music
 assign [class="Signal"] Chat
 for_window [instance="runescape"] move to scratchpad # Hide the launch popup
+for_window [title="Wine System Tray"] move to scratchpad
 
 # remove borders
 for_window [class="^Spotify$"] border none
@@ -98,8 +99,6 @@ for_window [class="^Firefox$"] border none
 bindsym $mod+Shift+c reload
 
 bindsym $mod+t exec $term -e lf
-# Do QT_QPA_PLATFORM globally in .profile once virtualbox is fixed
-bindsym $mod+Shift+t exec QT_QPA_PLATFORM=wayland-egl pcmanfm-qt
 
 # grave = key above tab
 bindsym $mod+grave exec ~/.config/sway/emoji.sh

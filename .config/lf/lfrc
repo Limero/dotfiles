@@ -8,6 +8,8 @@ set number
 set relativenumber
 
 map gy cd ~/youtube
+map gd cd ~/Downloads
+map gw cd "~/Games/world-of-warcraft-classic/drive_c/Program Files (x86)/World of Warcraft/_classic_/Interface/AddOns"
 
 cmap <up> cmd-history-prev
 cmap <down> cmd-history-next
@@ -16,6 +18,7 @@ cmd open ${{
     case $(file --mime-type "$f" -b) in
         text/*) IFS=':'; $EDITOR $fx;;
         image/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
+        video/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
         *) IFS=':'; for f in $fx; do xdg-open "$f" > /dev/null 2> /dev/null & done;;
     esac
 }}
@@ -36,10 +39,9 @@ cmd unp ${{
 # compress current file or selected files with zip
 cmd zip ${{
     set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    #rm -rf $1
+    # TODO: Remove pwd from $fx
+    # TODO: Set name to first entry in $fx
+    zip -r $f.zip $fx
 }}
 
 cmd fzf ${{

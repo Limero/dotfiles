@@ -15,7 +15,7 @@ alias g='git'
 alias mh='neomutt -F ~/.config/mutt/account.home && exit'
 alias mw='neomutt -F ~/.config/mutt/account.work && exit'
 alias nb='newsboat'
-alias nr='sudo systemctl restart NetworkManager'
+alias nr='sudo systemctl restart iwd'
 
 alias bashrc='$EDITOR ~/.bashrc'
 alias vimrc='$EDITOR ~/.vimrc'
@@ -45,6 +45,4 @@ alias fwu='sudo fwupdmgr refresh && sudo fwupdmgr get-updates && sudo fwupdmgr u
 #  xdg-open https://invidio.us/watch?v="${a: -11}"
 #}
 
-gor() {
-  goimports -w $1 && gofmt -w $1 && go run $1
-}
+alias gor='goimports -w *.go && gofmt -w -s *.go && go run *.go'

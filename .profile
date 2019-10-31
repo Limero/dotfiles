@@ -1,9 +1,5 @@
-# Requires qt5-wayland
-# Virtualbox currently crashes with it enabled
-# https://www.virtualbox.org/ticket/18679
-#export QT_QPA_PLATFORM=wayland-egl
-export QT_QPA_PLATFORMTHEME=gtk3
 #export GDK_BACKEND=wayland
+#export MOZ_ENABLE_WAYLAND=1
 export EDITOR=nvim
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
