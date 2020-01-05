@@ -16,6 +16,6 @@ bind-key a toggle-article-read
 feedlist-format "%11u %?T?[%T]? %t"
 
 #urls-source "newsblur"
-#newsblur-login "Limero"
-#newsblur-passwordfile "~/.newsboat/newsblur-pw.txt"
-#cookie-cache "~/.newsboat/cookies.txt"
+newsblur-login "Limero"
+newsblur-passwordfile "~/.newsboat/newsblur-pw.txt"
+cookie-cache "~/.newsboat/cookies.txt"

@@ -87,7 +87,6 @@ bindsym $mod+Shift+0 move container to workspace 10
 for_window [class="Spotify"] move to workspace Music
 assign [class="Spotify"] Music
 assign [class="Signal"] Chat
-for_window [instance="runescape"] move to scratchpad # Hide the launch popup
 for_window [title="Wine System Tray"] move to scratchpad
 
 # remove borders
