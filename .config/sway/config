@@ -99,9 +99,6 @@ bindsym $mod+Shift+c reload
 
 bindsym $mod+t exec $term -e lf
 
-# grave = key above tab
-bindsym $mod+grave exec ~/.config/sway/emoji.sh
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         bindsym j resize shrink width 10 px or 10 ppt
