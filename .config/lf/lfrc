@@ -3,6 +3,7 @@ map <bs> set hidden!
 set incsearch
 set previewer ~/.config/lf/scope.sh
 set wrapscroll
+set period 1
 
 set number
 set relativenumber
