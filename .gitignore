@@ -1,0 +1,15 @@
+Downloads/
+go/
+
+.aws/
+.cache/
+.config/chromium/
+.config/dconf/
+.config/libreoffice/
+.config/Signal/
+.config/pulse/
+.gnupg/
+.ssh/
+
+.histfile
+.zcompdump
