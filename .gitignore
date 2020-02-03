@@ -5,8 +5,11 @@ go/
 .cache/
 .config/chromium/
 .config/dconf/
+.config/GIMP/
+.config/mpv/watch_later/
 .config/libreoffice/
 .config/Signal/
+.config/spotify/
 .config/pulse/
 .gnupg/
 .ssh/

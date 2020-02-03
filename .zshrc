@@ -47,7 +47,7 @@ bindkey "^[[1;5D" backward-word
 # https://danishprakash.github.io/2018/07/06/git-branch-zsh.html
 function git_branch() {
     branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-    if [[ $branch == "" ]]; then
+    if [[ $branch == "" || $(pwd) == $HOME ]]; then
         :
     else
         echo '('$branch') '
