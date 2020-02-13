@@ -173,7 +173,7 @@ bindsym $mod+Shift+e mode "$mode_system"
 bindsym Ctrl+Shift+3 exec grim - | wl-copy
 bindsym Ctrl+Shift+4 exec slurp -d | grim -g - - | wl-copy
 
-output * bg $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | sort -R | tail -1) fill
+output * bg $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | shuf -n1) fill
 
 # Brightness
 bindsym XF86MonBrightnessDown exec expr `</sys/class/backlight/intel_backlight/brightness` - 50 | sudo tee /sys/class/backlight/intel_backlight/brightness

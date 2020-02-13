@@ -117,6 +117,7 @@ set ttimeoutlen=0
 " ctags
 " https://stackoverflow.com/a/563992
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+set tagcase=match
 
 " 1 tab == 2 spaces
 set smarttab

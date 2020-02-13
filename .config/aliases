@@ -37,6 +37,9 @@ alias ct='ctags -R'
 alias fwu='sudo fwupdmgr refresh && sudo fwupdmgr get-updates && sudo fwupdmgr update'
 alias gor='goimports -w *.go && gofmt -w -s *.go && go run *.go'
 
+# Get length of string
+alias lc='expr length'
+
 iso2device() {
   # Usage: iso2device ubuntu-18.04.1-desktop-amd64.iso /dev/sda
   sudo dd bs=4M if=$1 of=$2 status=progress oflag=sync
