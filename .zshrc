@@ -13,11 +13,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-case $TERM in
-  xterm*)
-    precmd () {print -Pn "\e]0;%n@%M:%~\a"}
-    ;;
-esac
+# Set window title
+precmd () {print -Pn "\e]0;%n@%M:%~\a"}
 
 # https://unix.stackexchange.com/questions/310540/how-to-get-rid-of-no-match-found-when-running-rm
 setopt +o nomatch
