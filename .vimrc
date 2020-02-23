@@ -11,6 +11,24 @@ else
   nnoremap \ :tabfind *
 endif
 
+" Ale
+let g:ale_linters = {
+  \ 'go': ['gopls'],
+  \}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'go': ['gofmt', 'goimports'],
+\}
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_text_changed = 'never'
+
+nnoremap <C-]> :ALEGoToDefinition<CR>
+nnoremap <C-^> :ALEFindReferences<CR>
+
+" Native vim below
 set ruler " show the cursor position all the time
 
 " Turn backup off
@@ -30,7 +48,7 @@ set path=$PWD/** " http://vim.wikia.com/wiki/Project_browsing_using_find
 " possible to autocorrect with things in current file?
 " :help command-completion
 command -nargs=? Grep vimgrep /<args>/j **/* | copen 25
-nnoremap \| :Grep 
+nnoremap \| :Grep
 
 " https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim
 " todo: set filetype dynamically
@@ -68,6 +86,9 @@ set encoding=utf-8
 set title
 set nohlsearch
 
+" Switch buffers without saving
+set hidden
+
 " Disable intro message
 set shortmess+=I
 
@@ -76,6 +97,7 @@ set clipboard=unnamedplus
 
 :hi TabLineFill term=bold cterm=bold ctermbg=0
 :hi TabLine cterm=none ctermbg=0
+:hi Pmenu ctermbg=gray guibg=gray
 
 set wildmenu
 
