@@ -18,6 +18,7 @@ cmap <down> cmd-history-next
 cmd open ${{
     case $(file --mime-type "$f" -b) in
         text/*) IFS=':'; $EDITOR $fx;;
+        audio/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
         image/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
         video/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
         *) IFS=':'; for f in $fx; do xdg-open "$f" > /dev/null 2> /dev/null & done;;
