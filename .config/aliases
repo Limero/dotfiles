@@ -37,6 +37,8 @@ alias ct='ctags -R'
 alias fwu='sudo fwupdmgr refresh; sudo fwupdmgr get-updates && sudo fwupdmgr update'
 alias gor='goimports -w *.go && gofmt -w -s *.go && go run *.go'
 
+alias tetris='autoload -Uz tetriscurses; tetriscurses'
+
 # Get length of string
 alias lc='expr length'
 
