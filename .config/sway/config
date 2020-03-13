@@ -5,8 +5,6 @@ font pango:monospace 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-mouse_warping container
-
 # start a terminal
 set $term alacritty
 bindsym $mod+Return exec $term -e zsh
