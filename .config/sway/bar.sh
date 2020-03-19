@@ -3,10 +3,7 @@
 sleep 0.5
 
 volume() {
-  if [[ $(pulsemixer --get-mute) = 1 ]]; then
-    echo "MUTED"
-  fi
-
+  [ $(pulsemixer --get-mute) = 1 ] && echo "Muted"
   pulsemixer --get-volume | awk '{print $1;}'
 }
 
