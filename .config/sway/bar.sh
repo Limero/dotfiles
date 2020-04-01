@@ -4,7 +4,7 @@ sleep 0.5
 
 volume() {
   [ $(pulsemixer --get-mute) = 1 ] && echo "Muted"
-  pulsemixer --get-volume | awk '{print $1;}'
+  pulsemixer --get-volume | awk '{print $1 "%";}'
 }
 
 media() {
