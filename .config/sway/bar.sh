@@ -14,9 +14,12 @@ media() {
 }
 
 battery() {
-  # Currently requires upower. Find solution without dependencies
-  upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E percentage | awk '{print $2}'
-  upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E time | awk '{print $4,$5}'
+  for battery in /sys/class/power_supply/BAT?
+  do
+    capacity=$(cat "$battery"/capacity) || break
+    status=$(cat "$battery"/status)
+    echo "$capacity""%" "$status"
+  done
 }
 
 wifi() {
