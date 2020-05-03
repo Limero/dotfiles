@@ -72,6 +72,7 @@ command WQ wq
 command Wq wq
 command W w
 command Q q
+command Qa qa
 nnoremap ; :
 
 filetype plugin indent on

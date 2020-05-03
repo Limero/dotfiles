@@ -67,8 +67,9 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
-bindsym $mod+m workspace Music
 bindsym $mod+c workspace Chat
+bindsym $mod+g workspace Game
+bindsym $mod+m workspace Music
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -81,12 +82,15 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+#bindsym $mod+Shift+C move container to workspace Chat
+bindsym $mod+Shift+G move container to workspace Game
+bindsym $mod+Shift+M move container to workspace Music
 
 # https://i3wm.org/docs/userguide.html#command_criteria
 # get with xorg-xprop
+assign [class="Signal"] Chat
 for_window [class="Spotify"] move to workspace Music
 assign [class="Spotify"] Music
-assign [class="Signal"] Chat
 for_window [title="Wine System Tray"] move to scratchpad
 
 # remove borders
@@ -128,30 +132,37 @@ bar {
                 inactive_workspace #000000 #000000 #fafafa
                 urgent_workspace #ff5757 #ff5757 #fafafa
         }
+
+        # disable vertical scrolling
+        bindsym button4 nop
+        bindsym button5 nop
+        # disable horizontal scrolling
+        bindsym button6 nop
+        bindsym button7 nop
 }
 
 client.focused #404552 #404552 #fafafa #ff5757 #666666
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-bindsym $mod+Ctrl+Up exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym $mod+Ctrl+Down exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked $mod+Ctrl+Up exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked $mod+Ctrl+Down exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 # Media player controls
 set $mediaplayer spotify
-bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym --locked XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym --locked XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym --locked XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
-bindsym $mod+Ctrl+space exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym $mod+Ctrl+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym $mod+Ctrl+Left  exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym --locked $mod+Ctrl+space exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym --locked $mod+Ctrl+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym --locked $mod+Ctrl+Left  exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 # https://wiki.archlinux.org/index.php/I3#Shutdown.2C_reboot.2C_lock_screen
-set $Locker swaylock -i .config/lock.png -e -f
+set $Locker swaylock -i .config/lock.png -e -f -F
 set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (u) reboot to UEFI, (p) poweroff
 mode "$mode_system" {
     bindsym l exec $Locker, mode "default"
@@ -168,6 +179,8 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Shift+e mode "$mode_system"
+#bindsym --locked $mod+Shift+e systemctl suspend
+bindswitch lid:on exec $Locker
 
 # slurp grim wl-clipboard
 bindsym Ctrl+Shift+3 exec grim - | wl-copy

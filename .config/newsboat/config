@@ -1,8 +1,7 @@
 #auto-reload yes
 #browser w3m
-browser firefox
 #show-read-articles no
-#show-read-feeds no
+show-read-feeds no
 
 bind-key j down
 bind-key k up
@@ -16,6 +15,12 @@ bind-key a toggle-article-read
 feedlist-format "%11u %?T?[%T]? %t"
 
 #urls-source "newsblur"
-newsblur-login "Limero"
-newsblur-passwordfile "~/.newsboat/newsblur-pw.txt"
-cookie-cache "~/.newsboat/cookies.txt"
+#newsblur-login "Limero"
+#newsblur-passwordfile "~/.newsboat/newsblur-pw.txt"
+#cookie-cache "~/.newsboat/cookies.txt"
+
+browser firefox
+macro v set browser "setsid nohup mpv"; open-in-browser ; toggle-article-read "read" ; set browser firefox
+macro w set browser "w3m"; open-in-browser ; toggle-article-read "read"; set browser firefox
+macro r set browser "rtv"; open-in-browser ; toggle-article-read "read"; set browser firefox
+macro s set browser "firefox about:reader?url=%u"; open-in-browser ; toggle-article-read "read" ; set browser firefox

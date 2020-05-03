@@ -18,6 +18,7 @@ cmap <down> cmd-history-next
 cmd open ${{
     case $(file --mime-type "$f" -b) in
         text/*) IFS=':'; $EDITOR $fx;;
+        application/json) IFS=':'; $EDITOR $fx;;
         audio/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
         image/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
         video/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
@@ -34,7 +35,7 @@ cmd mkdir %mkdir -p $1 && lf -remote "send $id load" && lf -remote "send $id sel
 # extract file with unp
 cmd unp ${{
     set -f
-    unp -U $f
+    unp -U "$f"
     # possible to select the content?
 }}
 

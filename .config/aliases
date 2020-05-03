@@ -17,7 +17,7 @@ alias mw='neomutt -F ~/.config/mutt/account.work && exit'
 alias nb='newsboat'
 alias nr='sudo systemctl restart iwd'
 
-alias bashrc='$EDITOR ~/.bashrc'
+alias zshrc='$EDITOR ~/.zshrc'
 alias vimrc='$EDITOR ~/.vimrc'
 alias wmconf='$EDITOR ~/.config/sway/config'
 alias tconf='$EDITOR ~/.config/alacritty/alacritty.yml'
@@ -41,6 +41,9 @@ alias tetris='autoload -Uz tetriscurses; tetriscurses'
 
 # Get length of string
 alias lc='expr length'
+
+# RetroArch
+alias genesis='retroarch -L /usr/lib/libretro/genesis_plus_gx_libretro.so'
 
 iso2device() {
   # Usage: iso2device ubuntu-18.04.1-desktop-amd64.iso /dev/sda
