@@ -12,6 +12,8 @@ map gy cd ~/youtube
 map gd cd ~/Downloads
 map gw cd "~/Games/world-of-warcraft-classic/drive_c/Program Files (x86)/World of Warcraft/_classic_/Interface/AddOns"
 
+map gn %mkdir -p /tmp/nuc && sshfs nuc: /tmp/nuc; lf -remote "send $id cd /tmp/nuc"
+
 cmap <up> cmd-history-prev
 cmap <down> cmd-history-next
 
@@ -36,15 +38,17 @@ cmd mkdir %mkdir -p $1 && lf -remote "send $id load" && lf -remote "send $id sel
 cmd unp ${{
     set -f
     unp -U "$f"
-    # possible to select the content?
+    lf -remote "send $id load"
+    lf -remote "send $id select ${f%.*}"
 }}
 
 # compress current file or selected files with zip
-cmd zip ${{
+cmd zip %{{
     set -f
-    # TODO: Remove pwd from $fx
-    # TODO: Set name to first entry in $fx
-    zip -r $f.zip $fx
+    zip -r ${f%.*}.zip ${fx//$PWD\//}
+    lf -remote "send $id load" && \
+    lf -remote "send $id unselect" && \
+    lf -remote "send $id select ${f%.*}.zip"
 }}
 
 cmd fzf ${{
