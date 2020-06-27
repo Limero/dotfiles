@@ -8,8 +8,9 @@ set period 1
 set number
 set relativenumber
 
-map gy cd ~/youtube
 map gd cd ~/Downloads
+map gt cd /tmp
+map gy cd ~/youtube
 map gw cd "~/Games/world-of-warcraft-classic/drive_c/Program Files (x86)/World of Warcraft/_classic_/Interface/AddOns"
 
 map gn %mkdir -p /tmp/nuc && sshfs nuc: /tmp/nuc; lf -remote "send $id cd /tmp/nuc"
@@ -19,11 +20,8 @@ cmap <down> cmd-history-next
 
 cmd open ${{
     case $(file --mime-type "$f" -b) in
-        text/*) IFS=':'; $EDITOR $fx;;
-        application/json) IFS=':'; $EDITOR $fx;;
-        audio/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
-        image/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
-        video/*) IFS=':'; mpv $fx > /dev/null 2> /dev/null;;
+        text/*|application/json) IFS=':'; $EDITOR $fx;;
+        audio/*|image/*|video/*) setsid mpv "$f" -quiet >/dev/null 2>&1 & ;;
         *) IFS=':'; for f in $fx; do xdg-open "$f" > /dev/null 2> /dev/null & done;;
     esac
 }}
@@ -37,7 +35,25 @@ cmd mkdir %mkdir -p $1 && lf -remote "send $id load" && lf -remote "send $id sel
 # extract file with unp
 cmd unp ${{
     set -f
-    unp -U "$f"
+
+    case "$f" in
+      *.tar.bz2|*.tbz2) tar xvjf "$f" ;;
+      *.tar.xz) tar -xf "$f" ;;
+      *.tar.gz|*.tgz) tar xvzf "$f" ;;
+      *.lzma) unlzma "$f" ;;
+      *.bz2) bunzip2 "$f" ;;
+      *.rar) unrar x -ad "$f" ;;
+      *.gz) gunzip "$f" ;;
+      *.tar) tar xvf "$f" ;;
+      *.zip) unzip "$f" -d "${f%.*}" ;;
+      *.Z) uncompress "$f" ;;
+      *.7z) 7z x "$f" ;;
+      *.xz) unxz "$f" ;;
+      *.exe) cabextract "$f" ;;
+      *) printf "extract: '%s' - unknown archive method" "$f" ;;
+    esac
+
+
     lf -remote "send $id load"
     lf -remote "send $id select ${f%.*}"
 }}
@@ -45,7 +61,7 @@ cmd unp ${{
 # compress current file or selected files with zip
 cmd zip %{{
     set -f
-    zip -r ${f%.*}.zip ${fx//$PWD\//}
+    zip -r "${f%.*}".zip "${fx//$PWD\//}"
     lf -remote "send $id load" && \
     lf -remote "send $id unselect" && \
     lf -remote "send $id select ${f%.*}.zip"

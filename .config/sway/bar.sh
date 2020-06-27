@@ -3,20 +3,23 @@
 sleep 0.5
 
 volume() {
-  [ $(pulsemixer --get-mute) = 1 ] && echo "Muted"
-  pulsemixer --get-volume | awk '{print $1 "%";}'
+  [ "$(pulsemixer --get-mute)" = 1 ] && echo "Muted" && return
+  vol="$(pulsemixer --get-volume)"
+  echo "${vol%% *}"%
 }
 
 media() {
   # $1 can be spotify, ncspot etc.
-  META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$1 /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata)
-  echo $(sed -n '/artist/{n;n;p}' <<< $META | cut -d '"' -f 2) '-' $(sed -n '/title/{n;p}' <<< $META | cut -d '"' -f 2)
+  pidof "$1" >/dev/null || return
+  META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$1" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata)
+  echo $(sed -n '/artist/{n;n;p}' <<< "$META" | cut -d '"' -f 2) '-' $(sed -n '/title/{n;p}' <<< "$META" | cut -d '"' -f 2)
 }
 
 battery() {
   for battery in /sys/class/power_supply/BAT?
   do
-    capacity=$(cat "$battery"/capacity) || break
+    [ -f "$battery"/capacity ] || break
+    capacity=$(cat "$battery"/capacity)
     status=$(cat "$battery"/status)
     echo "$capacity""%" "$status"
   done
@@ -30,10 +33,10 @@ wifi() {
 
 while :
 do
-  echo $(media spotify) '|' \
-       $(volume) '|' \
-       $(wifi) '|' \
-       $(battery) '|' \
-       $(date '+%a %b %d %H:%M:%S')
+  echo "$(media spotify)" '|' \
+       "$(volume)" '|' \
+       "$(wifi)" '|' \
+       "$(battery)" '|' \
+       "$(date '+%a %b %d %H:%M:%S')"
   sleep 1
 done

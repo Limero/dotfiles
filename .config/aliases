@@ -14,7 +14,7 @@ alias v='$EDITOR'
 alias g='git'
 alias mh='neomutt -F ~/.config/mutt/account.home && exit'
 alias mw='neomutt -F ~/.config/mutt/account.work && exit'
-alias nb='newsboat'
+alias nb='offlinerss && newsboat && offlinerss && exit'
 alias nr='sudo systemctl restart iwd'
 
 alias zshrc='$EDITOR ~/.zshrc'
@@ -27,12 +27,10 @@ alias mconf='$EDITOR ~/.config/mutt/muttrc'
 alias al='$EDITOR ~/.config/aliases'
 
 alias mpvc='mpv --really-quiet $(wl-paste) & disown && exit'
-alias unp='unp -U'
 alias f='fzf --bind "enter:execute(vim {})+abort"'
 alias ytdl='youtube-dl -f "bestvideo[height <= 1080]+bestaudio/best" --write-sub --write-auto-sub --embed-subs -o "/home/david/youtube/%(uploader)s/%(upload_date)s-%(title)s-%(id)s.%(ext)s"'
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
-alias scli='scli --save-history'
 alias ct='ctags -R'
 alias fwu='sudo fwupdmgr refresh; sudo fwupdmgr get-updates && sudo fwupdmgr update'
 alias gor='goimports -w *.go && gofmt -w -s *.go && go run *.go'
@@ -44,6 +42,7 @@ alias lc='expr length'
 
 # RetroArch
 alias genesis='retroarch -L /usr/lib/libretro/genesis_plus_gx_libretro.so'
+alias tg16='retroarch -L /usr/lib/libretro/mednafen_pce_libretro.so'
 
 iso2device() {
   # Usage: iso2device ubuntu-18.04.1-desktop-amd64.iso /dev/sda

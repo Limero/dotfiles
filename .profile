@@ -3,6 +3,7 @@ export MOZ_ENABLE_WAYLAND=1
 export EDITOR=nvim
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
+export PATH="$PATH:$GOBIN"
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
   exec sway

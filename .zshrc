@@ -13,6 +13,18 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# https://danishprakash.github.io/2018/07/06/git-branch-zsh.html
+function git_branch() {
+    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+    if [[ $branch == "" || $(pwd) == $HOME ]]; then
+        :
+    else
+        echo '('$branch') '
+    fi
+}
+setopt prompt_subst
+PROMPT='%F{green}%2~%f %F{blue}$(git_branch)%f$ '
+
 # Set window title
 precmd () {print -Pn "\e]0;%n@%M:%~\a"}
 
@@ -38,20 +50,8 @@ setopt hist_ignore_space
 setopt noflowcontrol
 
 # Ctrl+arrow key to move word like bash
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
-# https://danishprakash.github.io/2018/07/06/git-branch-zsh.html
-function git_branch() {
-    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-    if [[ $branch == "" || $(pwd) == $HOME ]]; then
-        :
-    else
-        echo '('$branch') '
-    fi
-}
-setopt prompt_subst
-PROMPT='%F{green}%2~%f %F{blue}$(git_branch)%f$ '
+#bindkey "^[[1;5C" forward-word
+#bindkey "^[[1;5D" backward-word
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -63,3 +63,5 @@ _comp_options+=(globdots) # Include hidden files.
 source "$HOME/.config/aliases"
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+eval "$(zoxide init zsh)"

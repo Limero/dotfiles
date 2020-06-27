@@ -1,26 +1,30 @@
 #auto-reload yes
-#browser w3m
-#show-read-articles no
 show-read-feeds no
+wrap-scroll yes
 
 bind-key j down
 bind-key k up
-bind-key j next articlelist
-bind-key k prev articlelist
 bind-key J next-feed articlelist
 bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key l open
+bind-key h quit
 bind-key a toggle-article-read
 
 #download-full-page yes
-feedlist-format "%11u %?T?[%T]? %t"
+feedlist-format "%2i %7u %?T?[%T]? %t"
+articlelist-format "%2i %f %D  %?T?|%-17T|  ?%t"
 
 #urls-source "newsblur"
 #newsblur-login "Limero"
 #newsblur-passwordfile "~/.newsboat/newsblur-pw.txt"
 #cookie-cache "~/.newsboat/cookies.txt"
 
-browser firefox
-macro v set browser "setsid nohup mpv"; open-in-browser ; toggle-article-read "read" ; set browser firefox
-macro w set browser "w3m"; open-in-browser ; toggle-article-read "read"; set browser firefox
-macro r set browser "rtv"; open-in-browser ; toggle-article-read "read"; set browser firefox
-macro s set browser "firefox about:reader?url=%u"; open-in-browser ; toggle-article-read "read" ; set browser firefox
+#browser firefox
+browser "brave %u && sway focus prev"
+
+macro v set browser "setsid mpv %u -quiet >/dev/null 2>&1 &" ; open-in-browser-and-mark-read ; set browser "brave %u && sway focus prev"
+macro w set browser "w3m" ; open-in-browser-and-mark-read ; set browser "brave %u && sway focus prev"
+macro r set browser "rtv" ; open-in-browser-and-mark-read ; set browser "brave %u && sway focus prev"
+macro s set browser "firefox about:reader?url=%u" ; open-in-browser-and-mark-read ; set browser "brave %u && sway focus prev"

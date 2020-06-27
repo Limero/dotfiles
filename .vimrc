@@ -158,8 +158,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Prevent std:: from jumping to beginning of line
 autocmd FileType cpp set cinoptions+=L0
 
-autocmd FileType go,c set listchars=tab:\ \ ,nbsp:%,trail:·
-autocmd FileType go,c set noexpandtab
+autocmd FileType go,c,cpp set listchars=tab:\ \ ,nbsp:%,trail:·
+autocmd FileType go,c,cpp set noexpandtab
 
 " Enable spell checking
 " https://www.linux.com/learn/using-spell-checking-vim
