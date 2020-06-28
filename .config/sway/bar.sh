@@ -18,8 +18,7 @@ media() {
 battery() {
   for battery in /sys/class/power_supply/BAT?
   do
-    [ -f "$battery"/capacity ] || break
-    capacity=$(cat "$battery"/capacity)
+    capacity=$(cat "$battery"/capacity 2>/dev/null) || break
     status=$(cat "$battery"/status)
     echo "$capacity""%" "$status"
   done
