@@ -39,10 +39,6 @@ colors:
 key_bindings:
   #- { key: PageUp,   action: None }
   #- { key: PageDown, action: None }
-  - { key: Up, action: None }
-  - { key: Down, action: None }
-  - { key: Left, action: None }
-  - { key: Right, action: None }
   - { key: V, mods: Control, action: Paste }
   - { key: C, mods: Control, action: Copy }
   - { key: V, mods: Control|Shift, chars: "\x16" }
