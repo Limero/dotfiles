@@ -1,5 +1,5 @@
 map S $zsh
-map <bs> set hidden!
+map <backspace> set hidden!
 set incsearch
 set previewer ~/.config/lf/scope.sh
 set wrapscroll
@@ -20,7 +20,7 @@ cmap <down> cmd-history-next
 
 cmd open ${{
     case $(file --mime-type "$f" -b) in
-        text/*|application/json) IFS=':'; $EDITOR $fx;;
+        text/*|application/csv|application/json) IFS=':'; $EDITOR $fx;;
         audio/*|image/*|video/*) setsid mpv "$f" -quiet >/dev/null 2>&1 & ;;
         *) IFS=':'; for f in $fx; do xdg-open "$f" > /dev/null 2> /dev/null & done;;
     esac
@@ -62,6 +62,13 @@ cmd zip %{{
     zip -r "${f%.*}".zip "${fx//$PWD\//}"
     lf -remote "send $id unselect" && \
     lf -remote "send $id select ${f%.*}.zip"
+}}
+
+# open youtube comments for video
+cmd ytc ${{
+  a="${f%.*}"
+  #w3m "https://invidious.kavin.rocks/watch?v=${a: -11}&nojs=1&related_videos=false#comments"
+  curl "https://invidious.kavin.rocks/api/v1/comments/${a: -11}?pretty=1&fields=comments(author,content,publishedText)" | less
 }}
 
 cmd fzf ${{

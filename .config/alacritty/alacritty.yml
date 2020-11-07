@@ -1,9 +1,7 @@
 env:
   TERM: xterm-256color
 
-# Font configuration (changes require restart)
 font:
-  # Point size of the font
   size: 12.0
 
 # Colors
@@ -36,10 +34,10 @@ colors:
     white:   '0xffffff'
 
 # Key bindings
-key_bindings:
+#key_bindings:
   #- { key: PageUp,   action: None }
   #- { key: PageDown, action: None }
-  - { key: V, mods: Control, action: Paste }
-  - { key: C, mods: Control, action: Copy }
-  - { key: V, mods: Control|Shift, chars: "\x16" }
-  - { key: C, mods: Control|Shift, chars: "\x03" }
+  #- { key: V, mods: Control, action: Paste }
+  #- { key: C, mods: Control, action: Copy }
+  #- { key: V, mods: Control|Shift, chars: "\x16" }
+  #- { key: C, mods: Control|Shift, chars: "\x03" }

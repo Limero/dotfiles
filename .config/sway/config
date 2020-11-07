@@ -15,12 +15,10 @@ bindsym $mod+Shift+q kill
 # switch between workspaces
 bindsym $mod+Tab workspace back_and_forth
 
-# start program launcher
-#bindsym $mod+d exec i3-dmenu-desktop --entry-type=command
-#bindsym $mod+d exec i3-dmenu-desktop --entry-type=command --dmenu='dmenu -i -nb "#222d32" -sb "#3685e2"'
-
-#bindsym $mod+d exec dmenu_run -nb "#222d32" -sb "#3685e2"
-bindsym $mod+d exec bemenu-run --nb "#222d32" --sb "#3685e2" --fn 'monospace' -p 'exec:' -l 5 -i -w
+# program launcher
+# https://quinoa42.github.io/en/oceanus/replace-dmenu-with-fzf
+for_window [app_id="fzfmenu"] floating enable
+bindsym $mod+d exec $term --class "fzfmenu" -e zsh -c 'print -rl -- ${(ko)commands} | fzf | (nohup ${SHELL:-"/bin/sh"} &) >/dev/null 2>&1'
 
 # change focus
 bindsym $mod+h focus left
@@ -102,10 +100,7 @@ for_window [class="^Signal$"] border none
 for_window [class="^Firefox$"] border none
 
 # reload the configuration file
-#bindsym $mod+Shift+c reload
-# remove when https://github.com/swaywm/sway/issues/4975 is fixed
-bindsym $mod+Shift+c nop
-bindsym --release $mod+Shift+c reload
+bindsym $mod+Shift+c reload
 
 bindsym $mod+t exec $term -e lf
 

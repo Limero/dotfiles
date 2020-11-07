@@ -12,9 +12,10 @@ alias gm='$EDITOR -p $(git ls-files -m --exclude-standard --others)'
 
 alias v='$EDITOR'
 alias g='git'
+alias n='cd ~/notes && $EDITOR .'
 alias mh='neomutt -F ~/.config/mutt/account.home && exit'
 alias mw='neomutt -F ~/.config/mutt/account.work && exit'
-alias nb='offlinerss && newsboat && offlinerss && exit'
+alias nb='offlinerss && newsboat && offlinerss'
 alias nr='sudo systemctl restart iwd'
 
 alias zshrc='$EDITOR ~/.zshrc'
@@ -28,7 +29,7 @@ alias al='$EDITOR ~/.config/aliases'
 
 alias mpvc='mpv --really-quiet $(wl-paste) & disown && exit'
 alias f='fzf --bind "enter:execute(vim {})+abort"'
-alias ytdl='youtube-dl -f "bestvideo[height <= 1080]+bestaudio/best" --write-sub --write-auto-sub --embed-subs -o "/home/david/youtube/%(uploader)s/%(upload_date)s-%(title)s-%(id)s.%(ext)s"'
+alias ytdl='youtube-dl'
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
 alias ct='ctags -R'
@@ -36,6 +37,8 @@ alias fwu='sudo fwupdmgr refresh; sudo fwupdmgr get-updates && sudo fwupdmgr upd
 alias gor='goimports -w *.go && gofmt -w -s *.go && go run *.go'
 
 alias tetris='autoload -Uz tetriscurses; tetriscurses'
+alias bc='bc -q -l'
+alias mpv='setsid mpv'
 
 # Get length of string
 alias lc='expr length'
@@ -49,7 +52,6 @@ iso2device() {
   sudo dd bs=4M if=$1 of=$2 status=progress oflag=sync
 }
 
-#yt() {
-#  a="${1%.*}"
-#  xdg-open https://invidio.us/watch?v="${a: -11}"
-#}
+kupong() {
+  curl -s "https://www.clearon.se/wp-admin/admin-ajax.php" --data-raw "action=CallAPI&eanCode=$1" | python -mjson.tool
+}
