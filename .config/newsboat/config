@@ -16,11 +16,6 @@ bind-key a toggle-article-read
 feedlist-format "%2i %7u %?T?[%T]? %t"
 articlelist-format "%2i %f %D  %?T?|%-17T|  ?%t"
 
-#urls-source "newsblur"
-#newsblur-login "Limero"
-#newsblur-passwordfile "~/.newsboat/newsblur-pw.txt"
-#cookie-cache "~/.newsboat/cookies.txt"
-
 browser firefox
 #browser "brave %u && sway focus prev"
 

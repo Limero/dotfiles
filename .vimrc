@@ -163,8 +163,8 @@ autocmd FileType go,c,cpp set noexpandtab
 
 " Enable spell checking
 " https://www.linux.com/learn/using-spell-checking-vim
-set spelllang=en_us
-autocmd FileType markdown set spell
+"set spelllang=en_us
+"autocmd FileType markdown set spell
 
 autocmd FileType help wincmd T " Open help in new tab
 

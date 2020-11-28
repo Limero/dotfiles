@@ -32,7 +32,7 @@ wifi() {
 
 while :
 do
-  echo "$(media spotify)" '|' \
+  echo "$(media ncspot)" '|' \
        "$(volume)" '|' \
        "$(wifi)" '|' \
        "$(battery)" '|' \

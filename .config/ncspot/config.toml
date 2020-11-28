@@ -1,0 +1,8 @@
+[keybindings]
+"g" = "move top"
+"G" = "move bottom"
+"Esc" = "back"
+
+[saved_state]
+volume = 90
+shuffle = true

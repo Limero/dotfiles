@@ -154,7 +154,7 @@ bindsym --locked $mod+Ctrl+j exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --locked $mod+Ctrl+Escape exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Media player controls
-set $mediaplayer spotify
+set $mediaplayer ncspot
 #bindsym --locked XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 #bindsym --locked XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 #bindsym --locked XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
