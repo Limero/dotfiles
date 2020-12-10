@@ -70,7 +70,3 @@ cmd ytc ${{
   #w3m "https://invidious.kavin.rocks/watch?v=${a: -11}&nojs=1&related_videos=false#comments"
   curl "https://invidious.kavin.rocks/api/v1/comments/${a: -11}?pretty=1&fields=comments(author,content,publishedText)" | less
 }}
-
-cmd fzf ${{
-    fzf --bind "enter:execute(vim {})+abort"
-}}

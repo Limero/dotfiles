@@ -33,6 +33,7 @@ alias ytdl='youtube-dl'
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
 alias ct='ctags -R'
+alias up='sudo dnf up && flatpak upgrade'
 alias fwu='sudo fwupdmgr refresh; sudo fwupdmgr get-updates && sudo fwupdmgr update'
 alias gor='goimports -w *.go && gofmt -w -s *.go && go run *.go'
 

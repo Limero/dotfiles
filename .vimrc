@@ -8,8 +8,13 @@ if executable('fzf')
     nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "down": "100%", "options": "--reverse --preview 'bat --style=numbers --color=always {} \|\| head -100 {}'"})<CR>
   endif
 else
-  nnoremap \ :tabfind *
+ nnoremap <C-P> :tabfind *
 endif
+
+" Needed for nvim on Fedora
+set runtimepath+=/usr/share/vim/vimfiles
+
+"nnoremap <C-P> :FZF<CR>
 
 " Ale
 let g:ale_linters = {
