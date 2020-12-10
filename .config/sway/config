@@ -87,6 +87,7 @@ bindsym $mod+Shift+M move container to workspace Music
 # https://i3wm.org/docs/userguide.html#command_criteria
 # get with xorg-xprop
 assign [class="Signal"] Chat
+assign [class="Microsoft Teams - Preview"] Chat
 for_window [class="Spotify"] move to workspace Music
 assign [class="Spotify"] Music
 for_window [title="Wine System Tray"] move to scratchpad
