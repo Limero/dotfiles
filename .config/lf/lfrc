@@ -56,6 +56,12 @@ cmd unp ${{
     lf -remote "send $id select ${f%.*}"
 }}
 
+cmd unp2 ${{
+    set -f
+    file-roller -e "${f%.*}" --force "$f"
+    lf -remote "send $id select ${f%.*}"
+}}
+
 # compress current file or selected files with zip
 cmd zip %{{
     set -f

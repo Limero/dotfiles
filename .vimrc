@@ -12,6 +12,7 @@ else
 endif
 
 " Needed for nvim on Fedora
+" https://bugzilla.redhat.com/show_bug.cgi?id=1909495
 set runtimepath+=/usr/share/vim/vimfiles
 
 "nnoremap <C-P> :FZF<CR>

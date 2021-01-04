@@ -8,7 +8,8 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x222d32'
+    #background: '0x222d32'
+    background: '0x2a2a2e'
     foreground: '0xeaeaea'
 
   # Normal colors (from kitty)
@@ -37,7 +38,3 @@ colors:
 #key_bindings:
   #- { key: PageUp,   action: None }
   #- { key: PageDown, action: None }
-  #- { key: V, mods: Control, action: Paste }
-  #- { key: C, mods: Control, action: Copy }
-  #- { key: V, mods: Control|Shift, chars: "\x16" }
-  #- { key: C, mods: Control|Shift, chars: "\x03" }

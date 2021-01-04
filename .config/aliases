@@ -1,9 +1,8 @@
 #!/bin/sh
 
-alias gp='git commit -am "`date`" && git push'
+#alias gp='git commit -am "`date`" && git push'
+alias gp='git commit -am "`git diff --name-only | head -n 5 -c 50 | tr "\n" " "`" && git push'
 alias gs='clear && git status'
-alias m='make'
-alias mcl='make clean'
 alias gch='git checkout'
 alias gc='git commit'
 alias gd='git diff'
@@ -32,13 +31,12 @@ alias f='fzf --bind "enter:execute(vim {})+abort"'
 alias ytdl='youtube-dl'
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
-alias ct='ctags -R'
 alias up='sudo dnf up && flatpak upgrade'
 alias fwu='sudo fwupdmgr refresh; sudo fwupdmgr get-updates && sudo fwupdmgr update'
-alias gor='goimports -w *.go && gofmt -w -s *.go && go run *.go'
 
 alias tetris='autoload -Uz tetriscurses; tetriscurses'
 alias bc='bc -q -l'
+alias tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 alias mpv='setsid mpv'
 
 # Get length of string
