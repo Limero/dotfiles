@@ -7,7 +7,8 @@ floating_modifier $mod
 
 # start a terminal
 set $term alacritty
-bindsym $mod+Return exec $term -e zsh
+#bindsym $mod+Return exec $term -e zsh
+bindsym $mod+Return exec $term -e tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -207,6 +208,8 @@ input * {
   xkb_layout se
   xkb_variant us
   xkb_options caps:escape
+  #repeat_rate 100
+  repeat_delay 250
 
   # Trackpad
   drag disabled
