@@ -11,10 +11,6 @@ else
  nnoremap <C-P> :tabfind *
 endif
 
-" Needed for nvim on Fedora
-" https://bugzilla.redhat.com/show_bug.cgi?id=1909495
-"set runtimepath+=/usr/share/vim/vimfiles
-
 "nnoremap <C-P> :FZF<CR>
 
 " Ale
@@ -181,20 +177,3 @@ com! FormatJSON %!python -m json.tool
 autocmd FocusGained,BufEnter * :checktime
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-
-" https://github.com/neovim/neovim/issues/10223
-if exists('$WAYLAND_DISPLAY')
-    " clipboard on wayland with newline fix
-    let g:clipboard = {
-                \   'name': 'WL-Clipboard with ^M Trim',
-                \   'copy': {
-                \      '+': 'wl-copy --foreground --type text/plain',
-                \      '*': 'wl-copy --foreground --type text/plain --primary',
-                \    },
-                \   'paste': {
-                \      '+': {-> systemlist('wl-paste --no-newline | sed -e "s/\r$//"', '', 1)},
-                \      '*': {-> systemlist('wl-paste --no-newline --primary | sed -e "s/\r$//"', '', 1)},
-                \   },
-                \   'cache_enabled': 1,
-                \ }
-endif
