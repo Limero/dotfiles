@@ -21,7 +21,6 @@ browser firefox
 
 macro v set browser "setsid mpv %u -quiet >/dev/null 2>&1 &" ; open-in-browser-and-mark-read ; set browser firefox
 macro w set browser "w3m" ; open-in-browser-and-mark-read ; set browser firefox
-macro r set browser "rtv" ; open-in-browser-and-mark-read ; set browser firefox
 macro s set browser "firefox about:reader?url=%u" ; open-in-browser-and-mark-read ; set browser firefox
 macro y set browser "youtube-dl" ; open-in-browser-and-mark-read ; set browser firefox
 
