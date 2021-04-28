@@ -208,8 +208,7 @@ input * {
   xkb_layout se
   xkb_variant us
   xkb_options caps:escape
-  #repeat_rate 100
-  repeat_delay 250
+  #repeat_delay 250
 
   # Trackpad
   drag disabled
