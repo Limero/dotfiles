@@ -127,22 +127,22 @@ bindsym $mod+r mode "resize"
 hide_edge_borders both
 
 bar {
-        status_command ~/.config/sway/bar.sh
-        position top
-        colors {
-                #focused_workspace #3685e2 #3685e2 #fafafa
-                focused_workspace #0a84ff #0a84ff #fafafa
-                active_workspace #5294e2 #5294e2 #fafafa
-                inactive_workspace #000000 #000000 #fafafa
-                urgent_workspace #ff5757 #ff5757 #fafafa
-        }
+        swaybar_command waybar
+        #status_command ~/.config/sway/bar.sh
+        #position top
+        #colors {
+        #        focused_workspace #0a84ff #0a84ff #fafafa
+        #        active_workspace #5294e2 #5294e2 #fafafa
+        #        inactive_workspace #000000 #000000 #fafafa
+        #        urgent_workspace #ff5757 #ff5757 #fafafa
+        #}
 
-        # disable vertical scrolling
-        bindsym button4 nop
-        bindsym button5 nop
-        # disable horizontal scrolling
-        bindsym button6 nop
-        bindsym button7 nop
+        ## disable vertical scrolling
+        #bindsym button4 nop
+        #bindsym button5 nop
+        ## disable horizontal scrolling
+        #bindsym button6 nop
+        #bindsym button7 nop
 }
 
 #client.focused #404552 #404552 #fafafa #ff5757 #666666

@@ -11,6 +11,7 @@ bind-key g home
 bind-key l open
 bind-key h quit
 bind-key a toggle-article-read
+bind-key ^H toggle-show-read-feeds
 
 #download-full-page yes
 feedlist-format "%2i %7u %?T?[%T]? %t"

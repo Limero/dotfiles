@@ -1,13 +1,13 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar at the bottom of your screen
-    "height": 20, // Waybar height
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
+    "layer": "top",
+    "height": 20,
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "clock", "tray"],
+    "modules-right": ["custom/spotify", "pulseaudio", "network", "cpu", "memory", "battery", "clock", "tray"],
 
     "sway/workspaces": {
-        "disable-scroll": true
+        "disable-scroll": true,
+        "numeric-first": true
     },
     "clock": {
         "interval": 1,

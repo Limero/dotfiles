@@ -13,8 +13,8 @@ map gt cd /tmp
 map gy cd ~/youtube
 map gw cd "~/Games/world-of-warcraft-classic/drive_c/Program Files (x86)/World of Warcraft/_classic_/Interface/AddOns"
 
-map gn %mkdir -p /tmp/nuc && sshfs nuc: /tmp/nuc; lf -remote "send $id cd /tmp/nuc"
-map gp %mkdir -p /tmp/pi3 && sshfs pi3: /tmp/pi3; lf -remote "send $id cd /tmp/pi3"
+map gn %mkdir -p /tmp/nuc && sshfs -o follow_symlinks nuc: /tmp/nuc; lf -remote "send $id cd /tmp/nuc"
+map gp %mkdir -p /tmp/pi3 && sshfs -o follow_symlinks pi3: /tmp/pi3; lf -remote "send $id cd /tmp/pi3"
 
 cmap <up> cmd-history-prev
 cmap <down> cmd-history-next
