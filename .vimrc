@@ -23,12 +23,15 @@ let g:ale_fixers = {
 \}
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_insert_leave = 0
+"let g:ale_lint_on_text_changed = 'never'
+
+set updatetime=300 " Update ALEHover faster
 
 nnoremap <C-]> :ALEGoToDefinition<CR>
-nnoremap <C-^> :ALEFindReferences<CR>
+nnoremap <C-\> :ALEGoToImplementation<CR>
+"nnoremap <C-^> :ALEFindReferences<CR>
 
 " Native vim below
 set ruler " show the cursor position all the time
@@ -47,14 +50,12 @@ let g:netrw_browse_split = 3
 
 set path=$PWD/** " http://vim.wikia.com/wiki/Project_browsing_using_find
 
-" possible to autocorrect with things in current file?
-" :help command-completion
-command -nargs=? Grep vimgrep /<args>/j **/* | copen 25
-nnoremap \| :Grep
+command -nargs=? G vimgrep /<args>/j **/* | copen 25
+"nnoremap \| :G
 
 " https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim
 " todo: set filetype dynamically
-command! -nargs=* Blame call s:GitBlame()
+command! -nargs=* GB call s:GitBlame()
 function! s:GitBlame()
    let cmdline = "git blame -w " . bufname("%")
    let nline = line(".") + 1
@@ -98,8 +99,8 @@ set shortmess+=I
 " Use system clipboard
 set clipboard=unnamedplus
 
-:hi TabLineFill term=bold cterm=bold ctermbg=0
-:hi TabLine cterm=none ctermbg=0
+":hi TabLineFill term=bold cterm=bold ctermbg=0
+":hi TabLine cterm=none ctermbg=0
 :hi Pmenu ctermbg=gray guibg=gray
 
 set wildmenu
@@ -109,30 +110,29 @@ set wildignorecase
 " Ignore compiled files
 set wildignore=*.o,*~,*.class,*.pyc
 " Random filetypes
-set wildignore+=*.png,*.jpg,*.svg,*.pdf,*.graphml,*.eot,*.woff,*.log,*.sqlite
+set wildignore+=*.png,*.jpg,*.svg,*.pdf,*.graphml,*.eot,*.woff,*.log,*.sqlite,*.ttf
+" Random files
+set wildignore+=CHANGELOG.md,/*service,go.sum
 " Directories
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/vendor/*,*/cache/*,*/bin/*,*/.DS_Store
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/vendor/*,*/cache/*,*/bin/*,*/.DS_Store,*/gen/*
 
 " Keep selected text selected when fixing indentation
 vnoremap < <gv
 vnoremap > >gv
 
+inoremap {<CR> {<CR>}<ESC>O
+
 set list
 set listchars=tab:>-,nbsp:%,trail:·
 
-set scrolloff=15 " Show rows above/below cursor
+set nrformats-=octal " Remove octal numbers for Ctrl-A and Ctrl-X, it's confusing
 
-" Remove octal numbers for Ctrl-A and Ctrl-X, it's confusing
-set nrformats-=octal
+set ignorecase smartcase " Ignore case when searching, except when search string has capitalisation
+set incsearch " Jump to search results while typing
 
-" Ignore case when searching, except when search string has capitalisation
-set ignorecase smartcase
+set scrolloff=999 " Center cursor vertically
 
-" Jump to search results while typing
-set incsearch
-
-" Open new splits on opposite side
-set splitbelow splitright
+set splitbelow splitright " Open new splits on opposite side
 
 " https://www.johnhawthorn.com/2012/09/vi-escape-delays/
 " noesckeys will disable cursor/func keys in insert mode,
@@ -141,24 +141,21 @@ set ttimeoutlen=0
 
 " ctags
 " https://stackoverflow.com/a/563992
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-set tagcase=match
+"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+"set tagcase=match
 
-" 1 tab == 2 spaces
 set smarttab
 set expandtab
-set shiftwidth=2 tabstop=2
+set shiftwidth=4 tabstop=4
 
 " 1 tab == 4 spaces in specific languages
 autocmd Filetype php setlocal shiftwidth=4 tabstop=4
 
 autocmd FileType php set indentkeys-==*/ " Prevent */ in multiline comment to be indented
 
-" Disable continuation of comments
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable continuation of comments
 
-" Prevent std:: from jumping to beginning of line
-autocmd FileType cpp set cinoptions+=L0
+autocmd FileType cpp set cinoptions+=L0 " Prevent std:: from jumping to beginning of line
 
 autocmd FileType go,c,cpp set listchars=tab:\ \ ,nbsp:%,trail:·
 autocmd FileType go,c,cpp set noexpandtab
@@ -177,3 +174,9 @@ com! FormatJSON %!python -m json.tool
 autocmd FocusGained,BufEnter * :checktime
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'dense-analysis/ale'
+call plug#end()
