@@ -1,6 +1,6 @@
 if executable('fzf')
   if has('nvim')
-    nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "options": "--reverse --preview 'bat --style=numbers --color=always {}'"})<CR><CR>
+    nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "edit", "options": "--reverse --preview 'bat --style=numbers --color=always {}'"})<CR><CR>
     autocmd! FileType fzf
     autocmd  FileType fzf set norelativenumber noshowmode noruler
       \| autocmd BufLeave <buffer> set showmode ruler
@@ -12,6 +12,8 @@ else
 endif
 
 "nnoremap <C-P> :FZF<CR>
+
+nnoremap <C-B> :Buffers<CR>
 
 " Ale
 let g:ale_linters = {
@@ -76,7 +78,7 @@ command Wq wq
 command W w
 command Q q
 command Qa qa
-nnoremap ; :
+"nnoremap ; :
 
 filetype plugin indent on
 set autoindent
