@@ -1,4 +1,4 @@
-auto-reload yes
+#auto-reload yes
 show-read-feeds no
 wrap-scroll yes
 
@@ -26,4 +26,4 @@ macro s set browser "firefox about:reader?url=%u" ; open-in-browser-and-mark-rea
 macro y set browser "youtube-dl" ; open-in-browser-and-mark-read ; set browser firefox
 
 ignore-mode "display"
-include "~/.config/newsboat/killfile"
+#include "~/.config/newsboat/killfile"

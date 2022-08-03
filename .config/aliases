@@ -1,13 +1,16 @@
 #!/bin/sh
 
-#alias gp='git commit -am "`date`" && git push'
-alias gp='git commit -am "`git diff --name-only | head -n 5 -c 50 | tr "\n" " "`" && git push'
+alias gp='git push'
+alias gpf='git push --force'
 alias gs='clear && git status'
 alias gch='git checkout'
 alias gc='git commit'
+alias gca='git commit --amend --no-edit'
+alias ga='git add'
 alias gd='git diff'
+alias gl='git log'
 alias gpu='git pull'
-alias gm='$EDITOR -p $(git ls-files -m --exclude-standard --others)'
+alias gm='$EDITOR $(git ls-files -m --exclude-standard --others)'
 
 alias v='$EDITOR'
 alias g='git'
