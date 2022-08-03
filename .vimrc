@@ -20,7 +20,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'go': ['gofmt', 'goimports'],
 \}
-let g:ale_completion_enabled = 1
+"let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 
 set updatetime=300 " Update ALEHover faster
@@ -161,4 +161,15 @@ Plug 'dense-analysis/ale'
 
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'wellle/context.vim'
+
+" Formatter
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'jose-elias-alvarez/null-ls.nvim'
+
+" Completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
 call plug#end()
