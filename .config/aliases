@@ -31,7 +31,7 @@ alias al='$EDITOR ~/.config/aliases'
 
 alias mpvc='mpv --really-quiet $(wl-paste) & disown && exit'
 alias f='fzf --bind "enter:execute(vim {})+abort"'
-alias ytdl='youtube-dl'
+alias ytdl='yt-dlp'
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
 alias up='sudo dnf up && flatpak upgrade'

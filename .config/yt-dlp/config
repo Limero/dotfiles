@@ -1,5 +1,6 @@
 -f "bestvideo[height <= 1080]+bestaudio/best"
---write-sub
---write-auto-sub
+--write-subs
+--write-auto-subs
 --embed-subs
+--compat-options no-keep-subs
 -o "~/youtube/%(uploader)s/%(upload_date)s-%(title)s-%(id)s.%(ext)s"
