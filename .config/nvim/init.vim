@@ -8,3 +8,4 @@ set laststatus=0
 lua vim.o.ch = 0
 
 lua require('gitsigns').setup()
+lua require('lsp')
