@@ -170,7 +170,7 @@ autocmd FileType go,c,cpp set noexpandtab
 autocmd FileType help wincmd T " Open help in new tab
 
 " https://coderwall.com/p/faceag/format-json-in-vim
-com! FormatJSON %!python -m json.tool
+com! FormatJSON %!python3 -m json.tool
 
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 autocmd FocusGained,BufEnter * :checktime
