@@ -1,11 +1,11 @@
 if executable('fzf')
   if has('nvim')
-    nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "edit", "options": "--reverse --preview 'bat --style=numbers --color=always {}'"})<CR><CR>
+      nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "edit", "options": "--reverse --preview 'cat {}'"})<CR><CR>
     autocmd! FileType fzf
     autocmd  FileType fzf set norelativenumber noshowmode noruler
       \| autocmd BufLeave <buffer> set showmode ruler
   else
-    nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "down": "100%", "options": "--reverse --preview 'bat --style=numbers --color=always {} \|\| head -100 {}'"})<CR>
+      nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "down": "100%", "options": "--reverse --preview 'cat {} \|\| head -100 {}'"})<CR>
   endif
 else
  nnoremap <C-P> :tabfind *
