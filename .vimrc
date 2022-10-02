@@ -17,7 +17,7 @@ nnoremap <C-B> :Buffers<CR>
 
 " Ale
 let g:ale_linters = {
-  \ 'go': ['gopls'],
+  \ 'go': ['gopls', 'staticcheck'],
   \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -25,9 +25,6 @@ let g:ale_fixers = {
 \}
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
-"let g:ale_lint_on_enter = 0
-"let g:ale_lint_on_insert_leave = 0
-"let g:ale_lint_on_text_changed = 'never'
 
 set updatetime=300 " Update ALEHover faster
 
@@ -78,7 +75,6 @@ command Wq wq
 command W w
 command Q q
 command Qa qa
-"nnoremap ; :
 
 filetype plugin indent on
 set autoindent
@@ -141,11 +137,6 @@ set splitbelow splitright " Open new splits on opposite side
 " so set delay instead
 set ttimeoutlen=0
 
-" ctags
-" https://stackoverflow.com/a/563992
-"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-"set tagcase=match
-
 set smarttab
 set expandtab
 set shiftwidth=4 tabstop=4
@@ -153,19 +144,12 @@ set shiftwidth=4 tabstop=4
 " 1 tab == 4 spaces in specific languages
 autocmd Filetype php setlocal shiftwidth=4 tabstop=4
 
-autocmd FileType php set indentkeys-==*/ " Prevent */ in multiline comment to be indented
-
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o " Disable continuation of comments
 
 autocmd FileType cpp set cinoptions+=L0 " Prevent std:: from jumping to beginning of line
 
 autocmd FileType go,c,cpp set listchars=tab:\ \ ,nbsp:%,trail:·
 autocmd FileType go,c,cpp set noexpandtab
-
-" Enable spell checking
-" https://www.linux.com/learn/using-spell-checking-vim
-"set spelllang=en_us
-"autocmd FileType markdown set spell
 
 autocmd FileType help wincmd T " Open help in new tab
 
@@ -181,4 +165,7 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
+
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'wellle/context.vim'
 call plug#end()
