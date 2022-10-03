@@ -16,9 +16,6 @@ endif
 nnoremap <C-B> :Buffers<CR>
 
 " Ale
-let g:ale_linters = {
-  \ 'go': ['gopls', 'staticcheck'],
-  \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'go': ['gofmt', 'goimports'],
@@ -27,10 +24,6 @@ let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 
 set updatetime=300 " Update ALEHover faster
-
-nnoremap <C-]> :ALEGoToDefinition<CR>
-nnoremap <C-\> :ALEGoToImplementation<CR>
-"nnoremap <C-^> :ALEFindReferences<CR>
 
 " Native vim below
 set ruler " show the cursor position all the time
