@@ -63,6 +63,11 @@ cmd unp2 ${{
     lf -remote "send $id select ${f%.*}"
 }}
 
+cmd unp3 ${{
+    set -f
+    bsdtar xvf "$f"
+}}
+
 # compress current file or selected files with zip
 cmd zip %{{
     set -f
