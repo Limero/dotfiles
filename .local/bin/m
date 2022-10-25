@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if command -v mpv >/dev/null; then
+  setsid mpv "$@"
+else
+  flatpak run io.mpv.Mpv "$@"
+fi

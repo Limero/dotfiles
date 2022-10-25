@@ -22,7 +22,7 @@ cmap <down> cmd-history-next
 cmd open ${{
     case $(file --mime-type -b -L "$f") in
         text/*|application/csv|application/json|inode/x-empty) IFS=':'; $EDITOR $fx;;
-        audio/*|image/*|video/*) setsid mpv "$f" -quiet >/dev/null 2>&1 & ;;
+        audio/*|image/*|video/*) m "$f" -quiet >/dev/null 2>&1 & ;;
         *) IFS=':'; for f in $fx; do xdg-open "$f" > /dev/null 2> /dev/null & done;;
     esac
 }}

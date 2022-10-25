@@ -29,7 +29,7 @@ alias rssconf='$EDITOR ~/.config/newsboat/config'
 alias mconf='$EDITOR ~/.config/mutt/muttrc'
 alias al='$EDITOR ~/.config/aliases'
 
-alias mpvc='mpv --really-quiet $(wl-paste) & disown && exit'
+alias mpvc='m --really-quiet $(wl-paste) & disown && exit'
 alias f='fzf --bind "enter:execute(vim {})+abort"'
 alias ytdl='yt-dlp'
 alias pi='ping 1.1.1.1'
@@ -40,7 +40,6 @@ alias fwu='sudo fwupdmgr refresh; sudo fwupdmgr get-updates && sudo fwupdmgr upd
 alias tetris='autoload -Uz tetriscurses; tetriscurses'
 alias bc='bc -q -l'
 alias tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
-alias mpv='setsid mpv'
 
 # Get length of string
 alias lc='expr length'
