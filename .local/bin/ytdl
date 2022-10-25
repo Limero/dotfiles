@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if command -v yt-dlp >/dev/null; then
+  yt-dlp "$@"
+else
+  flatpak run --filesystem=~/youtube:create --command=yt-dlp io.mpv.Mpv "$@"
+fi
