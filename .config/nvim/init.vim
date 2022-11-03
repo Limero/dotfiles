@@ -7,4 +7,4 @@ set laststatus=0
 lua require('gitsigns').setup()
 lua require('completion')
 lua require('lsp')
-"lua require('format')
+lua require('format')

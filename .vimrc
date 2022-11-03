@@ -15,14 +15,6 @@ endif
 
 nnoremap <C-B> :Buffers<CR>
 
-" Ale
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'go': ['gofmt', 'goimports'],
-\}
-"let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 1
-
 set updatetime=300 " Update ALEHover faster
 
 " Native vim below
@@ -157,14 +149,13 @@ autocmd FileChangedShellPost *
 call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'dense-analysis/ale'
 
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'wellle/context.vim'
 
 " Formatter
-"Plug 'nvim-lua/plenary.nvim'
-"Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
