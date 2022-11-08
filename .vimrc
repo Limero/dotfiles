@@ -154,8 +154,8 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'wellle/context.vim'
 
 " Formatter
-Plug 'nvim-lua/plenary.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -164,3 +164,12 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 call plug#end()
+
+"set completeopt+=menuone,noselect,noinsert
+"function! OpenCompletion()
+"    if !pumvisible()
+"        call feedkeys("\<C-x>\<C-o>", "n")
+"    endif
+"endfunction
+"autocmd InsertCharPre * call OpenCompletion()
+"autocmd CompleteDone * pclose
