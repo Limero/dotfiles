@@ -25,7 +25,11 @@ set nowritebackup
 set noswapfile
 
 " Show possible completions with preview
-set completeopt=menuone,preview
+"set completeopt=menuone,preview
+set completeopt+=menuone,noselect,noinsert
+set completeopt-=preview
+set pumheight=10
+"set previewheight=1
 
 " netrw (open with :E)
 " https://shapeshed.com/vim-netrw/
@@ -158,18 +162,9 @@ Plug 'wellle/context.vim'
 "Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Completion
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/nvim-cmp'
+"Plug 'hrsh7th/cmp-nvim-lsp'
+"Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+"Plug 'hrsh7th/cmp-buffer'
+"Plug 'hrsh7th/cmp-path'
+"Plug 'hrsh7th/nvim-cmp'
 call plug#end()
-
-"set completeopt+=menuone,noselect,noinsert
-"function! OpenCompletion()
-"    if !pumvisible()
-"        call feedkeys("\<C-x>\<C-o>", "n")
-"    endif
-"endfunction
-"autocmd InsertCharPre * call OpenCompletion()
-"autocmd CompleteDone * pclose
