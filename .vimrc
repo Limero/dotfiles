@@ -1,17 +1,5 @@
-if executable('fzf')
-  "nnoremap <C-P> :FZF<CR>
-  nnoremap <C-B> :Buffers<CR>
-  if has('nvim')
-      nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "edit", "options": "--reverse --preview 'cat {}'"})<CR><CR>
-    autocmd! FileType fzf
-    autocmd  FileType fzf set norelativenumber noshowmode noruler
-      \| autocmd BufLeave <buffer> set showmode ruler
-  else
-      nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "tabedit", "down": "100%", "options": "--reverse --preview 'cat {} \|\| head -100 {}'"})<CR>
-  endif
-else
- nnoremap <C-P> :tabfind *
-endif
+" Find file. Will be overriden by fzf if available
+nnoremap <C-P> :tabfind *
 
 " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text#Mapping_for_paste
 xnoremap p "_dP
