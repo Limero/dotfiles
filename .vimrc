@@ -15,14 +15,6 @@ endif
 
 nnoremap <C-B> :Buffers<CR>
 
-" Ale
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'go': ['gofmt', 'goimports'],
-\}
-let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 1
-
 set updatetime=300 " Update ALEHover faster
 
 " Native vim below
@@ -32,8 +24,7 @@ set ruler " show the cursor position all the time
 set nowritebackup
 set noswapfile
 
-" Show possible completions with preview
-set completeopt=menuone,preview
+set completeopt=menuone,noselect,noinsert
 
 " netrw (open with :E)
 " https://shapeshed.com/vim-netrw/
@@ -157,7 +148,6 @@ autocmd FileChangedShellPost *
 call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'dense-analysis/ale'
 
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'wellle/context.vim'
