@@ -156,15 +156,4 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'wellle/context.vim'
-
-" Formatter
-"Plug 'nvim-lua/plenary.nvim'
-"Plug 'jose-elias-alvarez/null-ls.nvim'
-
-" Completion
-"Plug 'hrsh7th/cmp-nvim-lsp'
-"Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-"Plug 'hrsh7th/cmp-buffer'
-"Plug 'hrsh7th/cmp-path'
-"Plug 'hrsh7th/nvim-cmp'
 call plug#end()

@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = vim.api.nvim_create_augroup("Format on save", {}),
             callback = function()
+                vim.lsp.buf.format({ bufnr = bufnr })
                 vim.lsp.buf.code_action({
                     bufnr = bufnr,
                     context = {
@@ -15,7 +16,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     },
                     apply = true,
                 })
-                vim.lsp.buf.format({ bufnr = bufnr })
             end,
         })
 
@@ -33,8 +33,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     char ~= ')' and
                     char ~= '{' and
                     char ~= '}' then
-                --line = string.gsub(vim.api.nvim_get_current_line(), '\t', '')
-                --if vim.fn.pumvisible() and line:len() >= 1 and string.sub(line, -1) ~= ')' then
                     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-x><C-o>',true,false,true),'m',true)
                 end
             end,
