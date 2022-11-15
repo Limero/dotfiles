@@ -38,12 +38,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
             end,
         })
 
-        vim.api.nvim_create_autocmd("CompleteDone", {
-            group = vim.api.nvim_create_augroup("Finished completion", {}),
-            callback = function()
-                vim.cmd.pclose()
-            end,
-        })
-
     end,
 })

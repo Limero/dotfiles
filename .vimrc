@@ -24,12 +24,7 @@ set ruler " show the cursor position all the time
 set nowritebackup
 set noswapfile
 
-" Show possible completions with preview
-"set completeopt=menuone,preview
-set completeopt+=menuone,noselect,noinsert
-set completeopt-=preview
-set pumheight=10
-"set previewheight=1
+set completeopt=menuone,noselect,noinsert
 
 " netrw (open with :E)
 " https://shapeshed.com/vim-netrw/
