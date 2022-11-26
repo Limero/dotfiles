@@ -1,1 +1,1 @@
-vim.cmd('set norelativenumber')
+vim.opt.relativenumber = false

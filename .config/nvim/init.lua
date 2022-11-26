@@ -1,15 +1,12 @@
-vim.cmd([[
-  let &packpath = &runtimepath
-  source ~/.vimrc
-]])
+vim.cmd('let &packpath = &runtimepath')
+vim.cmd('source ~/.vimrc')
 
-vim.cmd([[
-  if executable('fzf')
-    nnoremap <C-P> :call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "edit", "options": "--reverse --preview 'cat {}'"})<CR><CR>
-    "nnoremap <C-P> :FZF<CR>
-    nnoremap <C-B> :Buffers<CR>
-  endif
-]])
+if vim.fn.executable('fzf') == 1 then
+  vim.keymap.set('n', '<C-P>',
+  [[<Cmd>call fzf#run({"source": "git ls-files --exclude-standard --cached --others \|\| find -L -type f -printf '%P\n'", "sink": "edit", "options": "--reverse --preview 'cat {}'"})<CR><CR>]]
+  )
+  vim.keymap.set('n', '<C-B>', '<Cmd>Buffers<CR>')
+end
 
 vim.cmd([[
   call plug#begin()
