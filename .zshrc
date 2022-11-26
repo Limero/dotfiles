@@ -50,8 +50,8 @@ setopt hist_ignore_space
 setopt noflowcontrol
 
 # Ctrl+arrow key to move word like bash
-#bindkey "^[[1;5C" forward-word
-#bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -69,6 +69,7 @@ source "$HOME/.config/aliases"
 [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # macOS
-[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -d /opt/homebrew/Cellar/zsh-autosuggestions/ ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -d /opt/homebrew/Cellar/zsh-syntax-highlighting/ ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 eval "$(zoxide init zsh)"

@@ -1,3 +1,9 @@
+vim.cmd([[
+setlocal shiftwidth=4 tabstop=4
+set listchars=tab:\ \ ,nbsp:%,trail:·
+set noexpandtab
+]])
+
 local path = vim.fs.find({ "go.mod" }, { type = "file" })
 vim.lsp.start({
     name = "gopls",

@@ -67,11 +67,6 @@ set listchars=tab:>-,nbsp:%,trail:·
 set smarttab expandtab
 set shiftwidth=2 tabstop=2
 
-" Languages with tabs
-autocmd Filetype go,c,cpp setlocal shiftwidth=4 tabstop=4
-autocmd FileType go,c,cpp set listchars=tab:\ \ ,nbsp:%,trail:·
-autocmd FileType go,c,cpp set noexpandtab
-
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 autocmd FocusGained,BufEnter * :checktime
 autocmd FileChangedShellPost *
@@ -81,10 +76,13 @@ autocmd FileChangedShellPost *
 com! FormatJSON %!python3 -m json.tool
 
 command -nargs=? G vimgrep /<args>/j **/* | copen 25
-nnoremap \| :G 
+nnoremap \| :G<Space>
+
+" https://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
+:nmap yp :let @+ = expand("%")<cr>
+:nmap yfp :let @+ = expand("%:p")<cr>
 
 " https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim
-" todo: set filetype dynamically
 command! -nargs=* GB call s:GitBlame()
 function! s:GitBlame()
    let cmdline = "git blame -w " . bufname("%")
@@ -94,5 +92,4 @@ function! s:GitBlame()
    execute "$read !" . cmdline
    setlocal nomodifiable
    execute "normal " . nline . "gg"
-   execute "set filetype=php"
 endfunction
