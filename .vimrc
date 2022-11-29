@@ -18,7 +18,7 @@ syntax enable
 set belloff=all
 set mouse=a
 set showcmd
-colorscheme ron
+"colorscheme ron
 :hi Pmenu ctermbg=gray guibg=gray " ron theme has pink previews by default
 set encoding=utf-8
 set title
@@ -48,7 +48,7 @@ set wildignore+=*.png,*.jpg,*.svg,*.pdf,*.graphml,*.eot,*.woff,*.log,*.sqlite,*.
 " Random files
 set wildignore+=CHANGELOG.md,/*service,go.sum
 " Directories
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/vendor/*,*/cache/*,*/bin/*,*/.DS_Store,*/gen/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/vendor/*,*/cache/*,*/bin/*,*/.DS_Store,*/gen/*,*/mocks/*
 
 " Keep selected text selected when fixing indentation
 vnoremap < <gv
