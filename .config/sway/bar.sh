@@ -3,9 +3,19 @@
 sleep 0.5
 
 volume() {
-  [ "$(pulsemixer --get-mute)" = 1 ] && echo "Muted" && return
-  vol="$(pulsemixer --get-volume)"
-  echo "${vol%% *}"%
+  vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+
+  [ "$vol" != "${vol%\[MUTED\]}" ] && echo "Muted" && return
+
+  vol="${vol#Volume: }"
+  split() {
+    # For ommiting the . without calling and external program.
+    IFS=$2
+    set -- $1
+    printf '%s' "$@"
+  }
+  vol="$(split "$vol" ".")"
+  echo "${vol##0}"%
 }
 
 media() {
