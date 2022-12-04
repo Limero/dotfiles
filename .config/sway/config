@@ -6,7 +6,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-set $term alacritty
+set $term foot
 bindsym $mod+Return exec $term -e zsh
 #bindsym $mod+Return exec $term -e tmux
 
@@ -17,9 +17,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Tab workspace back_and_forth
 
 # program launcher
-# https://quinoa42.github.io/en/oceanus/replace-dmenu-with-fzf
 for_window [app_id="fzfmenu"] floating enable
-bindsym $mod+d exec $term --class "fzfmenu" -e zsh -c 'print -rl -- ${(ko)commands} | fzf | (nohup ${SHELL:-"/bin/sh"} &) >/dev/null 2>&1'
+bindsym $mod+d exec $term --app-id=fzfmenu -e zsh -c 'print -rl -- ${(ko)commands} | fzf | (nohup ${SHELL:-"/bin/sh"} &) >/dev/null 2>&1'
 
 # change focus
 bindsym $mod+h focus left
