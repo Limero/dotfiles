@@ -53,6 +53,10 @@ setopt noflowcontrol
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+# https://stackoverflow.com/questions/67793356/how-can-one-scroll-through-multi-line-commands-in-the-zsh-history-without-select
+bindkey '^P' up-history
+bindkey '^N' down-history
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
