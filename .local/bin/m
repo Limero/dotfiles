@@ -3,5 +3,5 @@
 if command -v mpv >/dev/null; then
   setsid mpv "$@"
 else
-  flatpak run io.mpv.Mpv "$@"
+  io.mpv.Mpv "$@"
 fi

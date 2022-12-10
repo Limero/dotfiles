@@ -1,6 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
 sleep 0.5
+
+split() {
+  # For ommiting the . without calling and external program.
+  IFS=$2
+  set -- $1
+  printf '%s' "$@"
+}
 
 volume() {
   vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
@@ -8,12 +15,6 @@ volume() {
   [ "$vol" != "${vol%\[MUTED\]}" ] && echo "Muted" && return
 
   vol="${vol#Volume: }"
-  split() {
-    # For ommiting the . without calling and external program.
-    IFS=$2
-    set -- $1
-    printf '%s' "$@"
-  }
   vol="$(split "$vol" ".")"
   echo "${vol##0}"%
 }
@@ -22,7 +23,9 @@ media() {
   # $1 can be spotify, ncspot etc.
   pidof "$1" >/dev/null || return
   META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$1" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata)
-  echo $(sed -n '/artist/{n;n;p}' <<< "$META" | cut -d '"' -f 2) '-' $(sed -n '/title/{n;p}' <<< "$META" | cut -d '"' -f 2)
+  artist=$(echo "$META" | sed -n '/artist/{n;n;p}' | cut -d '"' -f 2)
+  title=$(echo "$META" | sed -n '/title/{n;p}' | cut -d '"' -f 2)
+  echo "$artist - $title"
 }
 
 battery() {
@@ -42,7 +45,7 @@ wifi() {
 
 while :
 do
-  echo "$(media mpv)" '|' \
+  echo "$(media spotify)" '|' \
        "$(volume)" '|' \
        "$(wifi)" '|' \
        "$(battery)" '|' \

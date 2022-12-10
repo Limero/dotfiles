@@ -126,15 +126,15 @@ bindsym $mod+r mode "resize"
 hide_edge_borders both
 
 bar {
-        swaybar_command waybar
-        #status_command ~/.config/sway/bar.sh
-        #position top
-        #colors {
-        #        focused_workspace #0a84ff #0a84ff #fafafa
-        #        active_workspace #5294e2 #5294e2 #fafafa
-        #        inactive_workspace #000000 #000000 #fafafa
-        #        urgent_workspace #ff5757 #ff5757 #fafafa
-        #}
+        #swaybar_command waybar
+        status_command ~/.config/sway/bar.sh
+        position top
+        colors {
+                focused_workspace #0a84ff #0a84ff #fafafa
+                active_workspace #5294e2 #5294e2 #fafafa
+                inactive_workspace #000000 #000000 #fafafa
+                urgent_workspace #ff5757 #ff5757 #fafafa
+        }
 
         ## disable vertical scrolling
         #bindsym button4 nop
@@ -159,7 +159,7 @@ bindsym --locked $mod+Ctrl+j exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --locked $mod+Ctrl+Escape exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Media player controls
-set $mediaplayer mpv
+set $mediaplayer spotify
 #bindsym --locked XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 #bindsym --locked XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 #bindsym --locked XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.$mediaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
