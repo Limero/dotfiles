@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("Format on save", {}),
             callback = function()
                 vim.lsp.buf.format({ bufnr = bufnr })
-                vim.cmd('write')
                 vim.lsp.buf.code_action({
                     bufnr = bufnr,
                     context = {
@@ -17,7 +16,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     },
                     apply = true,
                 })
-                vim.cmd('write')
+                vim.cmd('sleep 100m')
             end,
         })
 
