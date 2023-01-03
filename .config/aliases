@@ -29,7 +29,7 @@ alias rssconf='$EDITOR ~/.config/newsboat/config'
 alias mconf='$EDITOR ~/.config/mutt/muttrc'
 alias al='$EDITOR ~/.config/aliases'
 
-alias mpvc='m --really-quiet $(wl-paste) & disown && exit'
+alias mcl='m --really-quiet $(wl-paste) & disown && exit'
 alias f='fzf --bind "enter:execute(vim {})+abort"'
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
