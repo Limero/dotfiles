@@ -3,6 +3,8 @@ vim.opt_local.tabstop = 4
 vim.opt.listchars = 'tab:  ,nbsp:%,trail:·'
 vim.opt.expandtab = false
 
+vim.cmd(':nmap yt :let @+ = "go test -run ^" .. expand("<cword>") .. "$ " .. expand("%:p:h")<cr>')
+
 local path = vim.fs.find({ "go.mod" }, { type = "file" })
 vim.lsp.start({
     name = "gopls",
