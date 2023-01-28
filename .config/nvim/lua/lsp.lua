@@ -8,6 +8,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = vim.api.nvim_create_augroup("Format on save", {}),
             callback = function()
+                local client = vim.lsp.buf_get_clients(0)[1]
+                if not client or not client.server_capabilities then return end
+
                 vim.lsp.buf.format({ bufnr = bufnr })
 
                 -- https://github.com/neovim/nvim-lspconfig/issues/115
@@ -30,17 +33,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.api.nvim_create_autocmd("TextChangedI", {
             group = vim.api.nvim_create_augroup("Completion while typing", {}),
             callback = function()
+                local client = vim.lsp.buf_get_clients(0)[1]
+                if not client or not client.server_capabilities then return end
+
                 local col = vim.api.nvim_win_get_cursor(0)[2]
                 local char = vim.api.nvim_get_current_line():sub(col,col)
-                if vim.fn.pumvisible() and
-                    char ~= '\t' and
-                    char ~= ' ' and
-                    char ~= ':' and
-                    char ~= ';' and
-                    char ~= '=' and
-                    char ~= ')' and
-                    char ~= '{' and
-                    char ~= '}' then
+                --if vim.fn.pumvisible() and not char:match("[\t :;=){}-]") then
+                if vim.fn.pumvisible() and char:match("[a-zA-Z.]") then
                     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-x><C-o>',true,false,true),'m',true)
                 end
             end,

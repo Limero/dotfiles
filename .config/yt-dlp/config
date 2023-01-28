@@ -2,5 +2,7 @@
 --write-subs
 --write-auto-subs
 --embed-subs
+--embed-metadata
 --compat-options no-keep-subs
+--sponsorblock-mark all
 -o "~/youtube/%(uploader)s/%(upload_date)s-%(title)s-%(id)s.%(ext)s"

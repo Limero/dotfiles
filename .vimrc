@@ -1,5 +1,6 @@
-" Find file. Will be overriden by fzf if available
+" Find file and navigate buffers. Will be overriden by fzf if available
 nnoremap <C-P> :tabfind *
+nnoremap <C-B> :buffers<CR>:buffer<Space>
 
 " http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text#Mapping_for_paste
 xnoremap p "_dP
