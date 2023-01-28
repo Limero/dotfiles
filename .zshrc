@@ -76,4 +76,4 @@ source "$HOME/.config/aliases"
 [ -d /opt/homebrew/Cellar/zsh-autosuggestions/ ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -d /opt/homebrew/Cellar/zsh-syntax-highlighting/ ] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(zoxide init zsh)"
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
