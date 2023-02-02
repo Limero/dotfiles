@@ -39,6 +39,7 @@ set laststatus=0             " Disable status line
 let g:netrw_liststyle = 3    " netrw tree style
 set path=$PWD/**             " http://vim.wikia.com/wiki/Project_browsing_using_find
 set completeopt=menuone,noselect,noinsert
+set foldopen=mark,quickfix,tag
 
 set wildmenu
 set wildignorecase " Ignore cAsEs in Wild menu
