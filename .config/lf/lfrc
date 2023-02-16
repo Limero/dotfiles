@@ -1,10 +1,7 @@
-map S $zsh
-map <backspace> set hidden!
 set incsearch
 set previewer ~/.config/lf/scope.sh
 set wrapscroll
 set period 1
-
 set number
 set relativenumber
 
@@ -16,8 +13,15 @@ map gm cd /run/media/david/
 
 map gn %mkdir -p /tmp/nuc && sshfs -o follow_symlinks nuc: /tmp/nuc; lf -remote "send $id cd /tmp/nuc"
 
+map D delete
+map S $zsh
+map <backspace> set hidden!
+map <enter> open
 cmap <up> cmd-history-prev
 cmap <down> cmd-history-next
+
+cmd touch %touch $1 && lf -remote "send $id select $1"
+cmd mkdir %mkdir -p $1 && lf -remote "send $id select $1"
 
 cmd open ${{
     case $(file --mime-type -b -L "$f") in
@@ -26,12 +30,6 @@ cmd open ${{
         *) IFS=':'; for f in $fx; do xdg-open "$f" > /dev/null 2> /dev/null & done;;
     esac
 }}
-
-map <enter> open
-map D delete
-
-cmd touch %touch $1 && lf -remote "send $id select $1"
-cmd mkdir %mkdir -p $1 && lf -remote "send $id select $1"
 
 # extract file with unp
 cmd unp ${{
