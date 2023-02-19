@@ -16,7 +16,7 @@ map gn %mkdir -p /tmp/nuc && sshfs -o follow_symlinks nuc: /tmp/nuc; lf -remote 
 map D delete
 map S $zsh
 map <backspace> set hidden!
-map <enter> open
+#map <enter> open
 cmap <up> cmd-history-prev
 cmap <down> cmd-history-next
 
