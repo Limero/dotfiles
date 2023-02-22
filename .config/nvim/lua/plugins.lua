@@ -12,10 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  'junegunn/fzf',
-  'junegunn/fzf.vim',
-  'lewis6991/gitsigns.nvim',
-  --'wellle/context.vim',
+  {'junegunn/fzf', event = "VeryLazy" },
+  {'junegunn/fzf.vim', event = "VeryLazy" },
+  {'lewis6991/gitsigns.nvim', event = "VeryLazy" },
+  --{'wellle/context.vim', event = "VeryLazy" },
 })
 
 require('gitsigns').setup()
