@@ -24,7 +24,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export GOPRIVATE=gitlab.com/junitechnology/*
   export GO111MODULE=on
   #export GOROOT=/opt/homebrew/bin
-  # util-linux paths for setsid and such commands
-  export PATH="/opt/homebrew/opt/util-linux/bin:/opt/homebrew/opt/util-linux/sbin:$PATH"
   export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl/lib/pkgconfig"
 fi
