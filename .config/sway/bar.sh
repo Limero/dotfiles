@@ -21,7 +21,7 @@ volume() {
 
 media() {
   # $1 can be spotify, ncspot etc.
-  pidof "$1" >/dev/null || return
+  pgrep "$1" >/dev/null || return
   META=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2."$1" /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata)
   artist=$(echo "$META" | sed -n '/artist/{n;n;p}' | cut -d '"' -f 2)
   title=$(echo "$META" | sed -n '/title/{n;p}' | cut -d '"' -f 2)
