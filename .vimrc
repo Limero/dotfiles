@@ -44,13 +44,13 @@ set foldopen=mark,quickfix,tag
 set wildmenu
 set wildignorecase " Ignore cAsEs in Wild menu
 " Ignore compiled files
-set wildignore=*.o,*~,*.class,*.pyc
+set wildignore=*.o,*~,*.class,*.pyc,/*service
 " Random filetypes
-set wildignore+=*.png,*.jpg,*.svg,*.pdf,*.graphml,*.eot,*.woff,*.log,*.sqlite,*.ttf
+set wildignore+=*.png,*.jpg,*.svg,*.pdf,*.graphml,*.eot,*.woff,*.log,*.sqlite,*.ttf,*.json,*.key
 " Random files
-set wildignore+=CHANGELOG.md,/*service,go.sum
+set wildignore+=CHANGELOG.md,CODEOWNERS,go.sum,swagger.yaml
 " Directories
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/vendor/*,*/cache/*,*/bin/*,*/.DS_Store,*/gen/*,*/mocks/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*,*/vendor/*,*/cache/*,*/bin/*,*/.DS_Store,*/gen/*,*/mocks/*,*/testdata/*
 
 " Keep selected text selected when fixing indentation
 vnoremap < <gv
@@ -78,6 +78,10 @@ autocmd FileChangedShellPost *
 com! FormatJSON %!python3 -m json.tool
 
 command -nargs=? G vimgrep /<args>/j **/* | copen 25
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ -g\ '!{mocks,CHANGELOG.md,CODEOWNERS,go.sum}'
+  command! -nargs=+ G execute 'silent grep! <args>' | copen 25
+endif
 nnoremap \| :G<Space>
 
 " https://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
