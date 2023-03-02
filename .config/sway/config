@@ -88,6 +88,10 @@ for_window [class="^Spotify$"] border none
 for_window [class="^Signal$"] border none
 for_window [class="^Firefox$"] border none
 
+exec com.spotify.Client
+exec org.signal.Signal
+exec org.mozilla.firefox
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 

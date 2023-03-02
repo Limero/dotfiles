@@ -13,6 +13,12 @@ flatpak remote-delete flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
+### Remove pre-installed Fedora flatpaks
+
+```
+flatpak remote-delete fedora
+```
+
 ### Disable packages in base image
 
 ```
