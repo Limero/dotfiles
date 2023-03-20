@@ -5,18 +5,20 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN:$HOME/.local/bin:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin"
 
-# For Sway on non-systemd
-if test -z "${XDG_RUNTIME_DIR}"; then
-  export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir
-  if ! test -d "${XDG_RUNTIME_DIR}"; then
-    mkdir "${XDG_RUNTIME_DIR}"
-    chmod 0700 "${XDG_RUNTIME_DIR}"
+if command -v sway >/dev/null; then
+  # For Sway on non-systemd
+  if test -z "${XDG_RUNTIME_DIR}"; then
+    export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir
+    if ! test -d "${XDG_RUNTIME_DIR}"; then
+      mkdir "${XDG_RUNTIME_DIR}"
+      chmod 0700 "${XDG_RUNTIME_DIR}"
+    fi
   fi
-fi
 
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  export _JAVA_AWT_WM_NONREPARENTING=1
-  exec sway
+  if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    exec sway
+  fi
 fi
 
 # macOS
