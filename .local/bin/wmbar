@@ -1,6 +1,5 @@
 #!/bin/sh
-
-sleep 0.5
+LC_TIME="en_US.UTF-8"
 
 split() {
   # For ommiting the . without calling and external program.
@@ -29,7 +28,8 @@ media() {
 }
 
 battery() {
-  for battery in /sys/class/power_supply/BAT?
+  # TODO: Make work with BAT0 and macsmc-battery
+  for battery in /sys/class/power_supply/*-battery
   do
     capacity=$(cat "$battery"/capacity 2>/dev/null) || break
     status=$(cat "$battery"/status)
@@ -43,9 +43,11 @@ wifi() {
   nmcli -t -f NAME connection show --active --order type | head -1
 }
 
+printcmd="echo"
+
 while :
 do
-  echo "$(media spotify)" '|' \
+  "$printcmd" "$(media spotify)" '|' \
        "$(volume)" '|' \
        "$(wifi)" '|' \
        "$(battery)" '|' \

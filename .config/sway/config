@@ -113,7 +113,7 @@ bindsym $mod+r mode "resize"
 hide_edge_borders both
 
 bar {
-        status_command ~/.config/sway/bar.sh
+        status_command ~/.local/bin/wmbar
         position top
         colors {
                 focused_workspace #0a84ff #0a84ff #fafafa
