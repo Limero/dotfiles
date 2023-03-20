@@ -8,7 +8,7 @@ split() {
   printf '%s' "$@"
 }
 
-volume() {}
+volume() { :; }
 if command -v wpctl >/dev/null; then
   volume() {
     vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
@@ -22,6 +22,7 @@ if command -v wpctl >/dev/null; then
 elif command -v sndioctl >/dev/null; then
   volume() {
     # TODO
+    :
   }
 fi
 
@@ -44,7 +45,7 @@ battery() {
   done
 }
 
-wifi(){}
+wifi(){ :; }
 if command -v nmcli >/dev/null; then
   wifi() {
     # https://askubuntu.com/questions/282671/how-to-get-the-connected-wifi-network-ssid
