@@ -8,15 +8,22 @@ split() {
   printf '%s' "$@"
 }
 
-volume() {
-  vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+volume() {}
+if command -v wpctl >/dev/null; then
+  volume() {
+    vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
 
-  [ "$vol" != "${vol%\[MUTED\]}" ] && echo "Muted" && return
+    [ "$vol" != "${vol%\[MUTED\]}" ] && echo "Muted" && return
 
-  vol="${vol#Volume: }"
-  vol="$(split "$vol" ".")"
-  echo "${vol##0}"%
-}
+    vol="${vol#Volume: }"
+    vol="$(split "$vol" ".")"
+    echo "${vol##0}"%
+  }
+elif command -v sndioctl >/dev/null; then
+  volume() {
+    # TODO
+  }
+fi
 
 media() {
   # $1 can be spotify, ncspot etc.
@@ -37,11 +44,14 @@ battery() {
   done
 }
 
-wifi() {
-  # https://askubuntu.com/questions/282671/how-to-get-the-connected-wifi-network-ssid
-  # --order type is to put wifi above docker
-  nmcli -t -f NAME connection show --active --order type | head -1
-}
+wifi(){}
+if command -v nmcli >/dev/null; then
+  wifi() {
+    # https://askubuntu.com/questions/282671/how-to-get-the-connected-wifi-network-ssid
+    # --order type is to put wifi above docker
+    nmcli -t -f NAME connection show --active --order type | head -1
+  }
+fi
 
 e="echo"
 pgrep "dwm" >/dev/null && e="xsetroot -name"
