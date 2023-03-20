@@ -43,15 +43,11 @@ wifi() {
   nmcli -t -f NAME connection show --active --order type | head -1
 }
 
-printcmd="echo"
-pgrep "dwm" >/dev/null && printcmd="xsetroot -name"
+e="echo"
+pgrep "dwm" >/dev/null && e="xsetroot -name"
 
 while :
 do
-  "$printcmd" "$(media spotify)" '|' \
-       "$(volume)" '|' \
-       "$(wifi)" '|' \
-       "$(battery)" '|' \
-       "$(date '+%a %b %d %H:%M:%S')"
+  $e "$(media spotify) | $(volume) | $(wifi) | $(battery) | $(date '+%a %b %d %H:%M:%S')"
   sleep 1
 done
