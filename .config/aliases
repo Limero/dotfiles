@@ -1,10 +1,11 @@
 #!/bin/sh
 
+# Git
+alias g='git'
 alias gp='git push'
 alias gpf='git push --force'
 alias gs='clear && git status'
 alias gch='git checkout'
-alias gcm='gcm() { if git rev-parse --verify main > /dev/null 2>&1; then git checkout main; else git checkout master; fi; }; gcm && git pull'
 alias gc='git commit'
 alias gca='git commit --amend --no-edit'
 alias ga='git add'
@@ -12,10 +13,25 @@ alias gd='git diff'
 alias gl='git log'
 alias gpu='git pull'
 alias gm='$EDITOR $(git ls-files -m --exclude-standard --others)'
+gcm() {
+  if git rev-parse --verify main > /dev/null 2>&1; then
+    git checkout main
+  else
+    git checkout master
+  fi
+  git pull
+}
+
+# Navigation
+alias f='fzf --bind "enter:execute(lf {})+abort"'
+alias n='cd ~/notes && fzf --bind "enter:execute($EDITOR {})+abort"'
+alias t='lf ~/torrents'
+alias y='lf ~/youtube'
+alias d='lf ~/Downloads'
+alias r='cd ~/repos && cd $(ls -d */ | fzf) && gs'
+alias w='cd ~/go/src/gitlab.com/junitechnology/ && cd $(ls -d */ | fzf)'
 
 alias v='$EDITOR'
-alias g='git'
-alias n='cd ~/notes && $EDITOR .'
 alias mh='neomutt -F ~/.config/mutt/account.home && exit'
 alias mw='neomutt -F ~/.config/mutt/account.work && exit'
 alias nb='offlinerss && newsboat && offlinerss'
@@ -31,7 +47,6 @@ alias mconf='$EDITOR ~/.config/mutt/muttrc'
 alias al='$EDITOR ~/.config/aliases'
 
 alias mcl='m --really-quiet $(wl-paste) & disown && exit'
-alias f='fzf --bind "enter:execute(vim {})+abort"'
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
 alias fwu='sudo fwupdmgr refresh; sudo fwupdmgr get-updates && sudo fwupdmgr update'
