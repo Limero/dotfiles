@@ -1,8 +1,12 @@
+volume = 90
+shuffle = true
+library_tabs = ["playlists", "tracks", "browse"]
+
 [keybindings]
 "g" = "move top"
 "G" = "move bottom"
 "Esc" = "back"
-
-[saved_state]
-volume = 90
-shuffle = true
+"D" = "delete"
+"s" = ""
+"d" = ""
+"q" = ""
