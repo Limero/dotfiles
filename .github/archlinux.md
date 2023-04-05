@@ -19,7 +19,6 @@
 - fwupd
 - noto-fonts-cjk
 - noto-fonts-emoji
-- zoxide
 - zsh-autosuggestions
 - zsh-syntax-highlighting
 
