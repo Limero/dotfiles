@@ -23,3 +23,4 @@ git remote set-url origin git@github.com:Limero/dotfiles.git
 
 * [Arch Linux](archlinux.md)
 * [Fedora](fedora.md)
+* [macOS](macos.md)
