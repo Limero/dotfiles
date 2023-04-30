@@ -17,6 +17,14 @@ podman machine start
 sudo /opt/homebrew/Cellar/podman/4.4.2/bin/podman-mac-helper install
 ```
 
+### sshfs
+
+```
+brew tap macos-fuse-t/homebrew-cask
+brew install fuse-t
+brew install fuse-t-sshfs
+```
+
 ## Packages
 
 ### Homebrew
