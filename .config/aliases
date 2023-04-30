@@ -12,15 +12,10 @@ alias ga='git add'
 alias gd='git diff'
 alias gl='git log'
 alias gpu='git pull'
-alias gm='$EDITOR $(git ls-files -m --exclude-standard --others)'
-gcm() {
-  if git rev-parse --verify main > /dev/null 2>&1; then
-    git checkout main
-  else
-    git checkout master
-  fi
-  git pull
-}
+alias gm='$EDITOR -p $(git ls-files -m --exclude-standard --others)'
+alias gmb='git rev-parse --verify main > /dev/null 2>&1 && echo main || echo master'
+alias gcm='git checkout $(gmb) && git pull'
+alias grm='git rebase -i $(gmb)'
 
 # Navigation
 alias f='fzf --bind "enter:execute(lf {})+abort"'
@@ -29,13 +24,14 @@ alias t='lf ~/torrents'
 alias y='lf ~/youtube'
 alias d='lf ~/Downloads'
 alias r='cd ~/repos && cd $(ls -d */ | fzf) && gs'
-alias w='cd ~/go/src/gitlab.com/junitechnology/ && cd $(ls -d */ | fzf)'
+alias w='cd ~/go/src/gitlab.com/junitechnology/ && cd $(ls -d */ | fzf) && gs'
 
 alias v='$EDITOR'
 alias mh='neomutt -F ~/.config/mutt/account.home && exit'
 alias mw='neomutt -F ~/.config/mutt/account.work && exit'
 alias nb='offlinerss && newsboat && offlinerss'
 alias nr='sudo systemctl restart iwd'
+alias rg='rg --no-ignore-parent'
 
 alias zshrc='$EDITOR ~/.zshrc'
 alias vimrc='$EDITOR ~/.vimrc'
