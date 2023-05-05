@@ -15,7 +15,7 @@ alias gpu='git pull'
 alias gm='$EDITOR -p $(git ls-files -m --exclude-standard --others)'
 alias gmb='git rev-parse --verify main > /dev/null 2>&1 && echo main || echo master'
 alias gcm='git checkout $(gmb) && git pull'
-alias grm='git rebase -i $(gmb)'
+alias grm='git fetch origin $(gmb):$(gmb) && git rebase -i $(gmb)'
 
 # Navigation
 alias f='fzf --bind "enter:execute(lf {})+abort"'
