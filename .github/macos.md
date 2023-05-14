@@ -17,11 +17,12 @@ podman machine start
 sudo /opt/homebrew/Cellar/podman/4.4.2/bin/podman-mac-helper install
 ```
 
-### Fuse (for rclone)
+### Fuse and rclone
 
 ```
 brew tap macos-fuse-t/homebrew-cask
 brew install fuse-t
+sudo -v ; curl https://rclone.org/install.sh | sudo bash
 ```
 
 ## Packages
@@ -31,7 +32,6 @@ brew install fuse-t
 - neovim
 - fzf
 - lf
-- rclone
 - ripgrep
 - mpv
 - yt-dlp
