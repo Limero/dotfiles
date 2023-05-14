@@ -11,7 +11,8 @@ map gy cd ~/youtube
 map gw cd "~/Games/world-of-warcraft-classic/drive_c/Program Files (x86)/World of Warcraft/_classic_/Interface/AddOns"
 map gm cd /run/media/david/
 
-map gn %mkdir -p /tmp/nuc && sshfs -o follow_symlinks nuc: /tmp/nuc; lf -remote "send $id cd /tmp/nuc"
+map gn %mkdir -p /tmp/nuc && rclone mount --daemon nuc:/home/david /tmp/nuc; lf -remote "send $id cd /tmp/nuc"
+cmd on-quit %umount /tmp/nuc
 
 map D delete
 map S $zsh

@@ -50,7 +50,7 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 
 ### Repo
 
-- sshfs
+- rclone
 - foot
 - sway
 - swaylock
