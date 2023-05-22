@@ -17,13 +17,13 @@ bind-key ^H toggle-show-read-feeds
 feedlist-format "%2i %7u %?T?[%T]? %t"
 articlelist-format "%2i %f %D  %?T?|%-17T|  ?%t"
 
-browser firefox
-#browser "brave %u && sway focus prev"
+browser web
 
-macro v set browser "setsid mpv %u -quiet >/dev/null 2>&1 &" ; open-in-browser-and-mark-read ; set browser firefox
-macro w set browser "w3m" ; open-in-browser-and-mark-read ; set browser firefox
-macro s set browser "firefox about:reader?url=%u" ; open-in-browser-and-mark-read ; set browser firefox
-macro y set browser "youtube-dl" ; open-in-browser-and-mark-read ; set browser firefox
+macro c set browser "comments get %u" ; open-in-browser ; set browser web
+macro v set browser "m %u -quiet >/dev/null 2>&1 &" ; open-in-browser-and-mark-read ; set browser web
+macro w set browser "w3m" ; open-in-browser-and-mark-read ; set browser web
+macro s set browser "web about:reader?url=%u" ; open-in-browser-and-mark-read ; set browser web
+macro y set browser "youtube-dl" ; open-in-browser-and-mark-read ; set browser web
 
 ignore-mode "display"
 #include "~/.config/newsboat/killfile"
