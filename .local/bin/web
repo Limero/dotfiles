@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if command -v firefox >/dev/null; then
+  firefox "$@"
+else
+  org.mozilla.firefox "$@"
+fi
