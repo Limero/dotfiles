@@ -42,10 +42,8 @@
 
 ### Archive
 
+- libarchive
 - zip
-- unzip
-- unrar
-- p7zip
 
 ### Other
 

@@ -33,36 +33,9 @@ cmd open ${{
 # extract file with unp
 cmd unp ${{
     set -f
-
-    case "$f" in
-      *.tar.bz2|*.tbz2) tar xvjf "$f" ;;
-      *.tar.xz) tar -xf "$f" ;;
-      *.tar.gz|*.tgz) tar xvzf "$f" ;;
-      *.lzma) unlzma "$f" ;;
-      *.bz2) bunzip2 "$f" ;;
-      *.rar) unrar x -ad "$f" ;;
-      *.gz) gunzip "$f" ;;
-      *.tar) tar xvf "$f" ;;
-      *.zip) unzip "$f" -d "${f%.*}" ;;
-      *.Z) uncompress "$f" ;;
-      *.7z) 7z x "$f" ;;
-      *.xz) unxz "$f" ;;
-      *.exe) cabextract "$f" ;;
-      *) printf "extract: '%s' - unknown archive method" "$f" ;;
-    esac
-
+    mkdir -p "${f%.*}"
+    bsdtar xf "$f" -C "${f%.*}"
     lf -remote "send $id select ${f%.*}"
-}}
-
-cmd unp2 ${{
-    set -f
-    file-roller -e "${f%.*}" --force "$f"
-    lf -remote "send $id select ${f%.*}"
-}}
-
-cmd unp3 ${{
-    set -f
-    bsdtar xvf "$f"
 }}
 
 # compress current file or selected files with zip

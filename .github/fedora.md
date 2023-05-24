@@ -61,7 +61,7 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 - wl-clipboard
 - golang
 - golang-x-tools-gopls
-- p7zip-plugins
+- bsdtar
 - zsh-syntax-highlighting
 - zsh-autosuggestions
 - newsboat
