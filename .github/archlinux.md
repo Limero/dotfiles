@@ -38,7 +38,6 @@
 ### Browser
 
 - firefox
-- chromium
 
 ### Archive
 
@@ -51,7 +50,6 @@
 - mpv
 - yt-dlp
 - steam
-- transmission-gtk
 - neomutt
 - newsboat
 - gimp
@@ -60,7 +58,6 @@
 ### AUR
 
 - yay-bin
-- brave-bin
 - runescape-launcher
 - runelite
 - spotify

@@ -73,10 +73,7 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 - org.mozilla.firefox
 - io.mpv.Mpv
 - org.gimp.GIMP
-- com.transmissionbt.Transmission
 - org.signal.Signal
-- com.github.Eloston.UngoogledChromium
-- com.brave.Browser
 
 #### Proprietary
 
