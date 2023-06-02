@@ -48,17 +48,20 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 
 ## Packages
 
-### Repo
+### Part of Fedora Sericea
 
-- rclone
-- foot
 - sway
 - swaylock
-- fzf
-- neovim
+- foot
 - slurp
 - grim
 - wl-clipboard
+
+### Repo
+
+- neovim
+- rclone
+- fzf
 - golang
 - golang-x-tools-gopls
 - bsdtar
