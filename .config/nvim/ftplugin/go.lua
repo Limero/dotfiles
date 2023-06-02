@@ -13,7 +13,9 @@ vim.lsp.start({
     settings = {
         ["gopls"] = {
             analyses = {
+                nilness = true,
                 unusedparams = true,
+                unusedwrite = true,
                 shadow = true,
             },
             staticcheck = true,
