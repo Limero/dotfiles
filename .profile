@@ -1,11 +1,12 @@
-#export GDK_BACKEND=wayland
-export MOZ_ENABLE_WAYLAND=1
 export EDITOR=nvim
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOBIN:$HOME/.local/bin:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin"
 
 if command -v sway >/dev/null; then
+  #export GDK_BACKEND=wayland
+  export MOZ_ENABLE_WAYLAND=1
+
   # For Sway on non-systemd
   if test -z "${XDG_RUNTIME_DIR}"; then
     export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir
