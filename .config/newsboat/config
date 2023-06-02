@@ -1,6 +1,8 @@
 #auto-reload yes
 show-read-feeds no
 wrap-scroll yes
+text-width 125
+prepopulate-query-feeds yes
 
 bind-key j down
 bind-key k up
