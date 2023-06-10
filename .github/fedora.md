@@ -60,7 +60,7 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 ### Repo
 
 - neovim
-- rclone
+- sshfs
 - fzf
 - golang
 - golang-x-tools-gopls

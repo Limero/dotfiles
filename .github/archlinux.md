@@ -6,7 +6,7 @@
 
 - git
 - openssh
-- rclone
+- sshfs
 - neovim
 - fzf
 - xorg-server
