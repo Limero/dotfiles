@@ -80,7 +80,7 @@ com! FormatJSON %!python3 -m json.tool
 command -nargs=? G vimgrep /<args>/j **/* | copen 25
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ -g\ '!{mocks,CHANGELOG.md,CODEOWNERS,go.sum}'
-  command! -nargs=+ G execute 'silent grep! ' . shellescape('<args>', 1) | copen 25
+  command! -nargs=+ G execute 'silent grep! ' . shellescape(escape('<args>', '*{[()\'), 1) . ' | copen 25'
 endif
 nnoremap \| :G<Space>
 
