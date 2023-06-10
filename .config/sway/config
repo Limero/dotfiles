@@ -122,6 +122,9 @@ bar {
                 urgent_workspace #ff5757 #ff5757 #fafafa
         }
 
+        # avoid errors on '&' in bar
+        pango_markup disabled
+
         ## disable vertical scrolling
         #bindsym button4 nop
         #bindsym button5 nop
