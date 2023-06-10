@@ -69,6 +69,9 @@ set listchars=tab:>-,nbsp:%,trail:·
 set smarttab expandtab
 set shiftwidth=2 tabstop=2
 
+" Disable continuation of comments
+autocmd FileType * setlocal formatoptions-=cro
+
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 autocmd FocusGained,BufEnter * :checktime
 autocmd FileChangedShellPost *
