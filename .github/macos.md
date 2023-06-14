@@ -71,6 +71,7 @@ brew install fuse-t-sshfs
 - visual-studio-code
 - libreoffice
 - slack
+- glab
 
 ### AppStore
 
