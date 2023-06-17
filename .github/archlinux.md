@@ -26,6 +26,7 @@
 
 - sway
 - swaylock
+- dunst
 - slurp
 - grim
 - wl-clipboard

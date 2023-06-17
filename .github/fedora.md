@@ -52,6 +52,7 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 
 - sway
 - swaylock
+- dunst
 - foot
 - slurp
 - grim

@@ -1,0 +1,3 @@
+#!/bin/sh
+[ "$1" = "RuneLite" ] && swaymsg '[class=net-runelite-client-RuneLite] focus' && exit
+echo "Pass a valid program as argument"
