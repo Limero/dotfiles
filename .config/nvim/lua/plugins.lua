@@ -18,7 +18,7 @@ require("lazy").setup({
   --{'wellle/context.vim', event = "VeryLazy" },
 })
 
-require('gitsigns').setup()
+require('gitsig')
 if vim.fn.executable('fzf') == 1 then
   require('fzf')
 end
