@@ -72,22 +72,17 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+G move container to workspace Game
 bindsym $mod+Shift+M move container to workspace Music
 
-# https://i3wm.org/docs/userguide.html#command_criteria
-# get with xorg-xprop
+# get with swaymsg -t get_tree
 assign [class="Signal"] Chat
-assign [class="Microsoft Teams - Preview"] Chat
-for_window [class="Spotify"] move to workspace Music
 assign [class="Spotify"] Music
 for_window [title="Wine System Tray"] move to scratchpad
-
-#assign [window_role="popup"] Music
-for_window [window_role="popup"] move to workspace Music
+assign [class="net-runelite-client-RuneLite"] Game
 
 # remove borders
 for_window [class="^Spotify$"] border none
 for_window [class="^Signal$"] border none
-for_window [class="^Firefox$"] border none
 
+exec dunst
 exec com.spotify.Client
 exec org.signal.Signal
 exec org.mozilla.firefox
@@ -97,7 +92,6 @@ bindsym $mod+Shift+c reload
 
 bindsym $mod+t exec $term -e lf
 
-# resize window (you can also use the mouse for that)
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
