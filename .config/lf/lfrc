@@ -48,5 +48,5 @@ cmd zip %{{
 # open youtube comments for video
 cmd ytc ${{
   a="${f%.*}"
-  koment get "https://www.youtube.com/watch?v=${a: -11}"
+  koment "https://www.youtube.com/watch?v=${a: -11}"
 }}
