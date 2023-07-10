@@ -4,6 +4,7 @@ set wrapscroll
 set period 1
 set number
 set relativenumber
+set dupfilefmt "%b%n%e"
 
 map gd cd ~/Downloads
 map gt cd /tmp
