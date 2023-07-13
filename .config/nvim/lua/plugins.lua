@@ -24,5 +24,9 @@ if vim.fn.executable('fzf') == 1 then
   require('fzf')
 end
 
-require("oil").setup({})
+require("oil").setup({
+  keymaps = {
+    D = "dd"
+  }
+})
 vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
