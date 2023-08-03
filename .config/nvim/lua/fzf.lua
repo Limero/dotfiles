@@ -1,7 +1,7 @@
 vim.keymap.set('n', '<C-P>', function()
   vim.fn['fzf#run']({
-    source = "git ls-files --exclude-standard --cached --others",
-    sink = "edit",
+    source = "git ls-files --exclude-standard --cached --others -- . ':!mocks' ':!**/go-client/*'",
+    sink = "tabedit",
     options = "--reverse --preview 'cat {}'",
   })
 end)
