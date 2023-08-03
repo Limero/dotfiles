@@ -1,7 +1,28 @@
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LSP actions", {}),
     callback = function(args)
-        vim.keymap.set("n", "<C-\\>", vim.lsp.buf.implementation, { buffer = args.buf })
+
+        local function on_list(options)
+          local items = options.items
+          if #items > 1 then
+            local filtered = {}
+            for k, v in pairs(items) do
+              if string.match(v.filename, 'mocks') == nil then
+                table.insert(filtered, v)
+              end
+            end
+            items = filtered
+          end
+
+          vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
+          if #items == 1 then
+            vim.cmd('cfirst')
+          else
+            vim.cmd('copen')
+          end
+        end
+
+        vim.keymap.set("n", "<C-\\>", function() vim.lsp.buf.implementation{on_list=on_list} end, { buffer = args.buf })
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = args.buf })
         vim.keymap.set('n', 'gr', function() vim.lsp.buf.references({ includeDeclaration = false }) end, { buffer = args.buf })
 
