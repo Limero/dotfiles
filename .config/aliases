@@ -51,6 +51,7 @@ alias tetris='autoload -Uz tetriscurses; tetriscurses'
 alias bc='bc -q -l'
 alias tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf"
 
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 # Get length of string
 alias lc='expr length'
 
