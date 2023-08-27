@@ -91,7 +91,7 @@ nnoremap \| :G<Space>
 " https://stackoverflow.com/questions/4525261/getting-relative-paths-in-vim/24463362#24463362
 :nmap yp :let @+ = expand("%:~:.")<cr>
 :nmap yfp :let @+ = expand("%:p")<cr>
-:nmap yd :let @+ = expand("%:h:.")<cr>
+:nmap yd :let @+ = expand("%:h:.").'/'<cr>
 
 " https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim
 command! -nargs=* GB call s:GitBlame()
