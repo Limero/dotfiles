@@ -18,6 +18,7 @@ vim.lsp.start({
                 unusedwrite = true,
                 shadow = true,
             },
+            gofumpt = true,
             staticcheck = true,
         },
     },
