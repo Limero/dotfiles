@@ -1,3 +1,7 @@
+if vim.fn.exists(":FZF") == 0 then
+  vim.cmd('source /opt/homebrew/opt/fzf/plugin/fzf.vim')
+end
+
 vim.keymap.set('n', '<C-P>', function()
   vim.fn['fzf#run']({
     source = "git ls-files --exclude-standard --cached --others -- . ':!mocks' ':!**/go-client/*'",
