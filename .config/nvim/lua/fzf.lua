@@ -1,3 +1,7 @@
+if vim.fn.executable('fzf') == 0 then
+  return
+end
+
 if vim.fn.exists(":FZF") == 0 then
   vim.cmd('source /opt/homebrew/opt/fzf/plugin/fzf.vim')
 end

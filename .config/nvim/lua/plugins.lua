@@ -18,6 +18,4 @@ require("lazy").setup({
 })
 
 require('gitsig')
-if vim.fn.executable('fzf') == 1 then
-  require('fzf')
-end
+require('fzf')
