@@ -6,11 +6,11 @@ nnoremap <C-B> :buffers<CR>:buffer<Space>
 xnoremap p "_dP
 
 " Define commands for common typos
-command WQ wq
-command Wq wq
-command W w
-command Q q
-command Qa qa
+command -bang WQ wq
+command -bang Wq wq
+command -bang W w
+command -bang Q q
+command -bang Qa qa
 
 filetype plugin indent on
 set autoindent
