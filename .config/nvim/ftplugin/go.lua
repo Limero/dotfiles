@@ -7,19 +7,19 @@ vim.cmd(':nmap yt :let @+ = "go test -run ^" .. expand("<cword>") .. "$ " .. exp
 
 local path = vim.fs.find({ "go.mod" }, { type = "file" })
 vim.lsp.start({
-    name = "gopls",
-    cmd = { "gopls", "serve" },
-    root_dir = vim.fs.dirname(path[1]),
-    settings = {
-        ["gopls"] = {
-            analyses = {
-                nilness = true,
-                unusedparams = true,
-                unusedwrite = true,
-                shadow = true,
-            },
-            gofumpt = true,
-            staticcheck = true,
-        },
+  name = "gopls",
+  cmd = { "gopls", "serve" },
+  root_dir = vim.fs.dirname(path[1]),
+  settings = {
+    ["gopls"] = {
+      analyses = {
+        nilness = true,
+        unusedparams = true,
+        unusedwrite = true,
+        shadow = true,
+      },
+      gofumpt = true,
+      staticcheck = true,
     },
+  },
 })

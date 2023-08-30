@@ -1,70 +1,68 @@
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("LSP actions", {}),
-    callback = function(args)
-
-        local function on_list(options)
-          local items = options.items
-          if #items > 1 then
-            local filtered = {}
-            for k, v in pairs(items) do
-              if string.match(v.filename, 'mocks') == nil then
-                table.insert(filtered, v)
-              end
-            end
-            items = filtered
-          end
-
-          vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
-          if #items == 1 then
-            vim.cmd('cfirst')
-          else
-            vim.cmd('copen')
+  group = vim.api.nvim_create_augroup("LSP actions", {}),
+  callback = function(args)
+    local function on_list(options)
+      local items = options.items
+      if #items > 1 then
+        local filtered = {}
+        for k, v in pairs(items) do
+          if string.match(v.filename, 'mocks') == nil then
+            table.insert(filtered, v)
           end
         end
+        items = filtered
+      end
 
-        vim.keymap.set("n", "<C-\\>", function() vim.lsp.buf.implementation{on_list=on_list} end, { buffer = args.buf })
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = args.buf })
-        vim.keymap.set('n', 'gr', function() vim.lsp.buf.references({ includeDeclaration = false }) end, { buffer = args.buf })
+      vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
+      if #items == 1 then
+        vim.cmd('cfirst')
+      else
+        vim.cmd('copen')
+      end
+    end
 
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            group = vim.api.nvim_create_augroup("Format on save", {}),
-            callback = function()
-                local client = vim.lsp.buf_get_clients(0)[1]
-                if not client or not client.server_capabilities then return end
+    vim.keymap.set("n", "<C-\\>", function() vim.lsp.buf.implementation { on_list = on_list } end, { buffer = args.buf })
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = args.buf })
+    vim.keymap.set('n', 'gr', function() vim.lsp.buf.references({ includeDeclaration = false }) end,
+      { buffer = args.buf })
 
-                vim.lsp.buf.format({ bufnr = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("Format on save", {}),
+      callback = function()
+        local client = vim.lsp.buf_get_clients(0)[1]
+        if not client or not client.server_capabilities then return end
 
-                -- https://github.com/neovim/nvim-lspconfig/issues/115
-                local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
-                params.context = { only = { "source.organizeImports" } }
-                local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 5000)
-                for _, res in pairs(result or {}) do
-                  for _, r in pairs(res.result or {}) do
-                    if r.edit then
-                      vim.lsp.util.apply_workspace_edit(r.edit, vim.lsp.util._get_offset_encoding())
-                    else
-                      vim.lsp.buf.execute_command(r.command)
-                    end
-                  end
-                end
+        vim.lsp.buf.format({ bufnr = bufnr })
 
-            end,
-        })
+        -- https://github.com/neovim/nvim-lspconfig/issues/115
+        local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
+        params.context = { only = { "source.organizeImports" } }
+        local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 5000)
+        for _, res in pairs(result or {}) do
+          for _, r in pairs(res.result or {}) do
+            if r.edit then
+              vim.lsp.util.apply_workspace_edit(r.edit, vim.lsp.util._get_offset_encoding())
+            else
+              vim.lsp.buf.execute_command(r.command)
+            end
+          end
+        end
+      end,
+    })
 
-        vim.api.nvim_create_autocmd("TextChangedI", {
-            group = vim.api.nvim_create_augroup("Completion while typing", {}),
-            callback = function()
-                local client = vim.lsp.buf_get_clients(0)[1]
-                if not client or not client.server_capabilities then return end
+    vim.api.nvim_create_autocmd("TextChangedI", {
+      group = vim.api.nvim_create_augroup("Completion while typing", {}),
+      callback = function()
+        local client = vim.lsp.buf_get_clients(0)[1]
+        if not client or not client.server_capabilities then return end
 
-                local col = vim.api.nvim_win_get_cursor(0)[2]
-                local char = vim.api.nvim_get_current_line():sub(col,col)
-                --if vim.fn.pumvisible() and not char:match("[\t :;=){}-]") then
-                if vim.fn.pumvisible() and char:match("[a-zA-Z.]") then
-                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-x><C-o>',true,false,true),'m',true)
-                end
-            end,
-        })
-
-    end,
+        local col = vim.api.nvim_win_get_cursor(0)[2]
+        local char = vim.api.nvim_get_current_line():sub(col, col)
+        --if vim.fn.pumvisible() and not char:match("[\t :;=){}-]") then
+        if vim.fn.pumvisible() and char:match("[a-zA-Z.]") then
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-x><C-o>', true, false, true), 'm', true)
+        end
+      end,
+    })
+  end,
 })
