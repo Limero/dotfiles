@@ -2,14 +2,15 @@
 vim.cmd('com! FormatJSON %!python3 -m json.tool')
 
 -- Grep
-vim.cmd([[
-command -nargs=? G vimgrep /<args>/j **/* | copen 25
-if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ -g\ '!{mocks,CHANGELOG.md,CODEOWNERS,go.sum}'
-  command! -nargs=+ G execute 'silent grep! ' . shellescape(escape('<args>', '*{[()\'), 1) . ' | copen 25'
-endif
-nnoremap \| :G<Space>
-]])
+if vim.fn.executable('rg') == 1 then
+  vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case -g "!{mocks,CHANGELOG.md,CODEOWNERS,go.sum}"'
+  vim.cmd([[
+    command! -nargs=+ G execute 'silent grep! ' .. shellescape(escape(<q-args>, '*{[()\\'), 1) .. ' | copen 25'
+  ]])
+else
+  vim.cmd('command -nargs=? G vimgrep /<args>/j **/* | copen 25')
+end
+vim.api.nvim_set_keymap('n', '|', ':G<Space>', { noremap = true })
 
 -- GitBlame function
 -- https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim
