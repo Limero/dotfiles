@@ -1,6 +1,10 @@
 vim.opt_local.shiftwidth = 4
 vim.opt_local.tabstop = 4
-vim.opt.listchars = 'tab:  ,nbsp:%,trail:·'
+vim.opt.listchars = {
+  tab = '  ',
+  nbsp = '%',
+  trail = '·',
+}
 vim.opt.expandtab = false
 
 vim.cmd(':nmap yt :let @+ = "go test -run ^" .. expand("<cword>") .. "$ " .. expand("%:p:h")<cr>')
