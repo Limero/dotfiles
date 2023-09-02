@@ -1,6 +1,6 @@
 vim.cmd('let &packpath = &runtimepath')
 
-require('basic')
+require('settings')
 require('typos')
 require('keymaps')
 require('funcs')
