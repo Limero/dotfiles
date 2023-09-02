@@ -17,5 +17,5 @@ require("lazy").setup({
   --{'wellle/context.vim', event = "VeryLazy" },
 })
 
-require('gitsig')
-require('fzf')
+require('plugin-gitsigns')
+require('plugin-fzf')
