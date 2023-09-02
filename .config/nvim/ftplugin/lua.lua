@@ -1,3 +1,6 @@
+-- Disable continuation of comments
+vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+
 local path = vim.fs.find({ "init.lua", ".git" }, { type = "file" })
 vim.lsp.start({
   name = "lua_ls",
