@@ -18,7 +18,7 @@ function _G.GitBlame()
   local cmdline = "git blame -w " .. vim.fn.expand("%:p")
   local nline = vim.fn.line(".") + 1
   vim.cmd('botright new')
-  vim.cmd('setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap cursorline')
+  vim.cmd('setlocal buftype=nofile bufhidden=wipe nobuflisted nowrap cursorline')
   vim.cmd('$read !' .. cmdline)
   vim.bo.modifiable = false
   vim.cmd('normal ' .. nline .. 'gg')
