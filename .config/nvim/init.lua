@@ -1,5 +1,10 @@
 vim.cmd('let &packpath = &runtimepath')
-vim.cmd('source ~/.vimrc')
+
+require('basic')
+require('typos')
+require('keymaps')
+require('autocmd')
+require('funcs')
 
 require('terminal')
 require('plugins')

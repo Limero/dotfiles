@@ -34,7 +34,7 @@ alias nr='sudo systemctl restart iwd'
 alias rg='rg --no-ignore-parent'
 
 alias zshrc='$EDITOR ~/.zshrc'
-alias vimrc='$EDITOR ~/.vimrc'
+alias vimrc='cd ~/.config/nvim && $EDITOR init.lua'
 alias wmconf='$EDITOR ~/.config/sway/config'
 alias tconf='$EDITOR ~/.config/alacritty/alacritty.yml'
 alias fconf='$EDITOR ~/.config/lf/lfrc'
