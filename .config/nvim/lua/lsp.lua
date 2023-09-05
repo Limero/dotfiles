@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
       vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
       if #items == 1 then
-        vim.cmd('cfirst')
+        vim.cmd('silent! cfirst')
       else
         vim.cmd('copen')
       end
