@@ -17,6 +17,10 @@ alias gmb='git rev-parse --verify main > /dev/null 2>&1 && echo main || echo mas
 alias gcm='git checkout $(gmb) && git pull'
 alias grm='git fetch origin $(gmb):$(gmb) && git rebase -i $(gmb)'
 
+# Go
+alias gor='go run ./...'
+alias got='go test ./...'
+
 # Navigation
 alias f='fzf --bind "enter:execute(lf {})+abort"'
 alias n='cd ~/notes && fzf --bind "enter:execute($EDITOR {})+abort"'
