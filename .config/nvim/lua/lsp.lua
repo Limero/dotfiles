@@ -45,6 +45,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         vim.lsp.buf.format({ bufnr = bufnr })
 
+        -- Organizing imports in lua messes up the file
+        if vim.bo.filetype == "lua" then return end
+
         -- https://github.com/neovim/nvim-lspconfig/issues/115
         local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
         params.context = { only = { "source.organizeImports" } }
