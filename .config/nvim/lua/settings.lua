@@ -12,12 +12,12 @@ vim.opt.ttimeoutlen = 0
 vim.opt.wildignorecase = true
 
 -- Ignore various file types and patterns in wildmenu
-vim.opt.wildignore:append(
-  '*.o, *~, *.class, *.pyc, /*service, *.png, *.jpg, *.svg, *.pdf, *.graphml, *.eot, *.woff, *.log, *.sqlite, *.ttf, *.json, *.key, CHANGELOG.md, CODEOWNERS, go.sum, swagger.yaml')
-
--- Ignore directories in wildmenu
-vim.opt.wildignore:append(
-  '*/.git/*, */.hg/*, */.svn/*, */node_modules/*, */vendor/*, */cache/*, */bin/*, */.DS_Store, */gen/*, */mocks/*, */testdata/*')
+vim.opt.wildignore = {
+  -- Files
+  '*.o, *~, *.class, *.pyc, /*service, *.png, *.jpg, *.svg, *.pdf, *.graphml, *.eot, *.woff, *.log, *.sqlite, *.ttf, *.json, *.key, CHANGELOG.md, CODEOWNERS, go.sum, swagger.yaml',
+  -- Directories
+  '*/.git/*, */.hg/*, */.svn/*, */node_modules/*, */vendor/*, */cache/*, */bin/*, */.DS_Store, */gen/*, */mocks/*, */testdata/*'
+}
 
 -- Show line numbers and relative line numbers
 vim.opt.number = true
@@ -58,10 +58,13 @@ vim.opt.laststatus = 0
 
 -- Set the path for project browsing using find
 -- http://vim.wikia.com/wiki/Project_browsing_using_find
-vim.opt.path:append('$PWD/**')
+vim.opt.path = vim.fn.getcwd() .. '/**'
 
 -- Set completion options
-vim.opt.completeopt:append({ 'menuone', 'noselect', 'noinsert' })
+vim.opt.completeopt = { 'menuone', 'noselect', 'noinsert' }
+
+-- Set fold options
+vim.opt.foldopen = { 'mark', 'quickfix', 'tag' }
 
 -- Enable list mode with custom characters
 vim.opt.list = true

@@ -5,4 +5,3 @@ vim.cmd([[
   command! -bang Q q
   command! -bang Qa qa
 ]])
-
