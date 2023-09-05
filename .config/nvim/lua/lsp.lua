@@ -13,6 +13,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
         items = filtered
       end
 
+      -- Store where we're jumping from before we jump.
+      vim.cmd([[
+      let tag = expand('<cword>')
+      let pos = [bufnr()] + getcurpos()[1:]
+      let item = {'bufnr': pos[0], 'from': pos, 'tagname': tag}
+      let winid = win_getid()
+      let stack = gettagstack(winid)
+      let stack['items'] = [item]
+      call settagstack(winid, stack, 't')
+      ]])
+
       vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
       if #items == 1 then
         vim.cmd('cfirst')
