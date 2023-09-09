@@ -1,6 +1,9 @@
 -- Set Pmenu background colors to avoid the default pink
 vim.cmd('highlight Pmenu ctermbg=gray guibg=gray')
 
+-- Set leader
+vim.g.mapleader = ' '
+
 -- Set netrw tree style to 3
 vim.g.netrw_liststyle = 3
 

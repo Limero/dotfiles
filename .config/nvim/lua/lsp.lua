@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     vim.keymap.set("n", "<C-\\>", function() vim.lsp.buf.implementation { on_list = on_list } end, { buffer = args.buf })
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = args.buf })
+    vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, { buffer = args.buf })
     vim.keymap.set('n', 'ge', vim.diagnostic.setqflist, { buffer = args.buf })
     vim.keymap.set('n', 'gr', function() vim.lsp.buf.references({ includeDeclaration = false }) end,
       { buffer = args.buf })
