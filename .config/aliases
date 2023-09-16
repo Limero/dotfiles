@@ -29,6 +29,7 @@ alias y='lf ~/youtube'
 alias d='lf ~/Downloads'
 alias r='cd ~/repos && cd $(ls -d */ | fzf) && gs'
 alias w='cd ~/go/src/gitlab.com/junitechnology/ && cd $(ls -d */ | fzf) && gs'
+alias p='cd ~/go/src/github.com/limero/ && cd $(ls -d */ | fzf) && gs'
 
 alias v='$EDITOR'
 alias mh='neomutt -F ~/.config/mutt/account.home && exit'
