@@ -31,3 +31,11 @@ vim.api.nvim_set_keymap('t', '<C-l>', '<C-\\><C-n><C-w>l', opts)
 vim.api.nvim_set_keymap('n', 'yp', [[:let @+ = expand("%:~:.")<CR>]], opts)
 vim.api.nvim_set_keymap('n', 'yfp', [[:let @+ = expand("%:p")<CR>]], opts)
 vim.api.nvim_set_keymap('n', 'yd', [[:let @+ = expand("%:h:.").'/'<CR>]], opts)
+
+-- Experimental
+vim.api.nvim_set_keymap('n', '<C-n>', ':cn<CR>', opts)
+vim.api.nvim_set_keymap('n', '<Leader>t', ':tabe %<CR>:tabp<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>s', ':vsp %<CR><C-w>p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>d', ':bd<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<', ':bp<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '>', ':bn<CR>', { noremap = true, silent = true })
