@@ -1,5 +1,6 @@
 #auto-reload yes
 show-read-feeds no
+show-read-articles no
 wrap-scroll yes
 text-width 125
 prepopulate-query-feeds yes
