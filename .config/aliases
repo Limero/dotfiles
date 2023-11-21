@@ -20,6 +20,7 @@ alias grm='git fetch origin $(gmb):$(gmb) && git rebase -i $(gmb)'
 # Go
 alias gor='go run ./...'
 alias got='go test ./...'
+alias goc='go clean -testcache'
 
 # Navigation
 alias f='fzf --bind "enter:execute(lf {})+abort"'
