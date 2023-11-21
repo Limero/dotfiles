@@ -49,6 +49,9 @@ setopt hist_ignore_space
 # Disable flow control CTRL+S/Q
 setopt noflowcontrol
 
+# correct spelling mistakes
+setopt correct
+
 # Ctrl+arrow key to move word like bash
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
