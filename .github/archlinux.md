@@ -9,13 +9,12 @@
 - sshfs
 - neovim
 - fzf
-- xorg-server
-- xorg-server-xwayland
+- xorg-xwayland
 - xorg-xeyes
-- pulseaudio
 - pulsemixer
 - foot
 - lf
+- flatpak
 - fwupd
 - noto-fonts-cjk
 - noto-fonts-emoji
