@@ -37,7 +37,7 @@ media() {
 
 battery() {
   # TODO: Make work with BAT0 and macsmc-battery
-  for battery in /sys/class/power_supply/*-battery
+  for battery in /sys/class/power_supply/BAT*
   do
     capacity=$(cat "$battery"/capacity 2>/dev/null) || break
     status=$(cat "$battery"/status)
