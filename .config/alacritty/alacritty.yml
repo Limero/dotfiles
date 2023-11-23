@@ -8,8 +8,7 @@ font:
 colors:
   # Default colors
   primary:
-    #background: '0x222d32'
-    background: '0x2a2a2e'
+    background: '0x000000'
     foreground: '0xeaeaea'
 
   # Normal colors (from kitty)
