@@ -209,3 +209,5 @@ output "Unknown-1" {
   scale 2
   scale_filter smart
 }
+
+include /etc/sway/config.d/*
