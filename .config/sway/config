@@ -6,7 +6,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-set $term foot
+set $term footclient
 bindsym $mod+Return exec $term -e zsh
 #bindsym $mod+Return exec $term -e tmux
 
@@ -82,6 +82,7 @@ assign [class="net-runelite-client-RuneLite"] Game
 for_window [class="^Spotify$"] border none
 for_window [class="^Signal$"] border none
 
+exec foot --server
 exec dunst
 exec com.spotify.Client
 exec org.signal.Signal
