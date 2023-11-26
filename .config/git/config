@@ -6,3 +6,6 @@
 	autoSetupRemote = true
 	default = current
 
+[user]
+	email = limero@me.com
+	name = David Pedersen
