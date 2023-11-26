@@ -16,6 +16,7 @@ alias gm='$EDITOR -p $(git ls-files -m --exclude-standard --others)'
 alias gmb='git rev-parse --verify main > /dev/null 2>&1 && echo main || echo master'
 alias gcm='git checkout $(gmb) && git pull'
 alias grm='git fetch origin $(gmb):$(gmb) && git rebase -i $(gmb)'
+alias grh='git reset HEAD^'
 
 # Go
 alias gor='go run ./...'
