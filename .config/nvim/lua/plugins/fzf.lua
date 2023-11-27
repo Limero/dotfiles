@@ -3,11 +3,10 @@ if vim.fn.executable('fzf') == 0 then
 end
 
 if vim.fn.exists(":FZF") == 0 then
-  if vim.fn.filereadable('/opt/homebrew/opt/fzf/plugin/fzf.vim') == 1 then
-    vim.cmd('source /opt/homebrew/opt/fzf/plugin/fzf.vim')
-  end
   if vim.fn.filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim') == 1 then
     vim.cmd('source /usr/share/vim/vimfiles/plugin/fzf.vim')
+  elseif vim.fn.filereadable('/opt/homebrew/opt/fzf/plugin/fzf.vim') == 1 then
+    vim.cmd('source /opt/homebrew/opt/fzf/plugin/fzf.vim')
   end
 end
 
