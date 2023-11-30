@@ -20,6 +20,7 @@ alias grh='git reset HEAD^'
 
 # Go
 alias gor='go run ./...'
+alias gob='go build .'
 alias got='go test ./...'
 alias goc='go clean -testcache'
 
