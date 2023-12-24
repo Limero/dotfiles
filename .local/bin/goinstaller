@@ -1,5 +1,5 @@
 #!/bin/sh
 
-env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest || exit
+env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@r31 || exit
 go install github.com/limero/offlinerss@latest || exit
 go install github.com/limero/koment@latest || exit
