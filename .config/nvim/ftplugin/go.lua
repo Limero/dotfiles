@@ -7,7 +7,14 @@ vim.opt.listchars = {
 }
 vim.opt.expandtab = false
 
-vim.cmd(':nmap yt :let @+ = "go test -run ^" .. expand("<cword>") .. "$ " .. expand("%:p:h")<cr>')
+vim.keymap.set('n', 'yt', function()
+  local testLine = vim.fn.getline('.'):match('func%s+([%w_]+)')
+  if testLine then
+    vim.fn.setreg('+', "go test -run ^" .. testLine .. "$ " .. vim.fn.expand("%:p:h"))
+  else
+    vim.fn.setreg('+', "go test " .. vim.fn.expand("%:p:h"))
+  end
+end)
 
 local path = vim.fs.find({ "go.mod" }, { type = "file" })
 vim.lsp.start({
