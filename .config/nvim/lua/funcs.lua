@@ -1,5 +1,17 @@
--- https://coderwall.com/p/faceag/format-json-in-vim
-vim.cmd('com! FormatJSON %!python3 -m json.tool')
+function FormatJSON()
+  -- remove \n
+  vim.cmd([[%s/\\n//ge]])
+  -- replace \" with "
+  vim.cmd([[%s/\\"/"/ge]])
+  -- remove quotes around brackets
+  vim.cmd([[%s/"{/{/ge]])
+  vim.cmd([[%s/}"/}/ge]])
+
+  -- https://coderwall.com/p/faceag/format-json-in-vim
+  vim.cmd('%!python3 -m json.tool')
+end
+
+vim.cmd("command! FormatJSON lua FormatJSON()")
 
 -- Grep
 if vim.fn.executable('rg') == 1 then
