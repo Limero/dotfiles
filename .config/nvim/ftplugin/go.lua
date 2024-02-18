@@ -21,6 +21,10 @@ vim.lsp.start({
   name = "gopls",
   cmd = { "gopls", "serve" },
   root_dir = vim.fs.dirname(path[1]),
+  on_init = function(client)
+    vim.notify("Loading gopls...", vim.log.levels.WARN)
+    vim.api.nvim_create_autocmd("DiagnosticChanged", {pattern="*", callback=function() vim.notify("") end, once=true})
+  end,
   settings = {
     ["gopls"] = {
       analyses = {
