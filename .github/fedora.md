@@ -48,7 +48,7 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 
 ## Packages
 
-### Part of Fedora Sericea
+### Part of Fedora Sway Atomic
 
 - sway
 - swaylock
@@ -62,6 +62,8 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 
 - neovim
 - sshfs
+- cargo
+- ripgrep
 - fzf
 - golang
 - golang-x-tools-gopls
