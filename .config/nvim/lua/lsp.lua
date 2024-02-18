@@ -83,3 +83,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     })
   end,
 })
+
+function RestartLSP()
+  vim.lsp.stop_client(vim.lsp.get_active_clients())
+  vim.defer_fn(function()
+    vim.cmd('e')
+    print('Restarted LSP')
+  end, 500)
+end
+
+vim.cmd("command! RestartLSP lua RestartLSP()")
