@@ -67,6 +67,17 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
 
+# https://codeberg.org/dnkl/foot/issues/628
+bindkey "\e[27;2;13~" accept-line # shift+return
+bindkey "\e[27;5;13~" accept-line # ctrl+return
+bindkey -s "\e[27;2;27~" "" # shift+esc
+bindkey -s "\e[27;5;27~" "" # ctrl+esc
+bindkey -s "\e[27;9;27~" "" # meta+esc
+bindkey "\e[1;2A"     up-line-or-history   # shift+up
+bindkey "\e[1;2B"     down-line-or-history # shift+down
+bindkey "\e[1;2D"     backward-word        # shift+left
+bindkey "\e[1;2C"     forward-word         # shift+right
+
 source "$HOME/.config/aliases"
 
 # Arch Linux
