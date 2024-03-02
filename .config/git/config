@@ -9,3 +9,6 @@
 [user]
 	email = limero@me.com
 	name = David Pedersen
+
+[includeIf "gitdir:~/go/src/gitlab.com/junitechnology/"]
+	path = ~/.config/git/config-juni
