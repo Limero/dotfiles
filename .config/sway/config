@@ -14,7 +14,7 @@ bindsym $mod+Return exec $term -e zsh
 bindsym $mod+Shift+q kill
 
 # switch between workspaces
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab workspace back_and_forth; exec dunstctl close-all
 
 # program launcher
 for_window [app_id="fzfmenu"] floating enable
@@ -53,8 +53,8 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
-bindsym $mod+c workspace Chat
-bindsym $mod+g workspace Game
+bindsym $mod+c workspace Chat; exec dunstctl close-all
+bindsym $mod+g workspace Game; exec dunstctl close-all
 bindsym $mod+m workspace Music
 
 # move focused container to workspace
@@ -131,7 +131,7 @@ bar {
 #client.focused #404552 #404552 #fafafa #ff5757 #666666
 
 client.focused #5a5a5c #474749 #fafafa #ff5757
-client.unfocused #323234 #2a2a2e #ffffff #292d2e
+client.unfocused #000000 #000000 #ffffff #292d2e
 
 # Audio controls
 #bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
