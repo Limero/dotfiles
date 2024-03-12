@@ -16,6 +16,15 @@ vim.keymap.set('n', 'yt', function()
   end
 end)
 
+vim.keymap.set('n', '<Leader>tt', function()
+  local fileWithoutExt = vim.fn.expand('%:h') .. '/' .. vim.fn.expand('%:t:r')
+  if string.match(fileWithoutExt, '_test$') then
+    vim.cmd('edit ' .. fileWithoutExt:sub(1, -6) .. '.go')
+  else
+    vim.cmd('edit ' .. fileWithoutExt .. '_test.go')
+  end
+end)
+
 local path = vim.fs.find({ "go.mod" }, { type = "file" })
 vim.lsp.start({
   name = "gopls",
@@ -23,7 +32,8 @@ vim.lsp.start({
   root_dir = vim.fs.dirname(path[1]),
   on_init = function(client)
     vim.notify("Loading gopls...", vim.log.levels.WARN)
-    vim.api.nvim_create_autocmd("DiagnosticChanged", {pattern="*", callback=function() vim.notify("") end, once=true})
+    vim.api.nvim_create_autocmd("DiagnosticChanged",
+      { pattern = "*", callback = function() vim.notify("") end, once = true })
   end,
   settings = {
     ["gopls"] = {
