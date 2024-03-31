@@ -73,6 +73,15 @@ bindkey "\e[27;5;13~" accept-line # ctrl+return
 bindkey -s "\e[27;2;27~" "" # shift+esc
 bindkey -s "\e[27;5;27~" "" # ctrl+esc
 bindkey -s "\e[27;9;27~" "" # meta+esc
+bindkey -s "\e[27;5;59~" "" # ctrl+;
+bindkey -s "\e[27;5;39~" "" # ctrl+'
+bindkey -s "\e[27;5;44~" "" # ctrl+,
+bindkey -s "\e[27;5;46~" "" # ctrl+.
+bindkey -s "\e[27;6;58~" "" # ctrl+shift+;
+bindkey -s "\e[27;6;34~" "" # ctrl+shift+'
+bindkey -s "\e[27;6;60~" "" # ctrl+shift+,
+bindkey -s "\e[27;6;62~" "" # ctrl+shift+.
+bindkey -s "\e[27;6;63~" "" # ctrl+shift+/
 bindkey "\e[1;2A"     up-line-or-history   # shift+up
 bindkey "\e[1;2B"     down-line-or-history # shift+down
 bindkey "\e[1;2D"     backward-word        # shift+left
