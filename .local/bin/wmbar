@@ -56,7 +56,7 @@ fi
 
 datetime() {
   local timezone=$(date +%Z)
-  if [ "$timezone" = "CET" ]; then
+  if [ "$timezone" = "CET" ] || [ "$timezone" = "CEST" ]; then
     echo $(date '+%a %b %d %H:%M:%S')
   else
     local local_time=$(date '+%a %b %d %H:%M:%S')
