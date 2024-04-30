@@ -14,7 +14,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { 'junegunn/fzf.vim',        event = "VeryLazy" },
   { 'lewis6991/gitsigns.nvim', event = "VeryLazy" },
+  { 'github/copilot.vim' },
 })
+
+vim.g.copilot_filetypes = {
+  ['*'] = false,
+  ['go'] = true,
+}
 
 require('plugins.gitsigns')
 require('plugins.fzf')
