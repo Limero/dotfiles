@@ -56,6 +56,7 @@ bindsym $mod+0 workspace 10
 bindsym $mod+c workspace Chat; exec dunstctl close-all
 bindsym $mod+g workspace Game; exec dunstctl close-all
 bindsym $mod+m workspace Music
+bindsym $mod+s workspace Slack; exec dunstctl close-all
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -76,7 +77,8 @@ bindsym $mod+Shift+M move container to workspace Music
 assign [class="Signal"] Chat
 assign [class="Spotify"] Music
 for_window [title="Wine System Tray"] move to scratchpad
-assign [class="net-runelite-client-RuneLite"] Game
+#assign [class="net-runelite-client-RuneLite"] Game
+assign [class="Slack"] Slack
 
 # remove borders
 for_window [class="^Spotify$"] border none
@@ -186,14 +188,14 @@ bindsym XF86MonBrightnessUp   exec expr `</sys/class/backlight/intel_backlight/b
 # Multiple monitors
 workspace 10 output HDMI-1
 
-input * {
-  # Keyboard
+input type:keyboard {
   xkb_layout se
   xkb_variant us
   xkb_options caps:escape
   repeat_delay 250
+}
 
-  # Trackpad
+input type:touchpad {
   drag disabled
   natural_scroll enabled
   pointer_accel 0.2
