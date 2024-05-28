@@ -21,6 +21,7 @@ require('gitsigns').setup {
     end, { expr = true })
 
     map('n', '<leader>rh', gs.reset_hunk)
+    map('n', '<leader>sh', gs.stage_hunk)
 
     if vim.fn.exists(':GitFiles') ~= 0 then
       vim.cmd('delcommand GitFiles')
