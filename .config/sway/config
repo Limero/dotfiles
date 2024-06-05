@@ -182,8 +182,10 @@ bindsym Ctrl+Shift+4 exec slurp -d | grim -g - - | wl-copy
 output * bg $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "Sway_*" | shuf -n1) fill
 
 # Brightness
-bindsym XF86MonBrightnessDown exec expr `</sys/class/backlight/intel_backlight/brightness` - 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
-bindsym XF86MonBrightnessUp   exec expr `</sys/class/backlight/intel_backlight/brightness` + 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
+#bindsym XF86MonBrightnessDown exec expr `</sys/class/backlight/intel_backlight/brightness` - 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
+#bindsym XF86MonBrightnessUp   exec expr `</sys/class/backlight/intel_backlight/brightness` + 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
+bindsym XF86MonBrightnessUp exec brightnessctl s +50
+bindsym XF86MonBrightnessDown exec brightnessctl s 50-
 
 # Multiple monitors
 workspace 10 output HDMI-1
