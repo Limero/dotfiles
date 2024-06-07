@@ -41,6 +41,8 @@ alias mw='neomutt -F ~/.config/mutt/account.work && exit'
 alias nb='offlinerss && newsboat && offlinerss'
 alias nr='sudo systemctl restart iwd'
 alias rg='rg --no-ignore-parent'
+alias bt='blueman-manager'
+alias rpm-ostree-cl='rpm-ostree status | grep BaseCommit | head -n 2 | awk '\''{print $2}'\'' | awk '\''{a[i++]=$0} END {for (j=i-1; j>=0;) print a[j--] }'\'' | xargs -n 2 rpm-ostree db diff --changelogs | less'
 
 alias zshrc='$EDITOR ~/.zshrc'
 alias vimrc='cd ~/.config/nvim && $EDITOR init.lua'
