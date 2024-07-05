@@ -6,7 +6,7 @@ Reclaim disk space, encrypt disk, use SE-US keyboard layout, do NOT enable third
 
 ## Setup Silverblue
 
-### Enable unfiltered Flathub (required before F38)
+### Enable unfiltered Flathub
 
 ```
 flatpak remote-delete flathub
@@ -61,6 +61,7 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 ### Repo
 
 - neovim
+- nodejs
 - sshfs
 - cargo
 - ripgrep
@@ -86,9 +87,3 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 - com.jagex.RuneScape
 - net.runelite.RuneLite
 - com.spotify.Client
-
-### Other
-
-```
-env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
-```
