@@ -1,7 +1,7 @@
 export EDITOR=nvim
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export PATH="$PATH:$GOBIN:$HOME/.local/bin:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin"
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH:$GOBIN:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin"
 
 if command -v sway >/dev/null; then
   #export GDK_BACKEND=wayland
