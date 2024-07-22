@@ -4,9 +4,14 @@ end
 
 if vim.fn.exists(":FZF") == 0 then
   if vim.fn.filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim') == 1 then
+    -- Fedora
     vim.cmd('source /usr/share/vim/vimfiles/plugin/fzf.vim')
   elseif vim.fn.filereadable('/opt/homebrew/opt/fzf/plugin/fzf.vim') == 1 then
+    -- macOS
     vim.cmd('source /opt/homebrew/opt/fzf/plugin/fzf.vim')
+  elseif vim.fn.filereadable('/usr/share/doc/fzf/examples/fzf.vim') == 1 then
+    -- Debian
+    vim.cmd('source /usr/share/doc/fzf/examples/fzf.vim')
   end
 end
 
