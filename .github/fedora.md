@@ -27,15 +27,22 @@ rpm-ostree override remove firefox firefox-langpacks
 
 ### Disable display manager
 
+#### Silverblue
+
 ```
 sudo systemctl disable gdm
+```
+
+#### Sway Atomic
+
+```
+sudo systemctl disable sddm
 ```
 
 ### Set shell
 
 ```
-# Set to /usr/bin/zsh
-sudo lchsh $USER
+chsh -s /usr/bin/zsh
 ```
 
 ### Enable auto updates
@@ -87,3 +94,4 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 - com.jagex.RuneScape
 - net.runelite.RuneLite
 - com.spotify.Client
+- com.slack.Slack
