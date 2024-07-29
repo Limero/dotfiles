@@ -1,6 +1,11 @@
 -- Disable continuation of comments
 vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
 
+if vim.fn.executable('lua-language-server') == 0 then
+  print('lua-language-server is missing')
+  return
+end
+
 local path = vim.fs.find({ "init.lua", ".git" }, { type = "file" })
 vim.lsp.start({
   name = "lua_ls",
