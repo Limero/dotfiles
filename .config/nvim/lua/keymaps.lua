@@ -12,9 +12,6 @@ vim.api.nvim_set_keymap('x', 'p', '"_dP', opts)
 vim.api.nvim_set_keymap('x', '<', '<gv', opts)
 vim.api.nvim_set_keymap('x', '>', '>gv', opts)
 
--- Split selection by comma
-vim.api.nvim_set_keymap('x', '<Leader>s', ":s/,/,\\r/g<CR>:w<CR>", opts)
-
 -- Automatically add closing curly brace and parenthesis in insert mode
 vim.api.nvim_set_keymap('i', '{<CR>', '{<CR>}<ESC>O', opts)
 vim.api.nvim_set_keymap('i', '(<CR>', '(<CR>)<ESC>O', opts)
@@ -41,6 +38,4 @@ vim.api.nvim_set_keymap('n', '<C-n>', ':cn<CR>', opts)
 vim.api.nvim_set_keymap('n', '<Leader>t', ':tabe %<CR>:tabp<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>s', ':vsp %<CR><C-w>p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>d', ':bd<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Tab>', ':bp<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bn<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>e', ':Vex<CR>', { noremap = true, silent = true })
