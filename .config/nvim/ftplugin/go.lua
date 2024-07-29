@@ -1,10 +1,11 @@
-vim.opt_local.shiftwidth = 4
 vim.opt_local.tabstop = 4
 vim.opt.listchars = {
   tab = '  ',
   nbsp = '%',
   trail = '·',
 }
+
+-- will be default in 0.11
 vim.opt.expandtab = false
 
 vim.keymap.set('n', 'yt', function()

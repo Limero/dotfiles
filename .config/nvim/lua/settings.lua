@@ -85,6 +85,6 @@ vim.opt.listchars = {
 -- Expand tab to spaces
 vim.opt.expandtab = true
 
--- Set shift width and tab stop to 2 spaces
-vim.opt.shiftwidth = 2
+-- Set tab stop to 2 spaces
 vim.opt.tabstop = 2
+vim.opt.shiftwidth = 0 -- will use tabstop value if 0
