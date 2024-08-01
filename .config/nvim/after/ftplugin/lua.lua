@@ -1,5 +1,5 @@
 -- Disable continuation of comments
-vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+vim.cmd("setlocal formatoptions-=cro")
 
 if vim.fn.executable('lua-language-server') == 0 then
   print('lua-language-server is missing')
