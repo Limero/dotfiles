@@ -36,7 +36,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Experimental
 vim.keymap.set('n', '<C-n>', ':cn<CR>')
-vim.keymap.set('n', '<Leader>t', ':tabe %<CR>:tabp<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'T', ':tabe %<CR>:tabp<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>s', ':vsp %<CR><C-w>p', { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>d', ':bd<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>e', ':Vex<CR>', { noremap = true, silent = true })
