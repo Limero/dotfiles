@@ -14,15 +14,19 @@ end
 vim.cmd("command! FormatJSON lua FormatJSON()")
 
 -- Grep
-if vim.fn.executable('rg') == 1 then
+function _G.grep_and_open(args)
   vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case -g "!{mocks,CHANGELOG.md,CODEOWNERS,go.sum}"'
-  vim.cmd([[
-    command! -nargs=+ G execute 'silent grep! ' .. shellescape(escape(<q-args>, '*{[()\\'), 1) .. ' | copen 25'
-  ]])
-else
-  vim.cmd('command -nargs=? G vimgrep /<args>/j **/* | copen 25')
+  local grep_args = vim.fn.shellescape(vim.fn.escape(args, '*{[()\\'), 1)
+
+  vim.cmd(string.format('silent grep! %s | copen 25', grep_args))
+
+  if vim.fn.empty(vim.fn.getqflist()) == 1 then
+    vim.cmd('cclose')
+    print('No results found')
+  end
 end
-vim.keymap.set('n', '|', ':G<Space>')
+
+vim.cmd([[command! -nargs=+ G lua _G.grep_and_open(<q-args>)]])
 
 -- GitBlame function
 -- https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim
