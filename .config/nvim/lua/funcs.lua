@@ -22,7 +22,7 @@ if vim.fn.executable('rg') == 1 then
 else
   vim.cmd('command -nargs=? G vimgrep /<args>/j **/* | copen 25')
 end
-vim.api.nvim_set_keymap('n', '|', ':G<Space>', { noremap = true })
+vim.keymap.set('n', '|', ':G<Space>')
 
 -- GitBlame function
 -- https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim

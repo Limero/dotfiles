@@ -34,17 +34,20 @@ vim.opt.relativenumber = true
 -- Set the terminal title
 vim.opt.title = true
 
--- Disable highlighting of search results after search
-vim.opt.hlsearch = false
-
 -- Disable intro message
 vim.opt.shortmess:append('I')
 
 -- Use system clipboard for copy-paste
-vim.opt.clipboard = 'unnamedplus'
+-- scheduled because it can increase startup-time
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
+
+-- Enable break indent
+vim.opt.breakindent = true
 
 -- Speed up preview while typing
-vim.opt.updatetime = 300
+vim.opt.updatetime = 250
 
 -- Turn off backup and swap files
 vim.opt.writebackup = false
