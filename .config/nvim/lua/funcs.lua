@@ -8,7 +8,7 @@ function FormatJSON()
   vim.cmd([[%s/}"/}/ge]])
 
   -- https://coderwall.com/p/faceag/format-json-in-vim
-  vim.cmd('%!python3 -m json.tool')
+  vim.cmd("%!python3 -m json.tool | sed 's/    /  /g'")
 end
 
 vim.cmd("command! FormatJSON lua FormatJSON()")
