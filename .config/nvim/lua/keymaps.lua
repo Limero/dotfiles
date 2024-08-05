@@ -31,9 +31,6 @@ vim.keymap.set('n', 'yp', [[:let @+ = expand("%:~:.")<CR>]])
 vim.keymap.set('n', 'yfp', [[:let @+ = expand("%:p")<CR>]])
 vim.keymap.set('n', 'yd', [[:let @+ = expand("%:h:.").'/'<CR>]])
 
--- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
 -- Experimental
 vim.keymap.set('n', '<C-n>', ':cn<CR>')
 vim.keymap.set('n', 'T', ':tabe %<CR>:tabp<CR>', { noremap = true, silent = true })
