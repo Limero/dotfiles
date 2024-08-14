@@ -184,8 +184,8 @@ output * bg $(find "/usr/share/backgrounds" -type f ! -iname "*.xml" ! -iname "S
 # Brightness
 #bindsym XF86MonBrightnessDown exec expr `</sys/class/backlight/intel_backlight/brightness` - 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
 #bindsym XF86MonBrightnessUp   exec expr `</sys/class/backlight/intel_backlight/brightness` + 50 | sudo tee /sys/class/backlight/intel_backlight/brightness
-bindsym XF86MonBrightnessUp exec brightnessctl s +50
-bindsym XF86MonBrightnessDown exec brightnessctl s 50-
+bindsym XF86MonBrightnessUp exec brightnessctl s +25
+bindsym XF86MonBrightnessDown exec brightnessctl s 25-
 
 # Multiple monitors
 workspace 10 output HDMI-1
@@ -214,5 +214,8 @@ output "Unknown Unknown Unknown" {
   scale 1.5
   scale_filter smart
 }
+
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1077891
+exec dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=sway
 
 include /etc/sway/config.d/*

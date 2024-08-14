@@ -1,13 +1,13 @@
 #!/bin/sh
 
-args=()
+args=""
 for arg in "$@"; do
   cleaned_arg=$(echo "$arg" | sed 's|^https://steamcommunity.com/linkfilter/?url=||')
-  args+=("$cleaned_arg")
+  args="$args \"$cleaned_arg\""
 done
 
 if command -v firefox >/dev/null; then
-  firefox "${args[@]}"
+  eval "firefox $args"
 else
-  org.mozilla.firefox "${args[@]}"
+  eval "org.mozilla.firefox $args"
 fi
