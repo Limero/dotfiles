@@ -6,11 +6,10 @@ if vim.fn.executable('lua-language-server') == 0 then
   return
 end
 
-local path = vim.fs.find({ "init.lua", ".git" }, { type = "file" })
 vim.lsp.start({
   name = "lua_ls",
   cmd = { "lua-language-server" },
-  root_dir = vim.fs.dirname(path[1]),
+  root_dir = vim.fs.root(0, { 'init.lua', '.git' }),
   settings = {
     Lua = {
       runtime = {

@@ -26,11 +26,10 @@ vim.keymap.set('n', '<Leader>tt', function()
   end
 end)
 
-local path = vim.fs.find({ "go.mod" }, { type = "file" })
 vim.lsp.start({
   name = "gopls",
   cmd = { "gopls", "serve" },
-  root_dir = vim.fs.dirname(path[1]),
+  root_dir = vim.fs.root(0, 'go.mod'),
   on_init = function(client)
     vim.notify("Loading gopls...", vim.log.levels.WARN)
     vim.api.nvim_create_autocmd("DiagnosticChanged",

@@ -1,8 +1,7 @@
-local path = vim.fs.find({ "Cargo.toml" }, { type = "file" })
 vim.lsp.start({
   name = "rust-analyzer",
   cmd = { "rust-analyzer" },
-  root_dir = vim.fs.dirname(path[1]),
+  root_dir = vim.fs.root(0, 'Cargo.toml'),
   settings = {
     ["rust-analyzer"] = {
       cargo = { allFeatures = true },

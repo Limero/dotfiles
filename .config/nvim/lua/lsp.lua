@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local char = vim.api.nvim_get_current_line():sub(col, col)
         --if vim.fn.pumvisible() and not char:match("[\t :;=){}-]") then
         if vim.fn.pumvisible() and char:match("[a-zA-Z.]") then
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-x><C-o>', true, false, true), 'm', true)
+          vim.api.nvim_feedkeys(vim.keycode('<C-x><C-o>'), 'm', true)
         end
       end,
     })
