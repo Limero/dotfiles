@@ -66,10 +66,6 @@ alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 # Get length of string
 alias lc='expr length'
 
-# RetroArch
-alias genesis='retroarch -L /usr/lib/libretro/genesis_plus_gx_libretro.so'
-alias tg16='retroarch -L /usr/lib/libretro/mednafen_pce_libretro.so'
-
 iso2device() {
   # Usage: iso2device ubuntu-18.04.1-desktop-amd64.iso /dev/sda
   du -h $1 && \

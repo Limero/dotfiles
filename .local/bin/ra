@@ -1,0 +1,26 @@
+#!/bin/sh
+
+get_retroarch_core() {
+    case "$1" in
+        *.gba) CORE="mgba"            ;;
+        *.md)  CORE="genesis_plus_gx" ;;
+        *.nes) CORE="nestopia"        ;;
+        *.sfc) CORE="snes9x"          ;;
+        *.pce) CORE="mednafen_pce"    ;;
+        *.zip) get_retroarch_core "$(zipinfo -1 "$1")" ;;
+    esac
+}
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+
+get_retroarch_core "$1"
+
+if [ -z "$CORE" ]; then
+    echo "Error: No core found for" "$1"
+    exit 1
+fi
+
+org.libretro.RetroArch -L "$CORE" "$1"
