@@ -1,7 +1,14 @@
 #!/bin/sh
 
 case $(file --mime-type -b -L "$1") in
-    text/*|application/csv|application/json|inode/x-empty) IFS=':'; $EDITOR "$1";;
-    audio/*|image/*|video/*) m "$1" -quiet >/dev/null 2>&1 & ;;
-    *) IFS=':'; for f in "$1"; do xdg-open "$f" > /dev/null 2> /dev/null & done;;
+    text/*|application/csv|application/x-subrip|application/json|inode/x-empty)
+        $EDITOR "$1"
+        exit 0
+    ;;
+    audio/*|image/*|video/*)
+        m "$1" -quiet >/dev/null 2>&1 &
+        exit 0
+    ;;
 esac
+
+xdg-open "$1" > /dev/null 2> /dev/null &
