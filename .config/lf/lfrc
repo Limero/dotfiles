@@ -1,5 +1,5 @@
 set incsearch
-set previewer ~/.config/lf/scope.sh
+set previewer scope
 set wrapscroll
 set period 1
 set number
