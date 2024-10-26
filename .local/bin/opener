@@ -11,4 +11,6 @@ case $(file --mime-type -b -L "$1") in
     ;;
 esac
 
+ra "$1" >/dev/null 2>&1 && exit 0
+
 xdg-open "$1" > /dev/null 2> /dev/null &
