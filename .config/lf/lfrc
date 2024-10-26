@@ -21,14 +21,7 @@ map <backspace> set hidden!
 
 cmd touch %touch $1 && lf -remote "send $id select $1"
 cmd mkdir %mkdir -p $1 && lf -remote "send $id select $1"
-
-cmd open ${{
-    case $(file --mime-type -b -L "$f") in
-        text/*|application/csv|application/json|inode/x-empty) IFS=':'; $EDITOR $fx;;
-        audio/*|image/*|video/*) m "$f" -quiet >/dev/null 2>&1 & ;;
-        *) IFS=':'; for f in $fx; do xdg-open "$f" > /dev/null 2> /dev/null & done;;
-    esac
-}}
+cmd open $opener "$f"
 
 # extract file with unp
 cmd unp ${{
