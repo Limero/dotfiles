@@ -29,7 +29,7 @@ brew install fuse-t-sshfs
 
 ### Homebrew
 
-- neovim
+- bob
 - fzf
 - lf
 - ripgrep
@@ -39,12 +39,10 @@ brew install fuse-t-sshfs
 - zsh-autosuggestions
 - zsh-syntax-highlighting
 - go
-- gopls
 - firefox
 - brave-browser
 - gimp
 - utm
-- openemu
 - signal
 - transmission
 - spotify
@@ -65,8 +63,7 @@ brew install fuse-t-sshfs
 - helm
 - kubernetes-cli
 - node
-- protobuf
-- podman
+- docker
 - awscli
 - visual-studio-code
 - libreoffice
