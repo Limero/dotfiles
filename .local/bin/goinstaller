@@ -3,4 +3,4 @@
 env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@r32 || exit
 go install github.com/limero/offlinerss@latest || exit
 go install github.com/limero/koment@latest || exit
-go install golang.org/x/tools/gopls@v0.16.1 || exit
+go install golang.org/x/tools/gopls@v0.16.2 || exit
