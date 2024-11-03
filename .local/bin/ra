@@ -2,7 +2,7 @@
 
 get_retroarch_core() {
     case "$1" in
-        *.gba) CORE="mgba"            ;;
+        *.gb|*.gbc|*.gba) CORE="mgba" ;;
         *.md)  CORE="genesis_plus_gx" ;;
         *.nes) CORE="nestopia"        ;;
         *.sfc) CORE="snes9x"          ;;
