@@ -87,6 +87,7 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 - io.mpv.Mpv
 - org.gimp.GIMP
 - org.signal.Signal
+- org.libretro.RetroArch
 
 #### Proprietary
 
