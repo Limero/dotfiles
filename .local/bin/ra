@@ -1,12 +1,18 @@
 #!/bin/sh
 
+# Core recommendations from https://docs.libretro.com/guides/retroachievements/#cores-compatibility
+
+# Cores directory
+# Flatpak: ~/.var/app/org.libretro.RetroArch/config/retroarch/cores
+
 get_retroarch_core() {
     case "$1" in
-        *.gb|*.gbc|*.gba) CORE="mgba" ;;
-        *.md)  CORE="genesis_plus_gx" ;;
-        *.nes) CORE="nestopia"        ;;
-        *.sfc) CORE="snes9x"          ;;
-        *.pce) CORE="mednafen_pce"    ;;
+        *.nes) CORE="mesen"                    ;; # Mesen
+        *.sfc) CORE="snes9x"                   ;; # Snes9x
+        *.n64|*.z64) CORE="mupen64plus_next"   ;; # Mupen64Plus-Next
+        *.gb|*.gbc|*.gba) CORE="mgba"          ;; # mGBA
+        *sms|*.md|*.gg) CORE="genesis_plus_gx" ;; # Genesis Plus GX
+        *.pce) CORE="mednafen_pce_fast"        ;; # Beetle PCE FAST
         *.zip) get_retroarch_core "$(zipinfo -1 "$1")" ;;
     esac
 }
