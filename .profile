@@ -1,4 +1,5 @@
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH:$GOBIN:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin"

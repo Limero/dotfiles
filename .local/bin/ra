@@ -3,6 +3,7 @@
 # Core recommendations from https://docs.libretro.com/guides/retroachievements/#cores-compatibility
 
 # Cores directory
+# ~/.config/retroarch/cores
 # Flatpak: ~/.var/app/org.libretro.RetroArch/config/retroarch/cores
 
 get_retroarch_core() {
@@ -29,4 +30,8 @@ if [ -z "$CORE" ]; then
     exit 1
 fi
 
-org.libretro.RetroArch -L "$CORE" "$1"
+if command -v retroarch >/dev/null; then
+  retroarch -L "$CORE" "$1"
+else
+  org.libretro.RetroArch -L "$CORE" "$1"
+fi

@@ -78,6 +78,7 @@ assign [class="Signal"] Chat
 assign [class="Spotify"] Music
 for_window [title="Wine System Tray"] move to scratchpad
 #assign [class="net-runelite-client-RuneLite"] Game
+assign [class="steam"] Game
 assign [class="Slack"] Slack
 
 # remove borders

@@ -1,7 +1,6 @@
 set incsearch
 set previewer scope
 set wrapscroll
-set period 1
 set number
 set relativenumber
 set dupfilefmt "%b%n%e"
@@ -27,7 +26,7 @@ cmd open $opener "$f"
 cmd unp ${{
     set -f
     mkdir -p "${f%.*}"
-    bsdtar xf "$f" -C "${f%.*}"
+    bsdtar xvf "$f" -C "${f%.*}"
     lf -remote "send $id select ${f%.*}"
 }}
 

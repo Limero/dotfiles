@@ -1,6 +1,6 @@
 #!/bin/sh
 
-env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@r33 || exit
+env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest || exit
 go install github.com/limero/offlinerss@latest || exit
 go install github.com/limero/koment@latest || exit
 go install golang.org/x/tools/gopls@v0.16.2 || exit
