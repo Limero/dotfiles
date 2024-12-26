@@ -86,6 +86,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+function LoadingMessage(client)
+  vim.notify("Loading " .. client.name .. "...", vim.log.levels.WARN)
+  vim.api.nvim_create_autocmd("DiagnosticChanged",
+    { pattern = "*", callback = function() vim.notify("") end, once = true })
+end
+
 function RestartLSP()
   vim.lsp.stop_client(vim.lsp.get_active_clients())
   vim.defer_fn(function()

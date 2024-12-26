@@ -10,6 +10,7 @@ vim.lsp.start({
   name = "clangd",
   cmd = { "clangd" },
   root_dir = vim.fs.root(0, '.clang-format'),
+  on_init = LoadingMessage,
   settings = {
     ["clangd"] = {
     },
