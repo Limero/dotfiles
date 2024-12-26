@@ -27,7 +27,7 @@ cmd unp ${{
     set -f
     mkdir -p "${f%.*}"
     bsdtar xvf "$f" -C "${f%.*}"
-    lf -remote "send $id select ${f%.*}"
+    lf -remote "send $id select '${f%.*}'"
 }}
 
 # compress current file or selected files with zip
