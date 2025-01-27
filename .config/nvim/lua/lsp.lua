@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("Format on save", {}),
       callback = function()
-        local client = vim.lsp.buf_get_clients(0)[1]
+        local client = vim.lsp.get_clients()[1]
         if not client or not client.server_capabilities then return end
 
         vim.lsp.buf.format({ bufnr = bufnr })
@@ -72,7 +72,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_create_autocmd("TextChangedI", {
       group = vim.api.nvim_create_augroup("Completion while typing", {}),
       callback = function()
-        local client = vim.lsp.buf_get_clients(0)[1]
+        local client = vim.lsp.get_clients()[1]
         if not client or not client.server_capabilities then return end
 
         local col = vim.api.nvim_win_get_cursor(0)[2]
@@ -93,7 +93,7 @@ function LoadingMessage(client)
 end
 
 function RestartLSP()
-  vim.lsp.stop_client(vim.lsp.get_active_clients())
+  vim.lsp.stop_client(vim.lsp.get_clients())
   vim.defer_fn(function()
     vim.cmd('e')
     print('Restarted LSP')
