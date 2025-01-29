@@ -46,10 +46,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("Format on save", {}),
       callback = function()
-        local client = vim.lsp.get_clients()[1]
+        local client = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })[1]
         if not client or not client.server_capabilities then return end
 
-        vim.lsp.buf.format({ bufnr = bufnr })
+        vim.lsp.buf.format()
 
         -- Organizing imports in lua messes up the file
         if vim.bo.filetype == "lua" then return end
@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_create_autocmd("TextChangedI", {
       group = vim.api.nvim_create_augroup("Completion while typing", {}),
       callback = function()
-        local client = vim.lsp.get_clients()[1]
+        local client = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })[1]
         if not client or not client.server_capabilities then return end
 
         local col = vim.api.nvim_win_get_cursor(0)[2]
