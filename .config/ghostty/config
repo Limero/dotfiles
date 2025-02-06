@@ -1,0 +1,9 @@
+background = 000000
+window-height = 9999
+window-width = 9999
+font-size = 13
+initial-window = true
+font-thicken = true
+quit-after-last-window-closed = true
+bold-is-bright = true
+font-family = Menlo
