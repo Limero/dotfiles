@@ -32,11 +32,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
     end
 
+    vim.diagnostic.config({ virtual_text = true }) -- virtual text is disabled by default in 0.11+
+
     vim.keymap.set("n", "<C-\\>", function() vim.lsp.buf.implementation { on_list = on_list } end, { buffer = args.buf })
     vim.keymap.set('n', 'ge', vim.diagnostic.setqflist, { buffer = args.buf })
 
     -- will be defaults in 0.11
-    vim.keymap.set({'n', 'v'}, 'gra', vim.lsp.buf.code_action, { buffer = args.buf })
+    vim.keymap.set({ 'n', 'v' }, 'gra', vim.lsp.buf.code_action, { buffer = args.buf })
     vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { buffer = args.buf })
     vim.keymap.set('n', 'grr', function()
       vim.cmd('cclose')
