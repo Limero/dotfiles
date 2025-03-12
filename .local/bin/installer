@@ -1,6 +1,10 @@
 #!/bin/sh
 
+# Go
 env CGO_ENABLED=0 go install -v -ldflags="-s -w" github.com/gokcehan/lf@r34 || exit
 go install -v github.com/limero/offlinerss@latest || exit
 go install -v github.com/limero/koment@latest || exit
 go install -v golang.org/x/tools/gopls@v0.18.1 || exit
+
+# Rust
+cargo install bob-nvim || exit
