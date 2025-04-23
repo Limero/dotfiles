@@ -29,7 +29,7 @@ brew install fuse-t-sshfs
 
 ### Homebrew
 
-- bob
+- ghostty
 - fzf
 - lf
 - ripgrep
@@ -39,6 +39,7 @@ brew install fuse-t-sshfs
 - zsh-autosuggestions
 - zsh-syntax-highlighting
 - go
+- rust
 - firefox
 - brave-browser
 - gimp
@@ -46,9 +47,6 @@ brew install fuse-t-sshfs
 - signal
 - transmission
 - spotify
-- runescape
-- runelite
-- steam
 
 ### AppStore
 
@@ -66,7 +64,6 @@ brew install fuse-t-sshfs
 - docker
 - awscli
 - visual-studio-code
-- libreoffice
 - slack
 - glab
 
