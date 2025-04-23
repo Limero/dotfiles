@@ -1,3 +1,4 @@
+vim.cmd("command! FormatJSON lua FormatJSON()")
 function FormatJSON()
   -- remove \n
   vim.cmd([[%s/\\n//ge]])
@@ -11,9 +12,8 @@ function FormatJSON()
   vim.cmd("%!python3 -m json.tool | sed 's/    /  /g'")
 end
 
-vim.cmd("command! FormatJSON lua FormatJSON()")
-
 -- Grep
+vim.cmd([[command! -nargs=+ G lua _G.grep_and_open(<q-args>)]])
 function _G.grep_and_open(args)
   vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case -g "!{mocks,CHANGELOG.md,CODEOWNERS,go.sum}"'
   local grep_args = vim.fn.shellescape(vim.fn.escape(args, '*{[()\\'), 1)
@@ -25,8 +25,6 @@ function _G.grep_and_open(args)
     print('No results found')
   end
 end
-
-vim.cmd([[command! -nargs=+ G lua _G.grep_and_open(<q-args>)]])
 
 -- GitBlame function
 -- https://stackoverflow.com/questions/33051496/custom-script-for-git-blame-from-vim
