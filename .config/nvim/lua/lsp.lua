@@ -37,9 +37,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<C-\\>", function() vim.lsp.buf.implementation { on_list = on_list } end, { buffer = args.buf })
     vim.keymap.set('n', 'ge', vim.diagnostic.setqflist, { buffer = args.buf })
 
-    -- will be defaults in 0.11
-    vim.keymap.set({ 'n', 'v' }, 'gra', vim.lsp.buf.code_action, { buffer = args.buf })
-    vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { buffer = args.buf })
     vim.keymap.set('n', 'grr', function()
       vim.cmd('cclose')
       vim.lsp.buf.references({ includeDeclaration = false })
@@ -94,6 +91,18 @@ function LoadingMessage(client)
   vim.api.nvim_create_autocmd("DiagnosticChanged",
     { pattern = "*", callback = function() vim.notify("") end, once = true })
 end
+
+vim.lsp.config('*', {
+  on_init = LoadingMessage,
+})
+
+vim.lsp.enable({
+  'clangd',
+  'gopls',
+  'lua_ls',
+  'rust_analyzer',
+  'ts_ls',
+})
 
 function RestartLSP()
   vim.lsp.stop_client(vim.lsp.get_clients())
