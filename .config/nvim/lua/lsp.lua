@@ -69,20 +69,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end,
     })
 
-    vim.api.nvim_create_autocmd("TextChangedI", {
-      group = vim.api.nvim_create_augroup("Completion while typing", {}),
-      callback = function()
-        local client = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })[1]
-        if not client or not client.server_capabilities then return end
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client:supports_method('textDocument/completion') then
+      client.server_capabilities.completionProvider.triggerCharacters = vim.split('qwertyuiopasdfghjklzxcvbnm.', '')
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    end
 
-        local col = vim.api.nvim_win_get_cursor(0)[2]
-        local char = vim.api.nvim_get_current_line():sub(col, col)
-        --if vim.fn.pumvisible() and not char:match("[\t :;=){}-]") then
-        if vim.fn.pumvisible() and char:match("[a-zA-Z.]") then
-          vim.api.nvim_feedkeys(vim.keycode('<C-x><C-o>'), 'm', true)
-        end
-      end,
-    })
   end,
 })
 
