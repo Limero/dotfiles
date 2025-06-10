@@ -6,10 +6,6 @@ vim.keymap.set('n', '<C-B>', ':buffers<CR>:buffer<Space>')
 -- http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text#Mapping_for_paste
 vim.keymap.set('x', 'p', '"_dP')
 
--- Keep selected text selected when fixing indentation
-vim.keymap.set('x', '<', '<gv')
-vim.keymap.set('x', '>', '>gv')
-
 -- Automatically add closing curly brace and parenthesis in insert mode
 vim.keymap.set('i', '{<CR>', '{<CR>}<ESC>O')
 vim.keymap.set('i', '(<CR>', '(<CR>)<ESC>O')
