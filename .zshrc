@@ -82,6 +82,7 @@ bindkey -s "\e[27;6;34~" "" # ctrl+shift+'
 bindkey -s "\e[27;6;60~" "" # ctrl+shift+,
 bindkey -s "\e[27;6;62~" "" # ctrl+shift+.
 bindkey -s "\e[27;6;63~" "" # ctrl+shift+/
+bindkey -s "\e[27;6;13~" "" # ctrl+shift+enter
 bindkey "\e[1;2A"     up-line-or-history   # shift+up
 bindkey "\e[1;2B"     down-line-or-history # shift+down
 bindkey "\e[1;2D"     backward-word        # shift+left
