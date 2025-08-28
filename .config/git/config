@@ -9,6 +9,16 @@
 [user]
 	email = limero@me.com
 	name = David Pedersen
+	signingkey = ~/.ssh/id_rsa.pub
+
+[branch]
+	sort = -committerdate
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[safe]
+	directory = /Users/david/go/src/gitlab.com/junitechnology/*
 
 [includeIf "gitdir:~/go/src/gitlab.com/junitechnology/"]
 	path = ~/.config/git/config-juni
