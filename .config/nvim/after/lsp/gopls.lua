@@ -9,6 +9,7 @@ return {
         unusedparams = true,
         unusedwrite = true,
         shadow = true,
+        ST1000 = false,
       },
       gofumpt = true,
       staticcheck = true,
