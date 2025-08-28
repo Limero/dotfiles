@@ -10,16 +10,6 @@ vim.keymap.set('x', 'p', '"_dP')
 vim.keymap.set('i', '{<CR>', '{<CR>}<ESC>O')
 vim.keymap.set('i', '(<CR>', '(<CR>)<ESC>O')
 
--- Pane navigation
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
-vim.keymap.set('t', '<C-j>', '<C-\\><C-n><C-w>j')
-vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k')
-vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h')
-vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l')
-
 -- Yank file name/path of current buffer
 -- https://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
 -- https://stackoverflow.com/questions/4525261/getting-relative-paths-in-vim/24463362#24463362

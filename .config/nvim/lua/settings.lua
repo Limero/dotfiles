@@ -34,9 +34,6 @@ vim.opt.relativenumber = true
 -- Set the terminal title
 vim.opt.title = true
 
--- Disable highlighting of search results after search
-vim.opt.hlsearch = false
-
 -- Disable intro message
 vim.opt.shortmess:append('I')
 
