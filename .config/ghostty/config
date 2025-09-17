@@ -1,5 +1,5 @@
 # Reload with ctrl+shift+, or cmd+shift+,
-# theme = Tomorrow Night Bright
+theme = Kitty Default
 background = 000000
 window-height = 9999
 window-width = 9999
