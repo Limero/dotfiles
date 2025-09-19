@@ -1,13 +1,19 @@
 #!/bin/sh
 
+if [ "$#" -ge 3 ]; then
+    # lf doesn't populate these, but instead pass them as arguments
+    LINES=$3
+else
+    LINES="$(tput lines)"
+fi
+
 case "$1" in
     *.tar*) tar tf "$1" ;;
     *.zip) unzip -l "$1" ;;
     *.rar) unrar l "$1" ;;
     *.7z) 7z l "$1" ;;
     *.pdf) pdftotext "$1" - ;;
-    *.jpg) img "$1" 0 0 20 20 &>/dev/null ;;
-    *.png) img2txt "$1" ;;
+    *.jpg|.png) file --brief --mime-type "$1" ;;
     *.webm) ffprobe -v quiet -show_entries format_tags=DESCRIPTION "$1" ;;
-    *) cat "$1" ;;
+    *) head -n "$LINES" "$1" ;;
 esac
