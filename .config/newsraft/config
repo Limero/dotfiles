@@ -1,0 +1,14 @@
+bind a toggle-read; jump-to-next-unread
+bind S toggle-important
+pager-centering false
+notification-command ""
+status-show-menu-path false
+status-placeholder ""
+scrollwrap true
+
+menu-feed-entry-format "%2i (%u) %t"
+menu-item-entry-format "%2i %-3u%d  %o"
+
+color-list-feed-unread white default bold
+color-list-item-unread white default
+color-list-item-important yellow default
