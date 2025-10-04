@@ -6,6 +6,9 @@ status-show-menu-path false
 status-placeholder ""
 scrollwrap true
 
+item-content-format "<b>Feed</b>:&nbsp;&nbsp;%f<br>|<b>Title</b>:&nbsp;%t<br>|<b>Author</b>:&nbsp;%a<br>|<b>Date</b>:&nbsp;&nbsp;%d<br>|<br>%c<br>|<br><hr>%L"
+menu-feed-sorting "alphabet-asc"
+
 menu-feed-entry-format "%2i (%u) %t"
 menu-item-entry-format "%2i %-3u%d  %o"
 
