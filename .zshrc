@@ -52,6 +52,9 @@ setopt noflowcontrol
 # correct spelling mistakes
 setopt correct
 
+# Prevent ctrl+d from exiting
+setopt IGNORE_EOF
+
 # Ctrl+arrow key to move word like bash
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
