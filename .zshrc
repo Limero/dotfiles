@@ -8,9 +8,6 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/david/.zshrc'
-
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
 
 # https://danishprakash.github.io/2018/07/06/git-branch-zsh.html
@@ -64,7 +61,7 @@ bindkey '^P' up-history
 bindkey '^N' down-history
 
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
