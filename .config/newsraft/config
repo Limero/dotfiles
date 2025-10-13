@@ -7,11 +7,16 @@ status-placeholder ""
 scrollwrap true
 
 item-content-format "<b>Feed</b>:&nbsp;&nbsp;%f<br>|<b>Title</b>:&nbsp;%t<br>|<b>Author</b>:&nbsp;%a<br>|<b>Date</b>:&nbsp;&nbsp;%d<br>|<br>%c<br>|<br><hr>%L"
-menu-feed-sorting "alphabet-asc"
+#menu-feed-sorting "alphabet-asc"
+menu-feed-sorting "unread-desc"
 
-menu-feed-entry-format "%2i (%u) %t"
+menu-feed-entry-format "%2i (%u/%n) %t"
 menu-item-entry-format "%2i %-3u%d  %o"
 
 color-list-feed-unread white default bold
 color-list-item-unread white default
 color-list-item-important yellow default
+color-list-feed-selected yellow blue bold
+color-list-item-selected yellow blue bold
+
+#item-rule "unread == 1"
