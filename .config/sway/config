@@ -74,7 +74,7 @@ bindsym $mod+Shift+G move container to workspace Game
 bindsym $mod+Shift+M move container to workspace Music
 
 # get with swaymsg -t get_tree
-assign [class="Signal"] Chat
+assign [app_id="org.signal.Signal"] Chat
 assign [class="Spotify"] Music
 for_window [title="Wine System Tray"] move to scratchpad
 #assign [class="net-runelite-client-RuneLite"] Game
@@ -83,7 +83,6 @@ assign [class="Slack"] Slack
 
 # remove borders
 for_window [class="^Spotify$"] border none
-for_window [class="^Signal$"] border none
 
 exec foot --server
 exec dunst
