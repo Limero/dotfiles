@@ -7,13 +7,13 @@ else
     LINES="$(tput lines)"
 fi
 
-case "$1" in
+case "$(basename "$1")" in
     *.tar*) tar tf "$1" ;;
     *.zip) unzip -l "$1" ;;
     *.rar) unrar l "$1" ;;
     *.7z) 7z l "$1" ;;
     *.pdf) pdftotext "$1" - ;;
-    *.jpg|.png) file --brief --mime-type "$1" ;;
+    *.jpg|*.png) file --brief --mime-type "$1" ;;
     *.webm) ffprobe -v quiet -show_entries format_tags=DESCRIPTION "$1" ;;
     *) head -n "$LINES" "$1" ;;
 esac
