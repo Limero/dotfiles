@@ -96,3 +96,11 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 - net.runelite.RuneLite
 - com.spotify.Client
 - com.slack.Slack
+
+#### Flatpak configs
+
+##### Spotify Wayland
+
+```
+flatpak override --user --socket=wayland com.spotify.Client
+```
