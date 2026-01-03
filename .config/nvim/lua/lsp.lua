@@ -81,6 +81,7 @@ vim.lsp.enable({
   'clangd',
   'gopls',
   'lua_ls',
+  'ols',
   'rust_analyzer',
   'ts_ls',
 })

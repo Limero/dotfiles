@@ -5,6 +5,6 @@ return {
   init_options = {
     enable_semantic_tokens = true,
     enable_auto_import = true,
-    odin_command = '~/odin/odin',
+    odin_command = '~/Odin/odin',
   },
 }
