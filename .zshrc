@@ -12,15 +12,20 @@ zstyle :compinstall filename '/home/david/.zshrc'
 
 # https://danishprakash.github.io/2018/07/06/git-branch-zsh.html
 function git_branch() {
-    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-    if [[ $branch == "" || $(pwd) == $HOME ]]; then
-        :
-    else
-        echo '('$branch') '
-    fi
+  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  if [[ $branch == "" || $(pwd) == $HOME ]]; then
+    :
+  else
+    echo '('$branch') '
+  fi
+}
+function _tag() {
+  if [ -f /run/.containerenv ]; then
+    awk -F'"' 'NR==2 && NF>2 {print $2}' /run/.containerenv
+  fi
 }
 setopt prompt_subst
-PROMPT='%F{green}%2~%f %F{blue}$(git_branch)%f$ '
+PROMPT='%F{green}%2~%f %F{blue}$(git_branch)%f$(_tag)$ '
 
 # Set window title
 precmd () {print -Pn "\e]0;%n@%M:%~\a"}
@@ -68,6 +73,7 @@ compinit
 _comp_options+=(globdots) # Include hidden files.
 
 # https://codeberg.org/dnkl/foot/issues/628
+# ctrl+v before combo to see escape sequence
 bindkey "\e[27;2;13~" accept-line # shift+return
 bindkey "\e[27;5;13~" accept-line # ctrl+return
 bindkey -s "\e[27;2;27~" "" # shift+esc
@@ -83,6 +89,9 @@ bindkey -s "\e[27;6;60~" "" # ctrl+shift+,
 bindkey -s "\e[27;6;62~" "" # ctrl+shift+.
 bindkey -s "\e[27;6;63~" "" # ctrl+shift+/
 bindkey -s "\e[27;6;13~" "" # ctrl+shift+enter
+bindkey -s "\e[27;4;13~" "" # alt+shift+enter
+bindkey -s "\e[27;4;9~" ""  # alt+shift+tab
+bindkey -s "\e[27;10;9~" "" # meta+shift+tab
 bindkey "\e[1;2A"     up-line-or-history   # shift+up
 bindkey "\e[1;2B"     down-line-or-history # shift+down
 bindkey "\e[1;2D"     backward-word        # shift+left
