@@ -1,0 +1,31 @@
+# Bright colors (from kitty)
+[colors.bright]
+black = "0x767676"
+blue = "0x1a8fff"
+cyan = "0x14ffff"
+green = "0x23fd00"
+magenta = "0xfd28ff"
+red = "0xf2201f"
+white = "0xffffff"
+yellow = "0xfffd00"
+
+# Normal colors (from kitty)
+[colors.normal]
+black = "0x000000"
+blue = "0x0d73cc"
+cyan = "0x0dcdcd"
+green = "0x19cb00"
+magenta = "0xcb1ed1"
+red = "0xcc0403"
+white = "0xdddddd"
+yellow = "0xcecb00"
+
+[colors.primary]
+background = "0x000000"
+foreground = "0xeaeaea"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12.0
