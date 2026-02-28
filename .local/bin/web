@@ -8,6 +8,10 @@ done
 
 if command -v firefox >/dev/null; then
   eval "firefox $args"
-else
+elif command -v org.mozilla.firefox >/dev/null; then
   eval "org.mozilla.firefox $args"
+elif command -v termux-open-url >/dev/null; then
+  eval "termux-open-url $args"
+else
+  echo 'No supported browser available'
 fi
