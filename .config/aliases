@@ -36,6 +36,7 @@ alias w='cd ~/go/src/gitlab.com/junitechnology/ && cd $(ls -d */ | fzf) && gs'
 alias p='cd ~/go/src/github.com/limero/ && cd $(ls -d */ | fzf) && gs'
 
 alias v='$EDITOR'
+alias e='exit'
 alias mh='neomutt -F ~/.config/mutt/account.home && exit'
 alias mw='neomutt -F ~/.config/mutt/account.work && exit'
 alias nb='offlinerss && newsboat && offlinerss to'
