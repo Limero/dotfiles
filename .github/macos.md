@@ -63,6 +63,7 @@ brew install fuse-t-sshfs
 - node
 - docker
 - awscli
+- session-manager-plugin
 - visual-studio-code
 - slack
 - glab

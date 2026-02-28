@@ -25,10 +25,6 @@ fi
 
 # macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export GOPRIVATE=gitlab.com/junitechnology/*
-  export GO111MODULE=on
-  #export GOROOT=/opt/homebrew/bin
-  export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl/lib/pkgconfig"
   export PATH="/Applications/Firefox.app/Contents/MacOS:$PATH"
   export PATH="$HOME/.docker/bin:$PATH"
 fi
