@@ -6,28 +6,41 @@
 # ~/.config/retroarch/cores
 # Flatpak: ~/.var/app/org.libretro.RetroArch/config/retroarch/cores
 
+# Disc consoles require BIOS in retroarch/system
+# TurboGrafx-CD - syscard3.pce
+# PS1 (US)      - scph5501.bin
+
+get_retroarch_disc_core() {
+  case "$(realpath "$1")" in
+    */turbo*) CORE="mednafen_pce_fast" ;; # Beetle PCE FAST
+    */ps1/*)  CORE="mednafen_psx_hw"   ;; # Beetle PSX HW
+  esac
+}
+
 get_retroarch_core() {
-    case "$1" in
-        *.nes) CORE="mesen"                    ;; # Mesen
-        *.sfc) CORE="snes9x"                   ;; # Snes9x
-        *.n64|*.z64) CORE="mupen64plus_next"   ;; # Mupen64Plus-Next
-        *.gb|*.gbc|*.gba) CORE="mgba"          ;; # mGBA
-        *sms|*.md|*.gg) CORE="genesis_plus_gx" ;; # Genesis Plus GX
-        *.pce) CORE="mednafen_pce_fast"        ;; # Beetle PCE FAST
-        *.zip) get_retroarch_core "$(zipinfo -1 "$1")" ;;
-    esac
+  case "$1" in
+    *.nes)            CORE="mesen"             ;; # Mesen
+    *.sfc)            CORE="snes9x"            ;; # Snes9x
+    *.pce)            CORE="mednafen_pce_fast" ;; # Beetle PCE FAST
+    *.n64|*.z64)      CORE="mupen64plus_next"  ;; # Mupen64Plus-Next
+    *.gb|*.gbc|*.gba) CORE="mgba"              ;; # mGBA
+    *sms|*.md|*.gg)   CORE="genesis_plus_gx"   ;; # Genesis Plus GX
+
+    *.cue) get_retroarch_disc_core "$1"            ;;
+    *.zip) get_retroarch_core "$(zipinfo -1 "$1")" ;;
+  esac
 }
 
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <filename>"
-    exit 1
+  echo "Usage: $0 <filename>"
+  exit 1
 fi
 
 get_retroarch_core "$1"
 
 if [ -z "$CORE" ]; then
-    echo "Error: No core found for" "$1"
-    exit 1
+  echo "Error: No core found for" "$1"
+  exit 1
 fi
 
 if command -v retroarch >/dev/null; then
