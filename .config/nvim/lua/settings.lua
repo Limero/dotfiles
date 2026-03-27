@@ -1,7 +1,5 @@
-if (vim.version().minor >= 10) then
-  vim.cmd('colorscheme vim')
-  vim.opt.termguicolors = false
-end
+vim.cmd('colorscheme vim')
+vim.opt.termguicolors = false
 
 -- Set Pmenu background colors to avoid the default pink
 vim.cmd('highlight Pmenu ctermbg=gray guibg=gray')
