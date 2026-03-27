@@ -1,2 +1,2 @@
 -- Disable continuation of comments
-vim.cmd("setlocal formatoptions-=cro")
+vim.cmd('setlocal formatoptions-=cro')

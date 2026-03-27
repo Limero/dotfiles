@@ -2,7 +2,7 @@ if vim.fn.executable('fzf') == 0 then
   return
 end
 
-if vim.fn.exists(":FZF") == 0 then
+if vim.fn.exists(':FZF') == 0 then
   if vim.fn.filereadable('/usr/share/vim/vimfiles/plugin/fzf.vim') == 1 then
     -- Fedora
     vim.cmd('source /usr/share/vim/vimfiles/plugin/fzf.vim')
@@ -18,8 +18,8 @@ end
 vim.keymap.set('n', '<C-P>', function()
   vim.fn['fzf#run']({
     source = "git ls-files --exclude-standard --cached --others -- . ':!mocks' ':!**/go-client/*'",
-    sink = "tabedit",
-    options = "--reverse --preview 'cat {}'",
+    sink = 'tabedit',
+    options = "--exact --reverse --preview 'cat {}'",
   })
 end)
 
