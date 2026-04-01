@@ -1,11 +1,13 @@
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('LSP actions', {}),
-  callback = function(args)
+  callback = function(ev)
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+
     local function on_list(options)
       local items = options.items
       if #items > 1 then
         local filtered = {}
-        for k, v in pairs(items) do
+        for _, v in pairs(items) do
           if string.match(v.filename, 'mocks') == nil then
             table.insert(filtered, v)
           end
@@ -21,21 +23,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end
     end
 
-    vim.diagnostic.config({ virtual_text = true }) -- virtual text is disabled by default in 0.11+
+    vim.diagnostic.config({ virtual_text = true })
 
-    vim.keymap.set('n', '<C-\\>', function() vim.lsp.buf.implementation { on_list = on_list } end, { buffer = args.buf })
-    vim.keymap.set('n', 'ge', vim.diagnostic.setqflist, { buffer = args.buf })
+    vim.keymap.set('n', '<C-\\>', function() vim.lsp.buf.implementation { on_list = on_list } end, { buffer = ev.buf })
+    vim.keymap.set('n', 'ge', vim.diagnostic.setqflist, { buffer = ev.buf })
 
     vim.keymap.set('n', 'grr', function()
       vim.cmd('cclose')
       vim.lsp.buf.references({ includeDeclaration = false })
-    end, { buffer = args.buf })
+    end, { buffer = ev.buf })
 
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = vim.api.nvim_create_augroup('Format on save', {}),
       callback = function()
-        local client = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })[1]
-        if not client or not client.server_capabilities then return end
+        if not client.server_capabilities then return end
 
         vim.lsp.buf.format()
 
@@ -58,11 +59,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end,
     })
 
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client:supports_method('textDocument/completion') then
       client.server_capabilities.completionProvider.triggerCharacters = vim.split(
         'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM.', '')
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
   end,
 })
@@ -83,15 +83,4 @@ vim.lsp.enable({
   'lua_ls',
   'ols',
   'rust_analyzer',
-  'ts_ls',
 })
-
-function RestartLSP()
-  vim.lsp.stop_client(vim.lsp.get_clients())
-  vim.defer_fn(function()
-    vim.cmd('e')
-    print('Restarted LSP')
-  end, 500)
-end
-
-vim.cmd('command! RestartLSP lua RestartLSP()')

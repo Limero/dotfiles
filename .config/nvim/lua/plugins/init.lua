@@ -1,5 +1,4 @@
 vim.pack.add({
-  'https://github.com/junegunn/fzf.vim',
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/github/copilot.vim'
 })

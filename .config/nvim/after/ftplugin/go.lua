@@ -1,9 +1,5 @@
 vim.opt_local.tabstop = 4
-vim.opt.listchars = {
-  tab = '  ',
-  nbsp = '%',
-  trail = '·',
-}
+vim.opt.listchars = { tab = '  ', nbsp = '%', trail = '·' }
 
 vim.keymap.set('n', 'yt', function()
   local dirPath = './' .. vim.fn.expand('%:h:.')
@@ -15,7 +11,7 @@ vim.keymap.set('n', 'yt', function()
   end
 end)
 
-vim.keymap.set('n', '<Leader>tt', function()
+vim.keymap.set('n', '<Leader>ll', function()
   local fileWithoutExt = vim.fn.expand('%:h') .. '/' .. vim.fn.expand('%:t:r')
   if string.match(fileWithoutExt, '_test$') then
     vim.cmd('edit ' .. fileWithoutExt:sub(1, -6) .. '.go')
