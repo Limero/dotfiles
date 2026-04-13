@@ -8,3 +8,4 @@ go install -v golang.org/x/tools/gopls@v0.21.1 || exit
 
 # Rust
 cargo install bob-nvim || exit
+bob use stable
