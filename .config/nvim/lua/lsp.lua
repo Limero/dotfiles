@@ -2,6 +2,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('LSP actions', {}),
   callback = function(ev)
     local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+    if client.name == 'GitHub Copilot' then return end
 
     local function on_list(options)
       local items = options.items
@@ -34,11 +35,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, { buffer = ev.buf })
 
     vim.api.nvim_create_autocmd('BufWritePre', {
-      group = vim.api.nvim_create_augroup('Format on save', {}),
+      group = vim.api.nvim_create_augroup('Format on save', { clear = false }),
+      buffer = ev.buf,
       callback = function()
         if not client.server_capabilities then return end
 
-        vim.lsp.buf.format()
+        vim.lsp.buf.format({ bufnr = ev.buf, id = client.id })
 
         -- Organizing imports in lua messes up the file
         if vim.bo.filetype == 'lua' then return end
@@ -46,13 +48,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- https://github.com/neovim/nvim-lspconfig/issues/115
         local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
         params.context = { only = { 'source.organizeImports' } }
-        local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, 5000)
+        local result = vim.lsp.buf_request_sync(ev.buf, 'textDocument/codeAction', params, 5000)
         for _, res in pairs(result or {}) do
           for _, r in pairs(res.result or {}) do
             if r.edit then
               vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding)
             else
-              vim.lsp.buf.execute_command(r.command)
+              --vim.lsp.buf.execute_command(r.command)
             end
           end
         end
