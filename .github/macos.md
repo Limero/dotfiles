@@ -17,14 +17,6 @@ podman machine start
 sudo /opt/homebrew/Cellar/podman/4.4.2/bin/podman-mac-helper install
 ```
 
-### Fuse for SSH mounting
-
-```
-brew tap macos-fuse-t/homebrew-cask
-brew install fuse-t
-brew install fuse-t-sshfs
-```
-
 ## Packages
 
 ### Homebrew
@@ -50,8 +42,6 @@ brew install fuse-t-sshfs
 
 ### AppStore
 
-- [Wireguard](https://apps.apple.com/us/app/wireguard/id1451685025)
-
 ## Packages for work
 
 ### Homebrew
@@ -64,7 +54,8 @@ brew install fuse-t-sshfs
 - docker
 - awscli
 - session-manager-plugin
-- visual-studio-code
+- cursor
+- cursor-cli
 - slack
 - glab
 
