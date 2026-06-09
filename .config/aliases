@@ -58,6 +58,7 @@ alias mcl='m --really-quiet $(wl-paste) & disown && exit'
 alias pi='ping 1.1.1.1'
 alias eip='curl icanhazip.com'
 alias fwu='sudo fwupdmgr refresh; sudo fwupdmgr get-updates && sudo fwupdmgr update'
+alias cw='cursor-agent'
 
 alias tetris='autoload -Uz tetriscurses; tetriscurses'
 alias bc='bc -q -l'
