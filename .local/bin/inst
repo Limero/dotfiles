@@ -7,5 +7,6 @@ go install -v github.com/limero/koment@latest || exit
 go install -v golang.org/x/tools/gopls@v0.21.1 || exit
 
 # Rust
+rustup update
 cargo install bob-nvim || exit
 bob use stable
