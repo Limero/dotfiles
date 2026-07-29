@@ -68,9 +68,9 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 ### Repo
 
 - neovim
-- nodejs
+- npm
 - sshfs
-- cargo
+- rustup
 - ripgrep
 - fzf
 - golang
@@ -95,7 +95,6 @@ sudo systemctl enable rpm-ostreed-automatic.timer --now
 - com.jagex.RuneScape
 - net.runelite.RuneLite
 - com.spotify.Client
-- com.slack.Slack
 
 #### Flatpak configs
 

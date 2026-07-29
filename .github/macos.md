@@ -31,7 +31,7 @@ sudo /opt/homebrew/Cellar/podman/4.4.2/bin/podman-mac-helper install
 - zsh-autosuggestions
 - zsh-syntax-highlighting
 - go
-- rust
+- rustup
 - firefox
 - brave-browser
 - gimp
