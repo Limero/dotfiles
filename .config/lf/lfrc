@@ -16,7 +16,7 @@ cmd on-quit %umount /tmp/nuc
 
 map D delete
 map S $zsh
-map <backspace> set hidden!
+map <c-h> set hidden!
 
 cmd touch %touch $1 && lf -remote "send $id select $1"
 cmd mkdir %mkdir -p $1 && lf -remote "send $id select $1"
