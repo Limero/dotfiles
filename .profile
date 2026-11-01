@@ -27,4 +27,5 @@ fi
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/Applications/Firefox.app/Contents/MacOS:$PATH"
   export PATH="$HOME/.docker/bin:$PATH"
+  export PATH=/opt/homebrew/opt/libpq/bin:$PATH
 fi

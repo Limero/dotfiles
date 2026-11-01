@@ -58,6 +58,7 @@ sudo /opt/homebrew/Cellar/podman/4.4.2/bin/podman-mac-helper install
 - cursor-cli
 - slack
 - glab
+- libpq
 
 ### AppStore
 
