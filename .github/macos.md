@@ -26,6 +26,7 @@ sudo /opt/homebrew/Cellar/podman/4.4.2/bin/podman-mac-helper install
 - lf
 - ripgrep
 - mpv
+- neovim
 - yt-dlp
 - newsboat
 - zsh-autosuggestions
