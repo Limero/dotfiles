@@ -6,7 +6,9 @@ for arg in "$@"; do
   args="$args \"$cleaned_arg\""
 done
 
-if command -v firefox >/dev/null; then
+if [ "$(uname)" = Darwin ] && [ -d /Applications/Firefox.app ]; then
+  eval "open -a Firefox $args"
+elif command -v firefox >/dev/null; then
   eval "firefox $args"
 elif command -v org.mozilla.firefox >/dev/null; then
   eval "org.mozilla.firefox $args"
