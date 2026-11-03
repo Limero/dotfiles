@@ -17,10 +17,14 @@ if command -v sway >/dev/null; then
     fi
   fi
 
-  if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  if [[ -z $DISPLAY && $(</sys/class/tty/tty0/active) == tty1 ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
-    exec sway
+    case $(tty) in
+      /dev/pts/*) exec kmscon-launch-gui sway ;;
+      /dev/tty1)  exec sway ;;
+    esac
   fi
+
 fi
 
 # macOS
